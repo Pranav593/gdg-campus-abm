@@ -1,0 +1,33 @@
+# Agent-Based Modeling
+mesa
+
+# Graphs / Campus Mapping
+networkx
+osmnx
+geopandas
+shapely
+
+# Data Processing
+pandas
+numpy
+
+# CourseBook Scraping / HTTP
+requests
+beautifulsoup4
+lxml
+
+# Machine Learning
+scikit-learn
+xgboost
+
+# Visualization
+matplotlib
+plotly
+
+# Notebooks
+jupyter
+ipykernel
+
+# Utilities
+python-dotenv
+tqdm
