@@ -1,0 +1,561 @@
+{
+  "verified_on": "2026-10-08",
+  "official_map": "https://map.utdallas.edu/index.html",
+  "osm_snapshot": "2026-10-01",
+  "buildings": [
+    {
+      "code": "AD",
+      "full_name": "Administration Building",
+      "aliases": [
+        "Administration Building",
+        "Administration"
+      ],
+      "lat": 32.989796,
+      "lon": -96.74836,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 313186,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/313186"
+    },
+    {
+      "code": "ATC",
+      "full_name": "Edith O'Donnell Arts & Technology Building",
+      "aliases": [
+        "Edith O'Donnell Arts and Technology Building",
+        "Arts and Technology Building",
+        "Edith O'Donnell Arts & Technology Building"
+      ],
+      "lat": 32.986225,
+      "lon": -96.747566,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316550,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316550"
+    },
+    {
+      "code": "BE",
+      "full_name": "Lloyd V. Berkner Hall",
+      "aliases": [
+        "Lloyd V. Berkner Hall",
+        "Berkner Hall"
+      ],
+      "lat": 32.987816,
+      "lon": -96.750488,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 311736,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/311736"
+    },
+    {
+      "code": "BSB",
+      "full_name": "Bioengineering and Sciences Building",
+      "aliases": [
+        "Bioengineering Science Building",
+        "Bioengineering and Sciences Building"
+      ],
+      "lat": 32.991646,
+      "lon": -96.750092,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316041,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316041"
+    },
+    {
+      "code": "CB",
+      "full_name": "Classroom Building",
+      "aliases": [
+        "Classroom Building"
+      ],
+      "lat": 32.98978,
+      "lon": -96.749382,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316714,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316714"
+    },
+    {
+      "code": "CR",
+      "full_name": "Callier Center Richardson",
+      "aliases": [
+        "Callier Center Richardson",
+        "Callier Center for Communication Disorders",
+        "Callier Center"
+      ],
+      "lat": 32.992573,
+      "lon": -96.748627,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316042,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316042"
+    },
+    {
+      "code": "CRA",
+      "full_name": "Callier Center Richardson Addition",
+      "aliases": [
+        "Callier Center Addition",
+        "Callier Richardson Addition",
+        "Callier Center Richardson Addition"
+      ],
+      "lat": 32.991833,
+      "lon": -96.748451,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316043,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316043"
+    },
+    {
+      "code": "ECSN",
+      "full_name": "Engineering and Computer Science North",
+      "aliases": [
+        "Engineering and Computer Science North"
+      ],
+      "lat": 32.987091,
+      "lon": -96.750381,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316597,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316597"
+    },
+    {
+      "code": "ECSS",
+      "full_name": "Engineering and Computer Science South",
+      "aliases": [
+        "Engineering and Computer Science South"
+      ],
+      "lat": 32.986374,
+      "lon": -96.750458,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316551,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316551"
+    },
+    {
+      "code": "ECSW",
+      "full_name": "Engineering and Computer Science West",
+      "aliases": [
+        "Engineering and Computer Science West"
+      ],
+      "lat": 32.98632,
+      "lon": -96.751701,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316582,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316582"
+    },
+    {
+      "code": "FA",
+      "full_name": "Founders Annex",
+      "aliases": [
+        "Founders Annex",
+        "Founders West Annex"
+      ],
+      "lat": 32.987762,
+      "lon": -96.749893,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316590,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316590"
+    },
+    {
+      "code": "FN",
+      "full_name": "Founders North",
+      "aliases": [
+        "Founders North"
+      ],
+      "lat": 32.988197,
+      "lon": -96.749382,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316586,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316586"
+    },
+    {
+      "code": "FO",
+      "full_name": "Founders Building",
+      "aliases": [
+        "Founders Building",
+        "Founders"
+      ],
+      "lat": 32.987785,
+      "lon": -96.74913,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316585,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316585"
+    },
+    {
+      "code": "GR",
+      "full_name": "Cecil H. Green Hall",
+      "aliases": [
+        "Cecil H. Green Hall",
+        "Green Hall"
+      ],
+      "lat": 32.98877,
+      "lon": -96.747887,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 317323,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/317323"
+    },
+    {
+      "code": "HH",
+      "full_name": "Karl Hoblitzelle Hall",
+      "aliases": [
+        "Karl Hoblitzelle Hall",
+        "Hoblitzelle Hall"
+      ],
+      "lat": 32.987061,
+      "lon": -96.751656,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316591,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316591"
+    },
+    {
+      "code": "JO",
+      "full_name": "Erik Jonsson Academic Center",
+      "aliases": [
+        "Erik Jonsson Academic Center",
+        "Jonsson Academic Center"
+      ],
+      "lat": 32.988857,
+      "lon": -96.748947,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316583,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316583"
+    },
+    {
+      "code": "JSOM",
+      "full_name": "Naveen Jindal School of Management Building",
+      "aliases": [
+        "Naveen Jindal School of Management",
+        "Naveen Jindal School of Management Building"
+      ],
+      "lat": 32.985046,
+      "lon": -96.747055,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316596,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316596"
+    },
+    {
+      "code": "MC",
+      "full_name": "Eugene McDermott Library",
+      "aliases": [
+        "Eugene McDermott Library",
+        "McDermott Library"
+      ],
+      "lat": 32.987057,
+      "lon": -96.747658,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 313479,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/313479"
+    },
+    {
+      "code": "ML1",
+      "full_name": "Modular Lab 1",
+      "aliases": [
+        "Modular Lab 1",
+        "Modular Laboratory 1"
+      ],
+      "lat": 32.986931,
+      "lon": -96.752609,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316593,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316593"
+    },
+    {
+      "code": "ML2",
+      "full_name": "Modular Lab 2",
+      "aliases": [
+        "Modular Lab 2",
+        "Modular Laboratory 2"
+      ],
+      "lat": 32.986935,
+      "lon": -96.753288,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316594,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316594"
+    },
+    {
+      "code": "NB",
+      "full_name": "North Office Building",
+      "aliases": [
+        "North Office Building"
+      ],
+      "lat": 32.990128,
+      "lon": -96.749397,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316599,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316599"
+    },
+    {
+      "code": "NL",
+      "full_name": "North Lab",
+      "aliases": [
+        "North Lab",
+        "North Laboratory"
+      ],
+      "lat": 32.990372,
+      "lon": -96.749222,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316598,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316598"
+    },
+    {
+      "code": "PHA",
+      "full_name": "Physics Annex",
+      "aliases": [
+        "Physics Annex"
+      ],
+      "lat": 32.989567,
+      "lon": -96.749939,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316610,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316610"
+    },
+    {
+      "code": "PHY",
+      "full_name": "Physics Building",
+      "aliases": [
+        "Physics Building"
+      ],
+      "lat": 32.989468,
+      "lon": -96.750359,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316611,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316611"
+    },
+    {
+      "code": "SCI",
+      "full_name": "Sciences Building",
+      "aliases": [
+        "Sciences Building"
+      ],
+      "lat": 32.989006,
+      "lon": -96.750359,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 374837,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/374837"
+    },
+    {
+      "code": "SLC",
+      "full_name": "Science Learning Center",
+      "aliases": [
+        "Science Learning Center"
+      ],
+      "lat": 32.9883,
+      "lon": -96.750397,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316615,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316615"
+    },
+    {
+      "code": "TH",
+      "full_name": "University Theatre",
+      "aliases": [
+        "University Theatre",
+        "University Theater",
+        "Theatre"
+      ],
+      "lat": 32.988487,
+      "lon": -96.748726,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 317878,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/317878"
+    },
+    {
+      "code": "WSTC",
+      "full_name": "Waterview Science and Technology Center",
+      "aliases": [
+        "Waterview Science and Technology Center"
+      ],
+      "lat": 32.992062,
+      "lon": -96.757378,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316624,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316624"
+    },
+    {
+      "code": "RL",
+      "full_name": "Natural Science and Engineering Research Lab",
+      "aliases": [
+        "Natural Science and Engineering Research Lab"
+      ],
+      "lat": 32.99268,
+      "lon": -96.750427,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316595,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316595"
+    },
+    {
+      "code": "ROC",
+      "full_name": "Research and Operations Center",
+      "aliases": [
+        "Research and Operations Center"
+      ],
+      "lat": 32.986385,
+      "lon": -96.757126,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316612,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316612"
+    },
+    {
+      "code": "ROW",
+      "full_name": "Research and Operations Center West",
+      "aliases": [
+        "Reasearch Operations Center West",
+        "Research and Operations Center West"
+      ],
+      "lat": 32.986324,
+      "lon": -96.758568,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316613,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316613"
+    },
+    {
+      "code": "SPN",
+      "full_name": "Synergy Park North",
+      "aliases": [
+        "Synergy Park North"
+      ],
+      "lat": 32.99408,
+      "lon": -96.752213,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316620,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316620"
+    },
+    {
+      "code": "SP2",
+      "full_name": "Synergy Park North 2",
+      "aliases": [
+        "Synergy Park North 2"
+      ],
+      "lat": 32.99509,
+      "lon": -96.753471,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 316621,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316621"
+    },
+    {
+      "code": "WAAC",
+      "full_name": "Waterview Academic and Administrative Center",
+      "aliases": [
+        "Waterview Academic and Administrative Center"
+      ],
+      "lat": 32.990505,
+      "lon": -96.758057,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 796419,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/796419"
+    },
+    {
+      "code": "APC",
+      "full_name": "Edith and Peter O'Donnell Jr. Athenaeum",
+      "aliases": [
+        "Edith and Peter O’Donnell Jr. Athenaeum",
+        "Edith and Peter O'Donnell Jr. Athenaeum"
+      ],
+      "lat": 32.983578,
+      "lon": -96.74733,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 730125,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/730125"
+    },
+    {
+      "code": "DAV",
+      "full_name": "Charles and Nancy Davidson Building",
+      "aliases": [
+        "Charles and Nancy Davidson Building"
+      ],
+      "lat": 32.985046,
+      "lon": -96.745636,
+      "category": "academic",
+      "status": "active",
+      "map_marker": 955694,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/955694"
+    },
+    {
+      "code": "GC",
+      "full_name": "Cecil and Ida Green Center",
+      "aliases": [
+        "Cecil and Ida Green Center",
+        "Green Center"
+      ],
+      "lat": 32.987827,
+      "lon": -96.747955,
+      "category": "academic",
+      "status": "closed",
+      "map_marker": 792374,
+      "source_url": "https://map.concept3d.com/?id=1772#!m/792374"
+    },
+    {
+      "code": "APC2",
+      "full_name": "Athenaeum Performance Hall and Music Building",
+      "aliases": [
+        "Performance Hall and Music Building"
+      ],
+      "category": "academic",
+      "status": "construction",
+      "source_url": "https://map.concept3d.com/?id=1772#!m/730125",
+      "note": "Phase II scheduled to open spring 2027. Use cached OSM footprint for its distinct location."
+    }
+  ],
+  "unresolved": [
+    {
+      "code": "AH1",
+      "full_name": "Arts and Humanities 1",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "AH2",
+      "full_name": "Arts and Humanities 2",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "CB1",
+      "full_name": "Classroom Building 1",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "CB2",
+      "full_name": "Classroom Building 2",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "CB3",
+      "full_name": "Classroom Building 3",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    }
+  ],
+  "notes": [
+    "Scope: Richardson main-campus academic, research, and academic administration buildings. Only academic destination nodes are retained; dorms, parking, and Student Union are excluded.",
+    "DAV is a local graph label for the Charles and Nancy Davidson Building; the official map does not publish an abbreviation.",
+    "Closed and under-construction buildings are mapped as isolated nodes, excluded from walk destinations.",
+    "Walkway network is the supplied snapshot; connector distances are straight lines to nearest walkway nodes, not verified entrances."
+  ]
+}
