@@ -5,14 +5,14 @@ import networkx as nx
 def academic_only(graph):
     result = graph.copy()
     result.remove_nodes_from([node for node, data in result.nodes(data=True)
-                              if data.get('type') != 'path' and data.get('category') != 'academic'])
+                              if data.get('type') != 'path' and data.get('category') not in ('academic', 'parking')])
     result.graph['destination_scope'] = 'academic_only'
     return result
 
 
 def academic_routes(graph):
     buildings = sorted(node for node, data in graph.nodes(data=True)
-                       if data.get('category') == 'academic' and data.get('routable'))
+                       if data.get('category') in ('academic', 'parking') and data.get('routable'))
     paths, lengths, rows = {}, {}, []
     for start in buildings:
         distance, routes = nx.single_source_dijkstra(graph, start, weight='length')

@@ -518,6 +518,296 @@
       "status": "construction",
       "source_url": "https://map.concept3d.com/?id=1772#!m/730125",
       "note": "Phase II scheduled to open spring 2027. Use cached OSM footprint for its distinct location."
+    },
+    {
+      "code": "SPN Lot",
+      "full_name": "SPN Lot",
+      "aliases": ["SPN Lot"],
+      "lat": 32.99393882917168,
+      "lon": -96.75222836720464,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434786?s/?mc/32.99045484342341,-96.75096507238129?z/15.714733819711173?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot W",
+      "full_name": "Lot W",
+      "aliases": ["Lot W"],
+      "lat": 32.99210458414923,
+      "lon": -96.75595098255008,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434789?s/?mc/32.99210458414923,-96.75595098255008?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot T 1",
+      "full_name": "Lot T 1",
+      "aliases": ["Lot T 1"],
+      "lat": 32.992385999999996,
+      "lon": -96.75228900000002,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434787?s/?mc/32.992385999999996,-96.75228900000002?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot T 2",
+      "full_name": "Lot T 2",
+      "aliases": ["Lot T 2"],
+      "lat": 32.992385999999996,
+      "lon": -96.75404400000002,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/942886?s/?mc/32.992385999999996,-96.75404400000002?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot T 3",
+      "full_name": "Lot T 3",
+      "aliases": ["Lot T 3"],
+      "lat": 32.992367,
+      "lon": -96.755539,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434788?s/?mc/32.992367,-96.755539?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Res Lot North West",
+      "full_name": "Residential Lot North West",
+      "aliases": ["Res Lot North West"],
+      "lat": 32.991351999999964,
+      "lon": -96.75516500000003,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434790?s/?mc/32.991351999999964,-96.75516500000003?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Res Lot North",
+      "full_name": "Residential Lot North",
+      "aliases": ["Res Lot North"],
+      "lat": 32.991467000000014,
+      "lon": -96.75313599999998,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434791?s/?mc/32.991467000000014,-96.75313599999998?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot N",
+      "full_name": "Lot T N",
+      "aliases": ["Lot T N"],
+      "lat": 32.99269100000001,
+      "lon": -96.748222,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434804?s/?mc/32.99269100000001,-96.748222?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot S",
+      "full_name": "Lot S",
+      "aliases": ["Lot S"],
+      "lat": 32.992577,
+      "lon": -96.74745899999999,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434805?s/?mc/32.992577,-96.74745899999999?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot P",
+      "full_name": "Lot P",
+      "aliases": ["Lot P"],
+      "lat": 32.99094800000002,
+      "lon": -96.75030500000003,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434803?s/?mc/32.99094800000002,-96.75030500000003?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot R",
+      "full_name": "Lot R",
+      "aliases": ["Lot R"],
+      "lat": 32.990200000000016,
+      "lon": -96.748016,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434806?s/?mc/32.990200000000016,-96.748016?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot A1",
+      "full_name": "Lot A1",
+      "aliases": ["Lot A1"],
+      "lat": 32.989517000000035,
+      "lon": -96.74649,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/1070729?s/?mc/32.989517000000035,-96.74649?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot A2",
+      "full_name": "Lot A2",
+      "aliases": ["Lot A2"],
+      "lat": 32.990662,
+      "lon": -96.74549100000002,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434025?s/?mc/32.990662,-96.74549100000002?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot B1",
+      "full_name": "Lot B1",
+      "aliases": ["Lot B1"],
+      "lat": 32.988724000000005,
+      "lon": -96.74602500000003,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/1070726?s/?mc/32.988724000000005,-96.74602500000003?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot B2",
+      "full_name": "Lot B2",
+      "aliases": ["Lot B2"],
+      "lat": 32.98947100000001,
+      "lon": -96.744644,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434026?s/?mc/32.98947100000001,-96.744644?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot C1",
+      "full_name": "Lot C1",
+      "aliases": ["Lot C1"],
+      "lat": 32.987614000000036,
+      "lon": -96.74490400000002,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/1070720?s/?mc/32.987614000000036,-96.74490400000002?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot C2",
+      "full_name": "Lot C2",
+      "aliases": ["Lot C2"],
+      "lat": 32.988185999999985,
+      "lon": -96.74414100000001,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434027?s/?mc/32.988185999999985,-96.74414100000001?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot D",
+      "full_name": "Lot D",
+      "aliases": ["Lot D"],
+      "lat": 32.98687700000001,
+      "lon": -96.74451399999998,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434028?s/?mc/32.98687700000001,-96.74451399999998?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot H",
+      "full_name": "Lot H",
+      "aliases": ["Lot H"],
+      "lat": 32.987778000000006,
+      "lon": -96.753105,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434792?s/?mc/32.987778000000006,-96.753105?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot I",
+      "full_name": "Lot I",
+      "aliases": ["Lot I"],
+      "lat": 32.986641000000006,
+      "lon": -96.75302099999999,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434807?s/?mc/32.986641000000006,-96.75302099999999?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot V",
+      "full_name": "Lot V",
+      "aliases": ["Lot V"],
+      "lat": 32.986159999999984,
+      "lon": -96.75798800000001,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434793?s/?mc/32.986159999999984,-96.75798800000001?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot M North",
+      "full_name": "Lot M North",
+      "aliases": ["Lot M North"],
+      "lat": 32.98433700000001,
+      "lon": -96.74623099999997,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/612800?s/?mc/32.98433700000001,-96.74623099999997?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot M East",
+      "full_name": "Lot M East",
+      "aliases": ["Lot M East"],
+      "lat": 32.98367299999998,
+      "lon": -96.74631499999998,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434798?s/?mc/32.98367299999998,-96.74631499999998?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot F",
+      "full_name": "Lot F",
+      "aliases": ["Lot F"],
+      "lat": 32.98431000000001,
+      "lon": -96.74919899999998,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/476555?s/?mc/32.98431000000001,-96.74919899999998?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot J",
+      "full_name": "Lot J",
+      "aliases": ["Lot J"],
+      "lat": 32.984161,
+      "lon": -96.750473,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/915749?s/?mc/32.984161,-96.750473?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot U",
+      "full_name": "Lot U",
+      "aliases": ["Lot U"],
+      "lat": 32.980811999999986,
+      "lon": -96.750587,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/434796?s/?mc/32.980811999999986,-96.750587?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot M South",
+      "full_name": "Lot M South",
+      "aliases": ["Lot M South"],
+      "lat": 32.982159000000024,
+      "lon": -96.74699399999997,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/627044?s/?mc/32.982159000000024,-96.74699399999997?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot M Southeast 1",
+      "full_name": "Lot M Southeast 1",
+      "aliases": ["Lot M Southeast 1"],
+      "lat": 32.98175800000001,
+      "lon": -96.74626899999998,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/942887?s/?mc/32.98175800000001,-96.74626899999998?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "Lot M Southeast 2",
+      "full_name": "Lot M Southeast 2",
+      "aliases": ["Lot M Southeast 2"],
+      "lat": 32.98084299999998,
+      "lon": -96.74633799999998,
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/942889?s/?mc/32.98084299999998,-96.74633799999998?z/16?lvl/0?share?p/0?b/-57.71534750797855"
     }
   ],
   "unresolved": [

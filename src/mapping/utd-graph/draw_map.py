@@ -61,8 +61,8 @@ def draw(graph_path=None, output_path=None, show=False):
         'BE': (-20, -12), 'FA': (4, 4), 'FO': (4, -11),
     }
     for node, data in graph.nodes(data=True):
-        if data.get('category') == 'academic':
-            color = 'deepskyblue'
+        if data.get('category') in ('academic', 'parking'):
+            color = 'orange' if data.get('category') == 'parking' else 'deepskyblue'
             ax.scatter(data['x'], data['y'], c=color, s=40, zorder=5)
             ax.annotate(str(node), (data['x'], data['y']), color='white', fontsize=8,
                         xytext=label_offsets.get(node, (4, 4)), textcoords='offset points', zorder=6)
