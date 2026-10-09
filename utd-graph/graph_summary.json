@@ -1,0 +1,41 @@
+{
+  "added": [],
+  "active_academic": 36,
+  "labeled_places": 38,
+  "nodes": 3732,
+  "edges": 10140,
+  "academic_pair_routes": 1260,
+  "displayed_connections": 35,
+  "unresolved": [
+    {
+      "code": "AH1",
+      "full_name": "Arts and Humanities 1",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "AH2",
+      "full_name": "Arts and Humanities 2",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "CB1",
+      "full_name": "Classroom Building 1",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "CB2",
+      "full_name": "Classroom Building 2",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "CB3",
+      "full_name": "Classroom Building 3",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    }
+  ]
+}
