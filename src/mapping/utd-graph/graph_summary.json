@@ -1,0 +1,71 @@
+{
+  "added": [
+    "SPN Lot",
+    "Lot W",
+    "Lot T 1",
+    "Lot T 2",
+    "Lot T 3",
+    "Res Lot North West",
+    "Res Lot North",
+    "Lot N",
+    "Lot S",
+    "Lot P",
+    "Lot R",
+    "Lot A1",
+    "Lot A2",
+    "Lot B1",
+    "Lot B2",
+    "Lot C1",
+    "Lot C2",
+    "Lot D",
+    "Lot H",
+    "Lot I",
+    "Lot V",
+    "Lot M North",
+    "Lot M East",
+    "Lot F",
+    "Lot J",
+    "Lot U",
+    "Lot M South",
+    "Lot M Southeast 1",
+    "Lot M Southeast 2"
+  ],
+  "active_academic": 36,
+  "labeled_places": 67,
+  "nodes": 3761,
+  "edges": 10198,
+  "academic_pair_routes": 4160,
+  "displayed_connections": 64,
+  "unresolved": [
+    {
+      "code": "AH1",
+      "full_name": "Arts and Humanities 1",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "AH2",
+      "full_name": "Arts and Humanities 2",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "CB1",
+      "full_name": "Classroom Building 1",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "CB2",
+      "full_name": "Classroom Building 2",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    },
+    {
+      "code": "CB3",
+      "full_name": "Classroom Building 3",
+      "status": "needs_review",
+      "reason": "Listed in the older academic catalog, but absent from current official building list and strict search; no verified location assigned."
+    }
+  ]
+}
