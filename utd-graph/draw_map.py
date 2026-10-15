@@ -3,6 +3,7 @@
 Run: python draw_map.py
 """
 import pickle
+import json
 import io
 import sys
 import webbrowser
@@ -23,15 +24,20 @@ def draw(graph_path=None, output_path=None, show=False):
         graph = pickle.load(file)
     from academic_routing import academic_only, academic_routes
     graph = academic_only(graph)
+    from parking_areas import cached_parking, match_areas, outside_segments, edge_coordinates, draw_areas
+    cache = graph_path.parent / 'cache'
+    if not cache.exists():
+        cache = folder / 'cache'
+    parking, boundary_review = match_areas(graph.nodes(data=True), cached_parking(cache))
     fig, ax = plt.subplots(figsize=(8, 8), facecolor='#111111')
     ax.set_facecolor('#111111')
     lines = []
     for start, end, edge in graph.edges(data=True):
-        shape = edge.get('geometry')
-        lines.append(list(shape.coords) if shape is not None else
-                     [(graph.nodes[start]['x'], graph.nodes[start]['y']),
-                      (graph.nodes[end]['x'], graph.nodes[end]['y'])])
+        points = edge_coordinates(graph, start, end, edge)
+        ends = [parking[n]['geometry'] for n in (start, end) if n in parking]
+        lines.extend(outside_segments(points, ends))
     ax.add_collection(LineCollection(lines, colors='#999999', linewidths=1, zorder=1))
+    draw_areas(ax, graph, parking)
     # Use the original walking graph's extent so adding labels does not reframe it.
     walk = [d for _, d in graph.nodes(data=True) if d.get('type') == 'path']
     minx, maxx = min(d['x'] for d in walk), max(d['x'] for d in walk)
@@ -50,10 +56,11 @@ def draw(graph_path=None, output_path=None, show=False):
         coordinates = []
         for a, b in zip(route, route[1:]):
             edge = min(graph[a][b].values(), key=lambda e: e['length'])
-            shape = edge.get('geometry')
-            coordinates.extend(list(shape.coords) if shape is not None else
-                               [(graph.nodes[a]['x'], graph.nodes[a]['y']), (graph.nodes[b]['x'], graph.nodes[b]['y'])])
-        ax.plot(*zip(*coordinates), color=color, linewidth=4, alpha=.5, zorder=3)
+            points = edge_coordinates(graph, a, b, edge)
+            coordinates.extend(points if not coordinates else points[1:])
+        ends = [parking[n]['geometry'] for n in (start, end) if n in parking]
+        for segment in outside_segments(coordinates, ends):
+            ax.plot(*zip(*segment), color=color, linewidth=4, alpha=.5, zorder=3)
     label_offsets = {
         'ML2': (-25, 4), 'ML1': (4, -12), 'NB': (8, -3), 'NL': (4, 9),
         'CB': (6, -12), 'PHA': (-25, -11), 'PHY': (-28, 1),
@@ -61,17 +68,28 @@ def draw(graph_path=None, output_path=None, show=False):
         'BE': (-20, -12), 'FA': (4, 4), 'FO': (4, -11),
     }
     for node, data in graph.nodes(data=True):
+        if data.get('category') == 'parking':
+            if node not in parking:
+                ax.annotate(str(node) + '†', (data['x'], data['y']), color='#ffe1b1',
+                            fontsize=7, fontstyle='italic', ha='center', zorder=6)
+            continue
         if data.get('category') == 'academic':
             color = 'deepskyblue'
             ax.scatter(data['x'], data['y'], c=color, s=40, zorder=5)
             ax.annotate(str(node), (data['x'], data['y']), color='white', fontsize=8,
                         xytext=label_offsets.get(node, (4, 4)), textcoords='offset points', zorder=6)
+    if boundary_review:
+        ax.text(.01, .01, '† Boundary needs review: ' + ', '.join(r['code'] for r in boundary_review),
+                transform=ax.transAxes, fontsize=6.5, color='#ffe1b1', zorder=8,
+                bbox=dict(facecolor='#111111', edgecolor='none', alpha=.85))
+    (output_path.parent / 'parking_boundary_review.json').write_text(
+        json.dumps(boundary_review, indent=2) + '\n', encoding='utf-8')
     ax.set_axis_off()
     fig.savefig(output_path, dpi=200, bbox_inches='tight', facecolor=fig.get_facecolor())
     buffer = io.StringIO()
     fig.savefig(buffer, format='svg', bbox_inches='tight', facecolor=fig.get_facecolor())
     svg = buffer.getvalue()
-    svg = svg[svg.index('<svg'):]
+    svg = '\n'.join(line.rstrip() for line in svg[svg.index('<svg'):].splitlines())
     interactive_path = output_path.with_name('utd_map.html')
     interactive_path.write_text(INTERACTIVE_HTML.replace('__MAP__', svg), encoding='utf-8')
     plt.close(fig)
@@ -83,13 +101,13 @@ def draw(graph_path=None, output_path=None, show=False):
 
 INTERACTIVE_HTML = '''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UTD academic map — zoom and pan</title><style>
+<title>UTD academic map &mdash; zoom and pan</title><style>
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#111;color:white;font:14px Arial,sans-serif}
 #map{width:100%;height:100%}#map>svg{display:block;width:100%;height:100%;touch-action:none;cursor:grab}#map>svg:active{cursor:grabbing}
 .tools{position:fixed;top:12px;left:12px;z-index:10;display:flex;align-items:center;gap:8px;background:#222e;padding:8px;border-radius:5px}
 button{background:#333;border:1px solid #666;color:white;border-radius:3px;padding:7px 12px;cursor:pointer;font-size:15px}button:hover{background:#555}
 span{font-size:12px;color:#ccc}@media(max-width:600px){span{display:none}}
-</style></head><body><div class="tools"><button id="in" aria-label="Zoom in">+</button><button id="out" aria-label="Zoom out">−</button><button id="reset">Reset</button><span>Scroll to zoom · Drag to pan</span></div><div id="map">__MAP__</div>
+</style></head><body><div class="tools"><button id="in" aria-label="Zoom in">+</button><button id="out" aria-label="Zoom out">&minus;</button><button id="reset">Reset</button><span>Scroll to zoom &middot; Drag to pan</span></div><div id="map">__MAP__</div>
 <script>
 const svg=document.querySelector('#map>svg'),initial=svg.getAttribute('viewBox').split(/\\s+/).map(Number);let box=[...initial],drag=null;
 function render(){svg.setAttribute('viewBox',box.join(' '))}

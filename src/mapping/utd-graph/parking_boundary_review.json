@@ -1,0 +1,14 @@
+[
+  {
+    "code": "SPN Lot",
+    "reason": "No unambiguous containing parking footprint with a compatible lot reference"
+  },
+  {
+    "code": "Lot W",
+    "reason": "No unambiguous containing parking footprint with a compatible lot reference"
+  },
+  {
+    "code": "Res Lot North",
+    "reason": "No unambiguous containing parking footprint with a compatible lot reference"
+  }
+]

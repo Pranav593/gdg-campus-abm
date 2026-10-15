@@ -1,0 +1,520 @@
+{
+  "source": {
+    "url": "https://services.utdallas.edu/download/Parking_Map.pdf",
+    "effective_date": "2026-07-30",
+    "reviewed_on": "2026-10-15",
+    "sha256": "17adc8be748d7063d12c6e0fb947647b5fa709d0a8ddb0e69a5e7b62b22ad9e0",
+    "method": "Manual visual estimate from colored map regions, using coarse percentages; not a stall count or GIS area measurement.",
+    "denominator": "All parking designations in the named area; exclude drive aisles and buildings. Other includes residential, metered, accessible, reserved, EV and non-four-color spaces.",
+    "confidence": "low",
+    "notes": "Physical space designations, not which permit holders are eligible to park in lower-tier colors. Small mapped sections retain nonzero estimates. Other is a coarse allowance, not a measured specialty-space count."
+  },
+  "lots": {
+    "SPN Lot": {
+      "verified_types": [
+        "green",
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 50,
+        "gold": 35,
+        "orange": 3,
+        "purple": 2,
+        "other": 10
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Whole named SPN parking area, including SP2-side rows; small Orange and Purple sections are visible."
+    },
+    "Lot W": {
+      "verified_types": [
+        "green",
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 45,
+        "gold": 30,
+        "orange": 10,
+        "purple": 5,
+        "other": 10
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Official-map W at WSTC; its identity is distinct from the conflicting cached footprint near T3."
+    },
+    "Lot T 1": {
+      "verified_types": [
+        "green",
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 25,
+        "gold": 55,
+        "orange": 10,
+        "purple": 2,
+        "other": 8
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Green west section, Gold central section, Orange east/south rows and small Purple southeast section."
+    },
+    "Lot T 2": {
+      "verified_types": [
+        "green"
+      ],
+      "split_pct": {
+        "green": 10,
+        "gold": 0,
+        "orange": 0,
+        "purple": 0,
+        "other": 90
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Mostly striped residence-hall parking, with Green along the north edge. Adjacent T1 colors are excluded."
+    },
+    "Lot T 3": {
+      "verified_types": [
+        "green"
+      ],
+      "split_pct": {
+        "green": 90,
+        "gold": 0,
+        "orange": 0,
+        "purple": 0,
+        "other": 10
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Green section; adjoining striped residence-hall spaces belong in Other."
+    },
+    "Res Lot North West": {
+      "verified_types": [],
+      "split_pct": {
+        "green": 0,
+        "gold": 0,
+        "orange": 0,
+        "purple": 0,
+        "other": 100
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Striped residence-hall designation; no four-color commuter sections shown."
+    },
+    "Res Lot North": {
+      "verified_types": [],
+      "split_pct": {
+        "green": 0,
+        "gold": 0,
+        "orange": 0,
+        "purple": 0,
+        "other": 100
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Striped residence-hall designation; no four-color commuter sections shown."
+    },
+    "Lot N": {
+      "verified_types": [
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 35,
+        "orange": 50,
+        "purple": 5,
+        "other": 10
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Gold and Orange perimeter, small Purple southern section, accessible spaces."
+    },
+    "Lot S": {
+      "verified_types": [
+        "green",
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 30,
+        "gold": 40,
+        "orange": 15,
+        "purple": 5,
+        "other": 10
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Green western/southern sections, Gold northern section, Orange and Purple small sections."
+    },
+    "Lot P": {
+      "verified_types": [
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 25,
+        "orange": 65,
+        "purple": 5,
+        "other": 5
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Orange main section, Gold southern strip and Purple northern strip."
+    },
+    "Lot R": {
+      "verified_types": null,
+      "split_pct": null,
+      "source_page": 1,
+      "designation_confidence": "unknown",
+      "notes": "Lot R is labeled in gray without a clear permit designation; no color mix can be established."
+    },
+    "Lot A1": {
+      "verified_types": [
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 0,
+        "orange": 65,
+        "purple": 25,
+        "other": 10
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Orange main region, Purple southwest strip, accessible edge. No Green or Gold shown."
+    },
+    "Lot A2": {
+      "verified_types": [
+        "green",
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 75,
+        "gold": 20,
+        "orange": 1,
+        "purple": 1,
+        "other": 3
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Green main region and Gold western region; tiny Orange and Purple rows along northwest edge are retained."
+    },
+    "Lot B1": {
+      "verified_types": [
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 0,
+        "orange": 65,
+        "purple": 20,
+        "other": 15
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Orange main region, Purple western strip, metered and accessible spaces. No Green or Gold shown."
+    },
+    "Lot B2": {
+      "verified_types": [
+        "green",
+        "gold"
+      ],
+      "split_pct": {
+        "green": 75,
+        "gold": 25,
+        "orange": 0,
+        "purple": 0,
+        "other": 0
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Green main region and Gold southwest region; no Orange or Purple shown."
+    },
+    "Lot C1": {
+      "verified_types": [
+        "gold",
+        "orange"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 70,
+        "orange": 20,
+        "purple": 0,
+        "other": 10
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Gold main region and Orange western strip; no Green or Purple shown."
+    },
+    "Lot C2": {
+      "verified_types": [
+        "gold"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 100,
+        "orange": 0,
+        "purple": 0,
+        "other": 0
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Gold region; no Green, Orange or Purple shown."
+    },
+    "Lot D": {
+      "verified_types": [
+        "gold",
+        "orange"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 85,
+        "orange": 15,
+        "purple": 0,
+        "other": 0
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Gold main region and Orange southern tip; no Green or Purple shown."
+    },
+    "Lot H": {
+      "verified_types": [
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 45,
+        "orange": 45,
+        "purple": 5,
+        "other": 5
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Gold west, Orange east, Purple southeast strip."
+    },
+    "Lot I": {
+      "verified_types": [
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 45,
+        "orange": 45,
+        "purple": 5,
+        "other": 5
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Gold west, Orange east and small Purple eastern end."
+    },
+    "Lot V": {
+      "verified_types": [
+        "green",
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 30,
+        "gold": 40,
+        "orange": 15,
+        "purple": 5,
+        "other": 10
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Green central/northern sections, Gold rows, small Orange and Purple side sections."
+    },
+    "Lot M North": {
+      "verified_types": [
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 0,
+        "orange": 0,
+        "purple": 80,
+        "other": 20
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Purple band with an accessible western segment; do not include neighboring M East colors."
+    },
+    "Lot M East": {
+      "verified_types": [
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 0,
+        "orange": 60,
+        "purple": 10,
+        "other": 30
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Orange southern region, Purple middle/side sections, metered northern region and accessible spaces."
+    },
+    "Lot F": {
+      "verified_types": [],
+      "split_pct": {
+        "green": 0,
+        "gold": 0,
+        "orange": 0,
+        "purple": 0,
+        "other": 100
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Metered pink region; no four-color commuter sections shown."
+    },
+    "Lot J": {
+      "verified_types": [
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 45,
+        "orange": 45,
+        "purple": 5,
+        "other": 5
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Orange core, Gold western/southern regions, Purple north edge and accessible spaces."
+    },
+    "Lot U": {
+      "verified_types": [
+        "green"
+      ],
+      "split_pct": {
+        "green": 95,
+        "gold": 0,
+        "orange": 0,
+        "purple": 0,
+        "other": 5
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Green regions with accessible western spaces; no Gold, Orange or Purple shown."
+    },
+    "Lot M South": {
+      "verified_types": [
+        "gold"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 100,
+        "orange": 0,
+        "purple": 0,
+        "other": 0
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Gold region; adjacent M Southeast 2 Green is a separate lot."
+    },
+    "Lot M Southeast 1": {
+      "verified_types": [
+        "gold"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 100,
+        "orange": 0,
+        "purple": 0,
+        "other": 0
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Gold northern/southeastern-1 region; exclude Green Southeast 2."
+    },
+    "Lot M Southeast 2": {
+      "verified_types": [
+        "green"
+      ],
+      "split_pct": {
+        "green": 100,
+        "gold": 0,
+        "orange": 0,
+        "purple": 0,
+        "other": 0
+      },
+      "source_page": 1,
+      "designation_confidence": "medium",
+      "notes": "Green southern region; adjacent Gold Southeast 1 is separate."
+    },
+    "PS1": {
+      "verified_types": [
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 15,
+        "orange": 45,
+        "purple": 20,
+        "other": 20
+      },
+      "source_page": 3,
+      "designation_confidence": "medium",
+      "notes": "All five floor diagrams reviewed: Gold on level 5, Orange on levels 3/4 and part of 5, Purple level 2, metered/reserved/accessible/EV elsewhere."
+    },
+    "PS3": {
+      "verified_types": [
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 50,
+        "orange": 25,
+        "purple": 15,
+        "other": 10
+      },
+      "source_page": 4,
+      "designation_confidence": "medium",
+      "notes": "All five floor diagrams reviewed: Gold levels 4/5, Orange level 3 and part of 2, Purple levels 1/2; metered/reserved/accessible/EV elsewhere."
+    },
+    "PS4": {
+      "verified_types": [
+        "gold",
+        "orange",
+        "purple"
+      ],
+      "split_pct": {
+        "green": 0,
+        "gold": 40,
+        "orange": 35,
+        "purple": 5,
+        "other": 20
+      },
+      "source_page": 5,
+      "designation_confidence": "medium",
+      "notes": "All five floor diagrams reviewed: Gold levels 4/5, Orange levels 2/3, small Purple sections levels 1/2; metered/reserved/accessible/EV elsewhere."
+    }
+  }
+}
