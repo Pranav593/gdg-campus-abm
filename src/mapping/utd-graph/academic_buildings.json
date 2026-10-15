@@ -808,6 +808,90 @@
       "category": "parking",
       "status": "active",
       "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/942889?s/?mc/32.98084299999998,-96.74633799999998?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "SU",
+      "full_name": "Student Union",
+      "aliases": [
+        "Student Union"
+      ],
+      "lat": 32.986729,
+      "lon": -96.748787,
+      "category": "academic",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435268?s/student%2520union%2520food?mc/32.986729,-96.748787?z/19?lvl/0?share"
+    },
+    {
+      "code": "SUFC",
+      "full_name": "Student Union Food Court",
+      "aliases": [
+        "Student Union Food Court"
+      ],
+      "lat": 32.98740905697029,
+      "lon": -96.74950321398316,
+      "category": "academic",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435268?s/student%2520union%2520food?mc/32.98740905697029,-96.74950321398316?z/19?lvl/0?share"
+    },
+    {
+      "code": "DHW",
+      "full_name": "Dining Hall West",
+      "aliases": [
+        "Dining Hall West"
+      ],
+      "lat": 32.990028912772374,
+      "lon": -96.75391401133749,
+      "category": "academic",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/434107?s/dining?mc/32.990028912772374,-96.75391401133749?z/17.647975872902208?lvl/0?share"
+    },
+    {
+      "code": "RCW",
+      "full_name": "Rec Center West",
+      "aliases": [
+        "Rec Center West"
+      ],
+      "lat": 32.99021900000004,
+      "lon": -96.75515000000001,
+      "category": "academic",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435254?s/rec%2520center%2520west?mc/32.99021900000004,-96.75515000000001?z/19?lvl/0?share"
+    },
+    {
+      "code": "Esports",
+      "full_name": "UT Dallas Esports",
+      "aliases": [
+        "UT Dallas Esports"
+      ],
+      "lat": 32.98706562092316,
+      "lon": -96.74902152548644,
+      "category": "academic",
+      "status": "active",
+      "source_url": "32.98706562092316, -96.74902152548644"
+    },
+    {
+      "code": "AB",
+      "full_name": "Activity Center",
+      "aliases": [
+        "Activity Center"
+      ],
+      "lat": 32.98525599999998,
+      "lon": -96.74924499999997,
+      "category": "academic",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/464847?s/activity%2520center?mc/32.98525599999998,-96.74924499999997?z/19?lvl/0?share"
+    },
+    {
+      "code": "SSB",
+      "full_name": "Student Services Building",
+      "aliases": [
+        "Student Services Building"
+      ],
+      "lat": 32.98603099999998,
+      "lon": -96.74887100000001,
+      "category": "academic",
+      "status": "active",
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435266?s/student%2520servic?mc/32.98603099999998,-96.74887100000001?z/19?lvl/0?share"
     }
   ],
   "unresolved": [
