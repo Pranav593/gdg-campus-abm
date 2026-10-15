@@ -108,12 +108,6 @@ def extend_graph(graph, catalog, features):
         if feature:
             data.update(osm_id=feature['osm_id'], osm_type=feature['osm_type'])
             data.setdefault('coordinate_source', 'OSM building footprint centroid')
-            levels = feature['tags'].get('building:levels')
-            if 'floors' not in data and levels:
-                try:
-                    data['floors'] = int(float(str(levels).split(';')[0]))
-                except ValueError:
-                    pass
         else:
             data.setdefault('coordinate_source', 'UT Dallas official map marker')
         # Reconnect only newly added destinations, preserving every existing edge.
@@ -166,6 +160,10 @@ def main():
         backup.write_bytes(graph_path.read_bytes())
     features = cached_buildings(source / 'cache')
     added = extend_graph(graph, catalog, features)
+    from simulation_metadata import enrich_edges, enrich_places
+    metadata = json.loads(Path(__file__).with_name('simulation_places.json').read_text(encoding='utf-8'))
+    enrich_edges(graph)
+    enrich_places(graph, features, metadata['metadata'])
     from academic_routing import academic_only, academic_routes
     graph = academic_only(graph)
     route_rows, display_routes = academic_routes(graph)
@@ -173,7 +171,11 @@ def main():
     with (output / 'utd_graph.pkl').open('wb') as file:
         pickle.dump(graph, file)
     places, bounds = map_data(graph, features)
-    fields = ['code', 'full_name', 'category', 'status', 'routable', 'y', 'x', 'floors', 'coordinate_source', 'connector_distance_m', 'source_url']
+    from parking_permits import PERMIT_FIELDS, csv_place
+    places = [csv_place(row) for row in places]
+    fields = ['code', 'full_name', 'category', 'status', 'routable', 'y', 'x', 'floors',
+              'floors_source', 'floors_status', 'capacity', 'capacity_unit', 'parking_capacity',
+              'capacity_source', 'capacity_status', 'coordinate_source', 'connector_distance_m', 'source_url', *PERMIT_FIELDS]
     with (output / 'academic_nodes.csv').open('w', newline='', encoding='utf-8-sig') as file:
         writer = csv.DictWriter(file, fieldnames=fields, extrasaction='ignore')
         writer.writeheader(); writer.writerows(places)

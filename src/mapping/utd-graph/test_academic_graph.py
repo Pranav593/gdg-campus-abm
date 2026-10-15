@@ -1,5 +1,6 @@
 """Check the real campus graph's destination coverage and walk connections."""
 import math
+import json
 import pickle
 import sys
 import unittest
@@ -7,8 +8,12 @@ from pathlib import Path
 
 import networkx as nx
 
-GRAPH_PATH = Path(sys.argv.pop(1)) if len(sys.argv) > 1 else Path(__file__).with_name('utd_graph.pkl')
+GRAPH_PATH = Path(__file__).with_name('utd_graph.pkl')
+if __name__ == '__main__' and len(sys.argv) > 1 and not sys.argv[1].startswith('-'):
+    GRAPH_PATH = Path(sys.argv.pop(1))
 EXPECTED = set('AD ATC BE BSB CB CR CRA ECSN ECSS ECSW FA FN FO GR HH JO JSOM MC ML1 ML2 NB NL PHA PHY SCI SLC TH WSTC RL ROC ROW SPN SP2 WAAC APC DAV'.split())
+PARKING = {r['code'] for r in json.loads(Path(__file__).with_name('academic_buildings.json').read_text())['buildings'] if r['category'] == 'parking'}
+ACTIVE = EXPECTED | PARKING
 
 
 class AcademicGraphTest(unittest.TestCase):
@@ -43,24 +48,24 @@ class AcademicGraphTest(unittest.TestCase):
             route = nx.shortest_path(self.graph, start, end, weight='length')
             self.assertGreater(nx.path_weight(self.graph, route, 'length'), 0)
 
-    def test_no_nonacademic_destinations(self):
+    def test_only_academic_and_catalog_parking_destinations(self):
         destinations = {n for n, d in self.graph.nodes(data=True) if d.get('type') != 'path'}
-        self.assertEqual(destinations, EXPECTED | {'GC', 'APC2'})
+        self.assertEqual(destinations, ACTIVE | {'GC', 'APC2'})
         for n in destinations:
-            self.assertEqual(self.graph.nodes[n].get('category'), 'academic')
+            self.assertEqual(self.graph.nodes[n].get('category'), 'parking' if n in PARKING else 'academic')
 
     def test_displayed_routes_join_all_academic_destinations(self):
         routes = self.graph.graph['academic_display_routes']
         connections = nx.Graph()
-        self.assertEqual(len(routes), len(EXPECTED) - 1)
+        self.assertEqual(len(routes), len(ACTIVE) - 1)
         for connection in routes:
             start, end, path = connection['start'], connection['end'], connection['path']
-            self.assertIn(start, EXPECTED)
-            self.assertIn(end, EXPECTED)
+            self.assertIn(start, ACTIVE)
+            self.assertIn(end, ACTIVE)
             self.assertEqual((path[0], path[-1]), (start, end))
             self.assertTrue(nx.is_path(self.graph, path))
             connections.add_edge(start, end)
-        self.assertEqual(set(connections), EXPECTED)
+        self.assertEqual(set(connections), ACTIVE)
         self.assertTrue(nx.is_connected(connections))
 
     def test_closed_and_unbuilt_sites_are_not_walk_destinations(self):

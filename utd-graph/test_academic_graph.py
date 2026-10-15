@@ -7,7 +7,9 @@ from pathlib import Path
 
 import networkx as nx
 
-GRAPH_PATH = Path(sys.argv.pop(1)) if len(sys.argv) > 1 else Path(__file__).with_name('utd_graph.pkl')
+GRAPH_PATH = Path(__file__).with_name('utd_graph.pkl')
+if __name__ == '__main__' and len(sys.argv) > 1 and not sys.argv[1].startswith('-'):
+    GRAPH_PATH = Path(sys.argv.pop(1))
 EXPECTED = set('AD ATC BE BSB CB CR CRA ECSN ECSS ECSW FA FN FO GR HH JO JSOM MC ML1 ML2 NB NL PHA PHY SCI SLC TH WSTC RL ROC ROW SPN SP2 WAAC APC DAV'.split())
 
 

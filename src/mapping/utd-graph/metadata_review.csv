@@ -1,0 +1,41 @@
+﻿code,full_name,category,floors,floors_status,capacity,capacity_status
+APC,Edith and Peter O'Donnell Jr. Athenaeum,academic,,unknown,,unknown
+GC,Cecil and Ida Green Center,academic,,unknown,,unknown
+APC2,Athenaeum Performance Hall and Music Building,academic,,unknown,,unknown
+SPN Lot,SPN Lot,parking,,unknown,,unknown
+Lot W,Lot W,parking,,unknown,,unknown
+Lot T 1,Lot T 1,parking,,unknown,,unknown
+Lot T 2,Lot T 2,parking,,unknown,,unknown
+Lot T 3,Lot T 3,parking,,unknown,,unknown
+Res Lot North West,Residential Lot North West,parking,,unknown,,unknown
+Res Lot North,Residential Lot North,parking,,unknown,,unknown
+Lot N,Lot T N,parking,,unknown,,unknown
+Lot S,Lot S,parking,,unknown,,unknown
+Lot P,Lot P,parking,,unknown,,unknown
+Lot R,Lot R,parking,,unknown,,unknown
+Lot A1,Lot A1,parking,,unknown,,unknown
+Lot A2,Lot A2,parking,,unknown,,unknown
+Lot B1,Lot B1,parking,,unknown,,unknown
+Lot B2,Lot B2,parking,,unknown,,unknown
+Lot C1,Lot C1,parking,,unknown,,unknown
+Lot C2,Lot C2,parking,,unknown,,unknown
+Lot D,Lot D,parking,,unknown,,unknown
+Lot H,Lot H,parking,,unknown,,unknown
+Lot I,Lot I,parking,,unknown,,unknown
+Lot V,Lot V,parking,,unknown,,unknown
+Lot M North,Lot M North,parking,,unknown,32,osm_snapshot
+Lot M East,Lot M East,parking,,unknown,,unknown
+Lot F,Lot F,parking,,unknown,,unknown
+Lot J,Lot J,parking,,unknown,,unknown
+Lot U,Lot U,parking,,unknown,,unknown
+Lot M South,Lot M South,parking,,unknown,,unknown
+Lot M Southeast 1,Lot M Southeast 1,parking,,unknown,,unknown
+Lot M Southeast 2,Lot M Southeast 2,parking,,unknown,,unknown
+SU,Student Union,non_academic,2,osm_snapshot,,unknown
+AC,Activity Center,non_academic,1,osm_snapshot,,unknown
+SSB,Student Services Building,non_academic,4,osm_snapshot,,unknown
+SSBA,Student Services Building Addition,non_academic,3,osm_snapshot,,unknown
+RHS,Sirius Hall,residential,4,osm_snapshot,,unknown
+RHN,Capella Hall,residential,4,osm_snapshot,,unknown
+RHNW,Vega Hall,residential,4,osm_snapshot,,unknown
+RHSW,Helix Hall,residential,4,osm_snapshot,,unknown
