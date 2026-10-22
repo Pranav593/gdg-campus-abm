@@ -15,7 +15,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 313186,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/313186"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/313186",
+      "floors": 3,
+      "base_floor": 1
     },
     {
       "code": "ATC",
@@ -30,7 +32,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316550,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316550"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316550",
+      "floors": 4,
+      "base_floor": 1
     },
     {
       "code": "BE",
@@ -44,7 +48,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 311736,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/311736"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/311736",
+      "floors": 2,
+      "base_floor": 2
     },
     {
       "code": "BSB",
@@ -58,7 +64,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316041,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316041"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316041",
+      "floors": 4,
+      "base_floor": 1
     },
     {
       "code": "CB",
@@ -71,7 +79,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316714,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316714"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316714",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "CR",
@@ -86,7 +96,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316042,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316042"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316042",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "CRA",
@@ -101,7 +113,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316043,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316043"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316043",
+      "floors": 2,
+      "base_floor": 1
     },
     {
       "code": "ECSN",
@@ -114,7 +128,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316597,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316597"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316597",
+      "floors": 3,
+      "base_floor": 2
     },
     {
       "code": "ECSS",
@@ -127,7 +143,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316551,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316551"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316551",
+      "floors": 3,
+      "base_floor": 2
     },
     {
       "code": "ECSW",
@@ -140,7 +158,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316582,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316582"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316582",
+      "floors": 4,
+      "base_floor": 1
     },
     {
       "code": "FA",
@@ -154,7 +174,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316590,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316590"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316590",
+      "floors": 3,
+      "base_floor": 1
     },
     {
       "code": "FN",
@@ -167,7 +189,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316586,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316586"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316586",
+      "floors": 3,
+      "base_floor": 1
     },
     {
       "code": "FO",
@@ -181,7 +205,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316585,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316585"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316585",
+      "floors": 3,
+      "base_floor": 1
     },
     {
       "code": "GR",
@@ -195,7 +221,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 317323,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/317323"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/317323",
+      "floors": 3,
+      "base_floor": 2
     },
     {
       "code": "HH",
@@ -209,7 +237,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316591,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316591"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316591",
+      "floors": 1,
+      "base_floor": 2
     },
     {
       "code": "JO",
@@ -223,7 +253,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316583,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316583"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316583",
+      "floors": 5,
+      "base_floor": 1
     },
     {
       "code": "JSOM",
@@ -237,7 +269,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316596,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316596"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316596",
+      "floors": 3,
+      "base_floor": 1
     },
     {
       "code": "MC",
@@ -251,7 +285,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 313479,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/313479"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/313479",
+      "floors": 4,
+      "base_floor": 1
     },
     {
       "code": "ML1",
@@ -265,7 +301,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316593,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316593"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316593",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "ML2",
@@ -279,7 +317,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316594,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316594"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316594",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "NB",
@@ -292,7 +332,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316599,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316599"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316599",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "NL",
@@ -306,7 +348,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316598,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316598"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316598",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "PHA",
@@ -319,7 +363,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316610,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316610"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316610",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "PHY",
@@ -332,7 +378,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316611,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316611"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316611",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "SCI",
@@ -345,7 +393,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 374837,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/374837"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/374837",
+      "floors": 5,
+      "base_floor": 1
     },
     {
       "code": "SLC",
@@ -358,7 +408,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316615,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316615"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316615",
+      "floors": 3,
+      "base_floor": 1
     },
     {
       "code": "TH",
@@ -373,7 +425,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 317878,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/317878"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/317878",
+      "floors": 2,
+      "base_floor": 1
     },
     {
       "code": "WSTC",
@@ -386,7 +440,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316624,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316624"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316624",
+      "floors": 2,
+      "base_floor": 1
     },
     {
       "code": "RL",
@@ -399,7 +455,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316595,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316595"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316595",
+      "floors": 4,
+      "base_floor": 1
     },
     {
       "code": "ROC",
@@ -412,7 +470,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316612,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316612"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316612",
+      "floors": 2,
+      "base_floor": 1
     },
     {
       "code": "ROW",
@@ -426,7 +486,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316613,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316613"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316613",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "SPN",
@@ -439,7 +501,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316620,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316620"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316620",
+      "floors": 2,
+      "base_floor": 1
     },
     {
       "code": "SP2",
@@ -452,7 +516,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 316621,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/316621"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/316621",
+      "floors": 2,
+      "base_floor": 1
     },
     {
       "code": "WAAC",
@@ -465,7 +531,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 796419,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/796419"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/796419",
+      "floors": 5,
+      "base_floor": 1
     },
     {
       "code": "APC",
@@ -479,7 +547,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 730125,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/730125"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/730125",
+      "floors": 2,
+      "base_floor": 1
     },
     {
       "code": "DAV",
@@ -492,7 +562,9 @@
       "category": "academic",
       "status": "active",
       "map_marker": 955694,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/955694"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/955694",
+      "floors": 3,
+      "base_floor": 1
     },
     {
       "code": "GC",
@@ -506,7 +578,9 @@
       "category": "academic",
       "status": "closed",
       "map_marker": 792374,
-      "source_url": "https://map.concept3d.com/?id=1772#!m/792374"
+      "source_url": "https://map.concept3d.com/?id=1772#!m/792374",
+      "floors": null,
+      "base_floor": null
     },
     {
       "code": "APC2",
@@ -517,7 +591,9 @@
       "category": "academic",
       "status": "construction",
       "source_url": "https://map.concept3d.com/?id=1772#!m/730125",
-      "note": "Phase II scheduled to open spring 2027. Use cached OSM footprint for its distinct location."
+      "note": "Phase II scheduled to open spring 2027. Use cached OSM footprint for its distinct location.",
+      "floors": 2,
+      "base_floor": 1
     },
     {
       "code": "SPN Lot",
@@ -819,7 +895,9 @@
       "lon": -96.748787,
       "category": "academic",
       "status": "active",
-      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435268?s/student%2520union%2520food?mc/32.986729,-96.748787?z/19?lvl/0?share"
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435268?s/student%2520union%2520food?mc/32.986729,-96.748787?z/19?lvl/0?share",
+      "floors": 3,
+      "base_floor": 1
     },
     {
       "code": "SUFC",
@@ -831,7 +909,9 @@
       "lon": -96.74950321398316,
       "category": "academic",
       "status": "active",
-      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435268?s/student%2520union%2520food?mc/32.98740905697029,-96.74950321398316?z/19?lvl/0?share"
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435268?s/student%2520union%2520food?mc/32.98740905697029,-96.74950321398316?z/19?lvl/0?share",
+      "floors": 1,
+      "base_floor": 2
     },
     {
       "code": "DHW",
@@ -843,7 +923,9 @@
       "lon": -96.75391401133749,
       "category": "academic",
       "status": "active",
-      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/434107?s/dining?mc/32.990028912772374,-96.75391401133749?z/17.647975872902208?lvl/0?share"
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/434107?s/dining?mc/32.990028912772374,-96.75391401133749?z/17.647975872902208?lvl/0?share",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "RCW",
@@ -855,7 +937,9 @@
       "lon": -96.75515000000001,
       "category": "academic",
       "status": "active",
-      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435254?s/rec%2520center%2520west?mc/32.99021900000004,-96.75515000000001?z/19?lvl/0?share"
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435254?s/rec%2520center%2520west?mc/32.99021900000004,-96.75515000000001?z/19?lvl/0?share",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "Esports",
@@ -867,7 +951,9 @@
       "lon": -96.74902152548644,
       "category": "academic",
       "status": "active",
-      "source_url": "32.98706562092316, -96.74902152548644"
+      "source_url": "32.98706562092316, -96.74902152548644",
+      "floors": 1,
+      "base_floor": 2
     },
     {
       "code": "AB",
@@ -879,7 +965,9 @@
       "lon": -96.74924499999997,
       "category": "academic",
       "status": "active",
-      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/464847?s/activity%2520center?mc/32.98525599999998,-96.74924499999997?z/19?lvl/0?share"
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/464847?s/activity%2520center?mc/32.98525599999998,-96.74924499999997?z/19?lvl/0?share",
+      "floors": 1,
+      "base_floor": 1
     },
     {
       "code": "SSB",
@@ -891,7 +979,9 @@
       "lon": -96.74887100000001,
       "category": "academic",
       "status": "active",
-      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435266?s/student%2520servic?mc/32.98603099999998,-96.74887100000001?z/19?lvl/0?share"
+      "source_url": "https://map.concept3d.com/?id=1772#!ct/88641,88642,88643?m/435266?s/student%2520servic?mc/32.98603099999998,-96.74887100000001?z/19?lvl/0?share",
+      "floors": 4,
+      "base_floor": 1
     }
   ],
   "unresolved": [
