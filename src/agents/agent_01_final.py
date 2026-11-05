@@ -1,0 +1,948 @@
+import copy
+import json
+import math
+import pickle
+import random
+import networkx as nx
+import mesa
+
+# =====================================================================
+# 0. SIMULATION CONSTANTS (Units in Minutes & Meters)
+# =====================================================================
+MAX_EARLY_MINUTES = 30
+BASE_PARKING_DELAY = 10
+PARKING_STD = 3
+ARRIVAL_STD = 5
+CLASS_ARRIVAL_STD = 5
+CLASS_EXIT_STD = 5
+BASE_MEAL_STD = 1.0  
+EXAM_STD_DAYS = 2.0  
+
+# Attendance Constants
+TOTAL_SEMESTER_DAYS = 90
+DECLINE_RATE = 0.20
+EXAM_ATTENDANCE_BOOST = 0.30
+
+# Destination & Seating Constants (Scaled for 25,000 population ratio)
+MIN_ACTIVITY_TIME = 15
+DEFAULT_BUILDING_CAPACITY = 5000  
+
+# =====================================================================
+# 1. ARCHETYPES DATASET
+# =====================================================================
+ARCHETYPES_DATA = {
+    "archetypes": [
+        {
+            "archetype_name": "The CS Grindset",
+            "archetype_description": "Driven Computer Science major who lives in labs, thrives on hackathons, and optimizes every second.",
+            "population_weight": 0.07,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "gold"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.95, "punctuality": 0.85, "studiousness": 0.95, "sociability": 0.35,
+                "walking_speed_mps": 1.45, "leave_campus_tendency": 0.20, "route_consistency": 0.90,
+                "meal_regularness": 0.40, "class_skip_tendency": 0.05, "campus_stay_tendency": 0.85,
+                "event_interest": 0.50, "study_spike_response": 0.95, "commute_friction": 0.30,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.80
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The JSOM Executive",
+            "archetype_description": "Networking-focused Business major balancing heavy coursework with corporate events and student orgs.",
+            "population_weight": 0.07,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "gold"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.90, "punctuality": 0.90, "studiousness": 0.80, "sociability": 0.85,
+                "walking_speed_mps": 1.35, "leave_campus_tendency": 0.60, "route_consistency": 0.70,
+                "meal_regularness": 0.75, "class_skip_tendency": 0.10, "campus_stay_tendency": 0.50,
+                "event_interest": 0.85, "study_spike_response": 0.75, "commute_friction": 0.65,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.85
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Freshman Residential Socialite",
+            "archetype_description": "First-year student living on campus, hyper-involved in residential life and campus activities.",
+            "population_weight": 0.06,
+            "agent_id": 1,
+            "commuter_tag": {"type": "dormer", "parking_permit": "green"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.85, "punctuality": 0.65, "studiousness": 0.65, "sociability": 0.90,
+                "walking_speed_mps": 1.25, "leave_campus_tendency": 0.10, "route_consistency": 0.50,
+                "meal_regularness": 0.85, "class_skip_tendency": 0.15, "campus_stay_tendency": 0.95,
+                "event_interest": 0.90, "study_spike_response": 0.60, "commute_friction": 0.05,
+                "dorm_return_tendency": 0.80, "parking_loyalty": 0.30
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Park-and-Dash Commuter",
+            "archetype_description": "Minimizes time on campus due to external jobs and obligations; arrives for class and leaves immediately.",
+            "population_weight": 0.07,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "orange"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.80, "punctuality": 0.70, "studiousness": 0.70, "sociability": 0.20,
+                "walking_speed_mps": 1.50, "leave_campus_tendency": 0.95, "route_consistency": 0.95,
+                "meal_regularness": 0.30, "class_skip_tendency": 0.20, "campus_stay_tendency": 0.05,
+                "event_interest": 0.10, "study_spike_response": 0.70, "commute_friction": 0.90,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.90
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Pre-Med Lab Loyalist",
+            "archetype_description": "Dedicated science major splitting time between rigorous classes, research labs, and quiet library floors.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "dormer", "parking_permit": "gold"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.98, "punctuality": 0.95, "studiousness": 0.98, "sociability": 0.40,
+                "walking_speed_mps": 1.30, "leave_campus_tendency": 0.25, "route_consistency": 0.85,
+                "meal_regularness": 0.60, "class_skip_tendency": 0.02, "campus_stay_tendency": 0.80,
+                "event_interest": 0.30, "study_spike_response": 0.98, "commute_friction": 0.20,
+                "dorm_return_tendency": 0.30, "parking_loyalty": 0.70
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Esports & Gaming Club Main",
+            "archetype_description": "Spends considerable downtime in gaming lounges and student union spaces, staying late into the evening.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "green"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.75, "punctuality": 0.50, "studiousness": 0.60, "sociability": 0.80,
+                "walking_speed_mps": 1.20, "leave_campus_tendency": 0.30, "route_consistency": 0.60,
+                "meal_regularness": 0.35, "class_skip_tendency": 0.25, "campus_stay_tendency": 0.85,
+                "event_interest": 0.85, "study_spike_response": 0.85, "commute_friction": 0.40,
+                "dorm_return_tendency": 0.10, "parking_loyalty": 0.50
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The ATEC Digital Artist",
+            "archetype_description": "Creative arts and technology student moving frequently between render labs, sound booths, and studios.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "dormer", "parking_permit": "green"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.85, "punctuality": 0.65, "studiousness": 0.75, "sociability": 0.65,
+                "walking_speed_mps": 1.15, "leave_campus_tendency": 0.35, "route_consistency": 0.45,
+                "meal_regularness": 0.50, "class_skip_tendency": 0.15, "campus_stay_tendency": 0.75,
+                "event_interest": 0.70, "study_spike_response": 0.85, "commute_friction": 0.20,
+                "dorm_return_tendency": 0.40, "parking_loyalty": 0.40
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Library Hermit",
+            "archetype_description": "Prioritizes quiet focus and minimal social distraction, working exclusively in secluded library corners.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "gold"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.92, "punctuality": 0.85, "studiousness": 0.95, "sociability": 0.10,
+                "walking_speed_mps": 1.25, "leave_campus_tendency": 0.40, "route_consistency": 0.95,
+                "meal_regularness": 0.65, "class_skip_tendency": 0.08, "campus_stay_tendency": 0.75,
+                "event_interest": 0.05, "study_spike_response": 0.90, "commute_friction": 0.50,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.85
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Student Org Leader",
+            "archetype_description": "Schedules their day around committee meetings, plaza booths, and student governance responsibilities.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "gold"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.88, "punctuality": 0.80, "studiousness": 0.70, "sociability": 0.98,
+                "walking_speed_mps": 1.40, "leave_campus_tendency": 0.30, "route_consistency": 0.40,
+                "meal_regularness": 0.55, "class_skip_tendency": 0.12, "campus_stay_tendency": 0.90,
+                "event_interest": 0.98, "study_spike_response": 0.70, "commute_friction": 0.40,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.60
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The URec Fitness Enthusiast",
+            "archetype_description": "Structures campus movement around gym sessions, group fitness classes, and outdoor recreation fields.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "dormer", "parking_permit": "green"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.85, "punctuality": 0.80, "studiousness": 0.70, "sociability": 0.75,
+                "walking_speed_mps": 1.60, "leave_campus_tendency": 0.40, "route_consistency": 0.75,
+                "meal_regularness": 0.90, "class_skip_tendency": 0.15, "campus_stay_tendency": 0.65,
+                "event_interest": 0.65, "study_spike_response": 0.65, "commute_friction": 0.30,
+                "dorm_return_tendency": 0.25, "parking_loyalty": 0.50
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Night Owl Graduate Researcher",
+            "archetype_description": "Maintains an inverted schedule, arriving late afternoon and working through the night in specialized labs.",
+            "population_weight": 0.04,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "purple"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.90, "punctuality": 0.60, "studiousness": 0.95, "sociability": 0.25,
+                "walking_speed_mps": 1.20, "leave_campus_tendency": 0.30, "route_consistency": 0.85,
+                "meal_regularness": 0.30, "class_skip_tendency": 0.10, "campus_stay_tendency": 0.90,
+                "event_interest": 0.15, "study_spike_response": 0.85, "commute_friction": 0.20,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.90
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Multi-Transit Eco-Commuter",
+            "archetype_description": "Relies on public transit and walking, highly sensitive to schedules, weather, and transit connections.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "green"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.92, "punctuality": 0.90, "studiousness": 0.80, "sociability": 0.50,
+                "walking_speed_mps": 1.35, "leave_campus_tendency": 0.50, "route_consistency": 0.90,
+                "meal_regularness": 0.70, "class_skip_tendency": 0.08, "campus_stay_tendency": 0.50,
+                "event_interest": 0.45, "study_spike_response": 0.75, "commute_friction": 0.85,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.00
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Plinth Social Floater",
+            "archetype_description": "Bounces between open-air seating areas and outdoor dining options to socialize between sparse classes.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "green"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.70, "punctuality": 0.55, "studiousness": 0.50, "sociability": 0.95,
+                "walking_speed_mps": 1.10, "leave_campus_tendency": 0.40, "route_consistency": 0.30,
+                "meal_regularness": 0.60, "class_skip_tendency": 0.30, "campus_stay_tendency": 0.70,
+                "event_interest": 0.90, "study_spike_response": 0.50, "commute_friction": 0.50,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.50
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Overloaded Double-Major",
+            "archetype_description": "Takes 18+ credit hours across different colleges, constantly rushing between distant academic buildings.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "dormer", "parking_permit": "gold"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.96, "punctuality": 0.80, "studiousness": 0.92, "sociability": 0.30,
+                "walking_speed_mps": 1.55, "leave_campus_tendency": 0.15, "route_consistency": 0.70,
+                "meal_regularness": 0.35, "class_skip_tendency": 0.04, "campus_stay_tendency": 0.85,
+                "event_interest": 0.25, "study_spike_response": 0.95, "commute_friction": 0.30,
+                "dorm_return_tendency": 0.20, "parking_loyalty": 0.60
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Cafe Camper",
+            "archetype_description": "Prefers working in ambient, medium-noise environments with easy access to coffee and refreshments.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "green"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.85, "punctuality": 0.75, "studiousness": 0.75, "sociability": 0.60,
+                "walking_speed_mps": 1.20, "leave_campus_tendency": 0.45, "route_consistency": 0.65,
+                "meal_regularness": 0.80, "class_skip_tendency": 0.15, "campus_stay_tendency": 0.65,
+                "event_interest": 0.50, "study_spike_response": 0.70, "commute_friction": 0.45,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.70
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Casual Skipper",
+            "archetype_description": "Enrolled in large lecture general education courses; frequently evaluates whether attendance is worth the trip.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "orange"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.55, "punctuality": 0.45, "studiousness": 0.40, "sociability": 0.50,
+                "walking_speed_mps": 1.25, "leave_campus_tendency": 0.85, "route_consistency": 0.50,
+                "meal_regularness": 0.40, "class_skip_tendency": 0.45, "campus_stay_tendency": 0.20,
+                "event_interest": 0.30, "study_spike_response": 0.80, "commute_friction": 0.80,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.60
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Campus Employee Student",
+            "archetype_description": "Balances a part-time job on campus alongside a moderate and structured academic schedule.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "green"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.90, "punctuality": 0.95, "studiousness": 0.75, "sociability": 0.70,
+                "walking_speed_mps": 1.35, "leave_campus_tendency": 0.35, "route_consistency": 0.85,
+                "meal_regularness": 0.75, "class_skip_tendency": 0.10, "campus_stay_tendency": 0.80,
+                "event_interest": 0.50, "study_spike_response": 0.75, "commute_friction": 0.50,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.80
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Graduate Teaching Assistant",
+            "archetype_description": "Splits time between graduate courses, office hours, grading, and running undergraduate lab sessions.",
+            "population_weight": 0.04,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "purple"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.98, "punctuality": 0.95, "studiousness": 0.90, "sociability": 0.45,
+                "walking_speed_mps": 1.30, "leave_campus_tendency": 0.40, "route_consistency": 0.80,
+                "meal_regularness": 0.60, "class_skip_tendency": 0.02, "campus_stay_tendency": 0.75,
+                "event_interest": 0.20, "study_spike_response": 0.80, "commute_friction": 0.40,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.85
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Residential Introvert",
+            "archetype_description": "Lives on campus in an apartment, leaving only for mandatory classes and essential grocery runs.",
+            "population_weight": 0.05,
+            "agent_id": 1,
+            "commuter_tag": {"type": "dormer", "parking_permit": "green"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.88, "punctuality": 0.80, "studiousness": 0.75, "sociability": 0.15,
+                "walking_speed_mps": 1.20, "leave_campus_tendency": 0.10, "route_consistency": 0.95,
+                "meal_regularness": 0.80, "class_skip_tendency": 0.12, "campus_stay_tendency": 0.20,
+                "event_interest": 0.10, "study_spike_response": 0.70, "commute_friction": 0.10,
+                "dorm_return_tendency": 0.95, "parking_loyalty": 0.90
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        },
+        {
+            "archetype_name": "The Peer Tutor / Mentor",
+            "archetype_description": "Spends significant non-class hours at the Student Success Center and tutoring hubs assisting peers.",
+            "population_weight": 0.04,
+            "agent_id": 1,
+            "commuter_tag": {"type": "commuter", "parking_permit": "gold"},
+            "schedule": [
+                {"section_id": "cs2336.001.26s", "day": "Monday", "start_time": "10:00", "end_time": "11:15", "building": "ECSW", "floor": 2, "room": "225"},
+                {"section_id": "math2418.001.26s", "day": "Monday", "start_time": "13:00", "end_time": "14:15", "building": "SCI", "floor": 2, "room": "225"}
+            ],
+            "traits": {
+                "attendance": 0.95, "punctuality": 0.90, "studiousness": 0.90, "sociability": 0.85,
+                "walking_speed_mps": 1.30, "leave_campus_tendency": 0.30, "route_consistency": 0.80,
+                "meal_regularness": 0.70, "class_skip_tendency": 0.05, "campus_stay_tendency": 0.80,
+                "event_interest": 0.65, "study_spike_response": 0.85, "commute_friction": 0.40,
+                "dorm_return_tendency": 0.00, "parking_loyalty": 0.80
+            },
+            "state": {"current_location": None, "destination": None, "current_activity": "off_campus", "hunger": 0.20, "energy": 0.85, "mood": 0.70, "time_pressure": 0.10}
+        }
+    ]
+}
+
+
+# =====================================================================
+# 2. MESA AGENT & MODEL DEFINITIONS
+# =====================================================================
+def time_to_min(time_str):
+    h, m = map(int, time_str.split(":"))
+    return h * 60 + m
+
+
+class StudentAgent(mesa.Agent):
+    def __init__(self, unique_id, model, commuter_tag, schedule, traits, state, archetype_name="Student"):
+        super().__init__(unique_id, model)
+        self.archetype_name = archetype_name
+        self.commuter_tag = commuter_tag
+        self.schedule = schedule
+        self.traits = traits
+        self.state = state
+        
+        self.assigned_parking_lot, self.campus_arrival_time = self.initialize_parking_and_arrival()
+        
+        self.state["current_location"] = "OFF_CAMPUS"
+        self.current_destination = self.assigned_parking_lot
+        self.route = []
+        self.status = "off_campus"
+        
+        self.meal_time = self.initialize_meal_time()
+        self.meal_eaten = False
+        
+        self.activity_end_time = 0
+        self.departure_time = self.initialize_departure_time()
+        self.planned_event = self.select_campus_event()
+
+        self.evaluate_attendance_for_schedule()
+        self.current_building = None  
+
+    def initialize_parking_and_arrival(self):
+        if not self.schedule:
+            return "PARKING_PS1", 480
+
+        first_class = self.schedule[0]
+        last_class = self.schedule[-1]
+
+        target = first_class if random.random() < 0.5 else last_class
+        parking_lot = self.choose_parking_lot(target["building"])
+
+        parking_delay = max(0.0, random.gauss(BASE_PARKING_DELAY, PARKING_STD))
+        distance = self.get_graph_distance(parking_lot, first_class["building"])
+        floors_traveled = first_class.get("floor", 1)
+
+        walking_time = (distance / self.traits["walking_speed_mps"] / 60.0) + (0.5 * floors_traveled)
+        target_class_arrival = first_class["start_min"] - (self.traits["punctuality"] * MAX_EARLY_MINUTES)
+
+        campus_arrival = (
+            target_class_arrival
+            - walking_time
+            - parking_delay
+            + random.gauss(0, ARRIVAL_STD)
+        )
+
+        return parking_lot, int(campus_arrival)
+
+    def initialize_departure_time(self):
+        if not self.schedule:
+            return 1020
+
+        last_class_end = self.schedule[-1]["end_min"]
+        is_commuter = 1 if self.commuter_tag.get("type") == "commuter" else 0
+        base_stay = 30 if is_commuter else 90
+
+        expected_stay = (
+            base_stay
+            + 60 * self.traits.get("sociability", 0.5)
+            + 45 * self.traits.get("campus_stay_tendency", 0.5)
+            - 30 * self.traits.get("leave_campus_tendency", 0.5)
+        )
+
+        stay_minutes = max(0.0, random.gauss(expected_stay, 20.0))
+        return int(last_class_end + stay_minutes)
+
+    def evaluate_attendance_for_schedule(self):
+        base_attendance = self.traits.get("attendance", 0.8) * (1 - self.traits.get("class_skip_tendency", 0.1))
+        current_day = self.model.schedule_day
+
+        semester_decline = (
+            DECLINE_RATE
+            * current_day
+            / TOTAL_SEMESTER_DAYS
+        )
+
+        exam_boost = 0
+        for event in self.model.events:
+            if event.get("type") == "exam_period":
+                midpoint = (event.get("start_day", 1) + event.get("end_day", 1)) / 2.0
+                exam_effect = math.exp(
+                    -0.5 * (
+                        (current_day - midpoint)
+                        / EXAM_STD_DAYS
+                    ) ** 2
+                )
+                exam_boost += EXAM_ATTENDANCE_BOOST * exam_effect
+
+        attendance_probability = max(0.0, min(1.0, base_attendance - semester_decline + exam_boost))
+
+        for course in self.schedule:
+            course["skipped"] = not (random.random() < attendance_probability)
+
+    def calculate_study_weight(self):
+        study_weight = self.traits.get("studiousness", 0.5)
+        current_day = self.model.schedule_day
+
+        for event in self.model.events:
+            if event.get("type") == "exam_period":
+                midpoint = (event.get("start_day", 1) + event.get("end_day", 1)) / 2.0
+                exam_effect = math.exp(
+                    -0.5 * (
+                        (current_day - midpoint)
+                        / EXAM_STD_DAYS
+                    ) ** 2
+                )
+                study_weight *= (
+                    1
+                    + self.traits.get("study_spike_response", 0.5)
+                    * (event.get("study_multiplier", 1.5) - 1)
+                    * exam_effect
+                )
+        return study_weight
+
+    def select_campus_event(self):
+        if not self.model.events:
+            return None
+
+        for event in self.model.events:
+            if event.get("type") == "campus_event" and random.random() < self.traits.get("event_interest", 0.5):
+                event_start = time_to_min(event.get("start_time", "12:00"))
+                event_duration = max(10, int(random.gauss(45, 20)))
+                
+                if not self.conflicts_with_class(event_start, event_duration) and self.event_has_capacity(event):
+                    event_arrival = int(random.gauss(event_start + 10, 15))
+                    return {
+                        "name": event.get("name", "Campus Event"),
+                        "building": event.get("building", "SU"),
+                        "start_min": event_start,
+                        "arrival_min": event_arrival,
+                        "duration": event_duration
+                    }
+        return None
+
+    def conflicts_with_class(self, start_min, duration):
+        end_min = start_min + duration
+        for c in self.schedule:
+            if not c.get("skipped", False) and not (end_min <= c["start_min"] or start_min >= c["end_min"]):
+                return True
+        return False
+
+    def event_has_capacity(self, event):
+        current_attendees = event.get("current_attendees", 0)
+        max_capacity = event.get("capacity", 50)
+        if current_attendees < max_capacity:
+            event["current_attendees"] = current_attendees + 1
+            return True
+        return False
+
+    def choose_parking_lot(self, target_building):
+        gold_lots = ["PARKING_PS1", "PARKING_PS3", "PARKING_PS4", "PARKING_GOLD_LOT"]
+        if random.random() < self.traits.get("parking_loyalty", 0.75):
+            return random.choice(gold_lots)
+        preferred_lot = f"PARKING_{target_building}"
+        return preferred_lot if preferred_lot in gold_lots else "PARKING_PS1"
+
+    def initialize_meal_time(self):
+        meal_std = BASE_MEAL_STD * (1 - 0.7 * self.traits["meal_regularness"])
+        meal_time_hrs = max(12.0, min(15.0, random.gauss(13.5, meal_std)))
+        meal_time_min = int(meal_time_hrs * 60)
+
+        if self.in_class_at(meal_time_min):
+            meal_time_min = self.next_available_time(meal_time_min)
+
+        return meal_time_min
+
+    def next_available_time(self, current_meal_time):
+        check_time = current_meal_time
+        while check_time <= 900:
+            if not self.in_class_at(check_time):
+                return check_time
+            check_time += 15
+        return 930
+
+    def get_graph_distance(self, start_node, target_node):
+        try:
+            return nx.shortest_path_length(self.model.graph, source=start_node, target=target_node, weight="length")
+        except (nx.NodeNotFound, nx.NetworkXNoPath):
+            return 300.0
+
+    def get_travel_time(self, start_node, target_node, floors=1):
+        dist = self.get_graph_distance(start_node, target_node)
+        return int((dist / self.traits["walking_speed_mps"]) / 60.0) + (0.5 * floors) + 2
+
+    def select_free_time_destination(self, next_class_building, free_time_mins):
+        possible_buildings = []
+        weights = []
+
+        campus_buildings = ["ECSW", "SCI", "SU", "JSOM", "FO", "LIB"]
+        current_loc = self.state.get("current_location", "ECSW")
+        if current_loc not in campus_buildings:
+            current_loc = "ECSW"
+
+        for bldg in campus_buildings:
+            travel_to_bldg = self.get_travel_time(current_loc, bldg)
+            travel_to_next = self.get_travel_time(bldg, next_class_building)
+            available_time = free_time_mins - travel_to_bldg - travel_to_next
+
+            if (
+                self.model.get_available_seats(bldg) > 0
+                and available_time >= MIN_ACTIVITY_TIME
+            ):
+                possible_buildings.append(bldg)
+                
+                dist_score = 1.0 / (travel_to_bldg + 1.0)
+                consistency_bonus = self.traits.get("route_consistency", 0.5) if bldg == current_loc else 0.2
+                weights.append(dist_score + consistency_bonus)
+
+        if not possible_buildings:
+            return None
+
+        chosen_bldg = random.choices(possible_buildings, weights=weights, k=1)[0]
+        return chosen_bldg
+
+    def occupy_seat(self, building):
+        if building and self.model.occupy_seat(building):
+            self.current_building = building
+
+    def release_seat(self):
+        if self.current_building:
+            self.model.release_seat(self.current_building)
+            self.current_building = None
+
+    def step(self):
+        current_time = self.model.schedule_time
+
+        self.update_internal_states()
+
+        if self.status == "off_campus":
+            if current_time >= self.campus_arrival_time:
+                self.route = self.calculate_route("OFF_CAMPUS", self.assigned_parking_lot)
+                self.status = "commuting_to_parking"
+                self.state["current_activity"] = "commuting"
+
+        elif self.status == "commuting_to_parking":
+            if self.route:
+                self.state["current_location"] = self.route.pop(0)
+            
+            if self.state["current_location"] == self.assigned_parking_lot:
+                self.status = "parked"
+                self.state["current_activity"] = "parked"
+                
+                first_class = self.get_next_class(current_time)
+                if first_class:
+                    self.current_destination = first_class["building"]
+                    self.route = self.calculate_route(self.assigned_parking_lot, self.current_destination)
+                    self.status = "traveling_to_class"
+                else:
+                    self.status = "idle"
+
+        elif self.status == "traveling_to_class":
+            if self.route:
+                self.state["current_location"] = self.route.pop(0)
+            
+            if self.state["current_location"] == self.current_destination:
+                self.status = "in_class"
+                self.state["current_activity"] = "in_class"
+
+        elif self.status == "in_class":
+            current_class = self.get_current_class(current_time)
+            if current_class:
+                departure_time = (
+                    current_class["end_min"]
+                    + int(random.gauss(0, CLASS_EXIT_STD))
+                )
+                if current_time >= departure_time:
+                    self.status = "idle"
+                    self.state["current_activity"] = "idle"
+
+        elif self.status == "idle":
+            if self.planned_event and current_time >= self.planned_event["arrival_min"]:
+                if self.state["current_location"] != self.planned_event["building"]:
+                    self.current_destination = self.planned_event["building"]
+                    self.route = self.calculate_route(self.state["current_location"], self.current_destination)
+                    self.status = "traveling_to_event"
+                    return
+
+            if current_time >= self.departure_time:
+                self.current_destination = self.assigned_parking_lot
+                self.route = self.calculate_route(self.state["current_location"], self.assigned_parking_lot)
+                self.status = "departing_campus"
+                self.state["current_activity"] = "leaving"
+                return
+
+            next_class = self.get_next_class(current_time)
+            if next_class:
+                time_gap = next_class["start_min"] - current_time
+                if time_gap >= 30:
+                    dest_bldg = self.select_free_time_destination(next_class["building"], time_gap)
+                    
+                    if dest_bldg and dest_bldg != self.state.get("current_location"):
+                        self.current_destination = dest_bldg
+                        self.route = self.calculate_route(self.state["current_location"], dest_bldg)
+                        self.status = "traveling_to_destination"
+                        return
+
+                    study_weight = self.calculate_study_weight()
+                    social_weight = self.traits.get("sociability", 0.5)
+                    meal_weight = self.state.get("hunger", 0.2) * (2.0 - self.traits.get("meal_regularness", 0.5))
+
+                    activity = random.choices(
+                        ["study", "socialize", "eat"],
+                        weights=[study_weight, social_weight, meal_weight],
+                        k=1
+                    )[0]
+
+                    current_bldg = self.state.get("current_location", "ECSW")
+                    self.occupy_seat(current_bldg)
+
+                    if activity == "study":
+                        self.status = "studying"
+                        self.state["current_activity"] = "studying"
+                        study_duration = max(10, int(random.gauss(45 + 30 * study_weight, 20)))
+                        self.activity_end_time = current_time + min(study_duration, time_gap - 10)
+                        return
+                    elif activity == "socialize":
+                        self.status = "socializing"
+                        self.state["current_activity"] = "socializing"
+                        social_duration = max(10, int(random.gauss(30 + 30 * social_weight, 15)))
+                        self.activity_end_time = current_time + min(social_duration, time_gap - 10)
+                        return
+                    else:
+                        self.status = "eating"
+                        self.state["current_activity"] = "eating"
+                        meal_duration = max(10, int(random.gauss(30, 10)))
+                        self.activity_end_time = current_time + min(meal_duration, time_gap - 10)
+                        return
+
+                self.current_destination = next_class["building"]
+                self.route = self.calculate_route(self.state["current_location"], self.current_destination)
+                self.status = "traveling_to_class"
+
+        elif self.status == "traveling_to_destination":
+            if self.route:
+                self.state["current_location"] = self.route.pop(0)
+            
+            if self.state["current_location"] == self.current_destination:
+                self.status = "idle"
+
+        elif self.status == "traveling_to_event":
+            if self.route:
+                self.state["current_location"] = self.route.pop(0)
+            
+            if self.state["current_location"] == self.current_destination:
+                self.status = "at_event"
+                self.state["current_activity"] = "attending_event"
+                self.activity_end_time = current_time + self.planned_event["duration"]
+
+        elif self.status == "at_event":
+            if current_time >= self.activity_end_time:
+                self.status = "idle"
+                self.state["current_activity"] = "idle"
+                self.planned_event = None
+
+        elif self.status in ["eating", "studying", "socializing"]:
+            if current_time >= self.activity_end_time:
+                self.release_seat()
+                self.status = "idle"
+                self.state["current_activity"] = "idle"
+
+        elif self.status == "departing_campus":
+            if self.route:
+                self.state["current_location"] = self.route.pop(0)
+            
+            if self.state["current_location"] == self.assigned_parking_lot:
+                self.status = "departed"
+                self.state["current_activity"] = "off_campus"
+
+    def in_class_at(self, check_time):
+        for c in self.schedule:
+            if not c.get("skipped", False) and c["start_min"] <= check_time <= c["end_min"]:
+                return True
+        return False
+
+    def get_next_class(self, current_time):
+        for c in self.schedule:
+            if c["start_min"] > current_time and not c.get("skipped", False):
+                return c
+        return None
+
+    def get_current_class(self, current_time):
+        for c in self.schedule:
+            if not c.get("skipped", False) and c["start_min"] <= current_time <= c["end_min"]:
+                return c
+        return None
+
+    def calculate_route(self, start, target):
+        try:
+            path = nx.shortest_path(self.model.graph, source=start, target=target, weight="length")
+            return path[1:] if len(path) > 1 else []
+        except (nx.NodeNotFound, nx.NetworkXNoPath):
+            return [target]
+
+    def update_internal_states(self):
+        self.state["hunger"] = min(1.0, self.state["hunger"] + 0.005 * (2.0 - self.traits["meal_regularness"]))
+        self.state["energy"] = max(0.0, self.state["energy"] - 0.002)
+
+
+class CampusModel(mesa.Model):
+    def __init__(self, graph, events_data):
+        super().__init__()
+        self.graph = graph
+        self.schedule_time = 420  # 07:00 AM in minutes
+        self.schedule_day = 3     
+        self.events = events_data.get("events", [])
+        
+        self.building_capacities = {
+            "ECSW": DEFAULT_BUILDING_CAPACITY,
+            "SCI": DEFAULT_BUILDING_CAPACITY,
+            "SU": DEFAULT_BUILDING_CAPACITY,
+            "JSOM": DEFAULT_BUILDING_CAPACITY,
+            "FO": DEFAULT_BUILDING_CAPACITY,
+            "LIB": DEFAULT_BUILDING_CAPACITY
+        }
+        self.building_occupants = {b: 0 for b in self.building_capacities}
+
+    def get_available_seats(self, building):
+        max_seats = self.building_capacities.get(building, DEFAULT_BUILDING_CAPACITY)
+        current_occ = self.building_occupants.get(building, 0)
+        return max(0, max_seats - current_occ)
+
+    def occupy_seat(self, building):
+        if self.get_available_seats(building) > 0:
+            self.building_occupants[building] += 1
+            return True
+        return False
+
+    def release_seat(self, building):
+        if building in self.building_occupants and self.building_occupants[building] > 0:
+            self.building_occupants[building] -= 1
+
+    def step(self):
+        self.schedule_time += 5
+        if self.schedule_time >= 1440:
+            self.schedule_time = 480
+            self.schedule_day += 1
+        self.agents.do("step")
+
+
+# =====================================================================
+# 3. HELPER FUNCTIONS & POPULATION GENERATION
+# =====================================================================
+def generate_agent_traits(archetype_traits):
+    varied_traits = {}
+    for trait, base_val in archetype_traits.items():
+        if trait == "walking_speed_mps":
+            val = max(0.8, min(1.8, random.gauss(base_val, 0.10)))
+        else:
+            val = max(0.0, min(1.0, random.gauss(base_val, 0.10)))
+        varied_traits[trait] = round(val, 2)
+    return varied_traits
+
+def create_population(model, archetypes_data, population_size=25000):
+    archetypes = archetypes_data["archetypes"]
+    weights = [a["population_weight"] for a in archetypes]
+
+    for agent_id in range(1, population_size + 1):
+        chosen_archetype = random.choices(archetypes, weights=weights, k=1)[0]
+        
+        schedule = copy.deepcopy(chosen_archetype["schedule"])
+        state = copy.deepcopy(chosen_archetype["state"])
+        commuter_tag = copy.deepcopy(chosen_archetype["commuter_tag"])
+        traits = generate_agent_traits(chosen_archetype["traits"])
+
+        for course in schedule:
+            course["start_min"] = time_to_min(course["start_time"])
+            course["end_min"] = time_to_min(course["end_time"])
+        schedule.sort(key=lambda x: x["start_min"])
+
+        agent = StudentAgent(
+            unique_id=agent_id,
+            model=model,
+            commuter_tag=commuter_tag,
+            schedule=schedule,
+            traits=traits,
+            state=state,
+            archetype_name=chosen_archetype["archetype_name"]
+        )
+        model.agents.add(agent)
+
+
+# =====================================================================
+# 4. MAIN EXECUTION
+# =====================================================================
+if __name__ == "__main__":
+    GRAPH_FILE = "utd-graph/utd_graph.pkl"  
+    print("Loading UTD campus graph...")
+    try:
+        with open(GRAPH_FILE, "rb") as f:
+            campus_graph = pickle.load(f)
+    except FileNotFoundError:
+        print(f"Warning: '{GRAPH_FILE}' not found. Using fallback campus graph.")
+        campus_graph = nx.Graph()
+        for lot in ["OFF_CAMPUS", "PARKING_PS1", "PARKING_PS3", "PARKING_PS4", "PARKING_GOLD_LOT"]:
+            campus_graph.add_edge("OFF_CAMPUS", lot, length=50)
+        for bldg in ["ECSW", "SCI", "SU", "JSOM", "FO", "LIB"]:
+            campus_graph.add_edge("PARKING_PS1", bldg, length=150)
+
+    events_data = {
+        "events": [
+            {"type": "exam_period", "name": "Midterms Week", "start_day": 1, "end_day": 5, "study_multiplier": 1.8},
+            {"type": "campus_event", "name": "Career Fair", "building": "SU", "start_time": "12:00", "capacity": 15000, "current_attendees": 500}
+        ]
+    }
+
+    simulation_model = CampusModel(campus_graph, events_data)
+    
+    print("\nInitializing population of 25,000 student agents...")
+    create_population(simulation_model, ARCHETYPES_DATA, population_size=25000)
+
+    print(f"\n--- Running UTD Large-Scale Simulation ({len(simulation_model.agents)} agents) ---")
+    for step_num in range(200):  
+        simulation_model.step()
+        
+        if step_num % 20 == 0:
+            print(f"Completed Step {step_num}/200 - Simulation Time: {simulation_model.schedule_time} mins (Day {simulation_model.schedule_day})")
+
+    print("\nLarge-scale simulation finished successfully!")
