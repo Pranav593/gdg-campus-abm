@@ -1,0 +1,15 @@
+{
+  "downloaded_on": "2026-10-22",
+  "campus_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+  "parking_url": "https://services.utdallas.edu/download/Parking_Map.pdf",
+  "files": [
+    {
+      "file": "campus-map.pdf",
+      "sha256": "a8a9660ad559a7ccbf80b73415b68d3ec91845f57b57e547ac4a4f3ba237acdb"
+    },
+    {
+      "file": "parking-map.pdf",
+      "sha256": "17adc8be748d7063d12c6e0fb947647b5fa709d0a8ddb0e69a5e7b62b22ad9e0"
+    }
+  ]
+}

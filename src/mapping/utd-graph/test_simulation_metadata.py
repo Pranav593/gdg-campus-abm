@@ -115,7 +115,7 @@ class SimulationMetadataTest(unittest.TestCase):
             self.assertEqual(graph.nodes['PS4']['floors'], 5)
             with (output / 'parking_permit_estimates.csv').open(encoding='utf-8-sig') as file:
                 permits = {r['code']: r for r in csv.DictReader(file)}
-            self.assertEqual(len(permits), 32)
+            self.assertEqual(len(permits), 33)
             self.assertEqual(permits['PS4']['permit_green_pct'], '0')
             self.assertEqual(permits['Lot R']['permit_green_pct'], '')
             self.assertEqual(permits['Lot R']['permit_split_status'], 'unknown')
@@ -131,7 +131,9 @@ class SimulationMetadataTest(unittest.TestCase):
                 self.assertTrue(math.isfinite(edge['distance_m']))
                 self.assertEqual(edge['distance_m'], edge['length'])
             with (output / 'simulation_routes.csv').open(encoding='utf-8-sig') as file:
-                self.assertEqual(len(list(csv.DictReader(file))), 6006)
+                active = sum(bool(d.get('routable')) and d.get('type') != 'path'
+                             for _, d in graph.nodes(data=True))
+                self.assertEqual(len(list(csv.DictReader(file))), active * (active - 1))
             # A generated simulation graph can also be used as the next source.
             (output / 'utd_graph.pkl').write_bytes((output / 'utd_simulation_graph.pkl').read_bytes())
             import shutil

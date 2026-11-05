@@ -24,6 +24,17 @@ def draw(graph_path=None, output_path=None, show=False):
         graph = pickle.load(file)
     from academic_routing import academic_only, academic_routes
     graph = academic_only(graph)
+    # Load the survey separately: seating is not whole-building occupancy.
+    survey_folder = folder
+    if not (survey_folder / 'seating_counts.json').exists():
+        survey_folder = folder.parent / 'src' / 'mapping' / 'utd-graph'
+    seating = json.loads((survey_folder / 'seating_counts.json').read_text(encoding='utf-8'))['records']
+    with (survey_folder / 'utd_simulation_graph.pkl').open('rb') as file:
+        simulation = pickle.load(file)
+    # Include surveyed student-use buildings omitted by the academic map.
+    for code, record in seating.items():
+        if code not in graph and code in simulation and simulation.nodes[code].get('routable'):
+            graph.add_node(code, **simulation.nodes[code])
     from parking_areas import cached_parking, match_areas, outside_segments, edge_coordinates, draw_areas
     cache = graph_path.parent / 'cache'
     if not cache.exists():
@@ -38,6 +49,9 @@ def draw(graph_path=None, output_path=None, show=False):
         lines.extend(outside_segments(points, ends))
     ax.add_collection(LineCollection(lines, colors='#999999', linewidths=1, zorder=1))
     draw_areas(ax, graph, parking)
+    from build_graph import cached_buildings
+    from housing_areas import draw_housing
+    draw_housing(ax, cached_buildings(cache), simulation.nodes.get('Housing'))
     # Use the original walking graph's extent so adding labels does not reframe it.
     walk = [d for _, d in graph.nodes(data=True) if d.get('type') == 'path']
     minx, maxx = min(d['x'] for d in walk), max(d['x'] for d in walk)
@@ -61,29 +75,64 @@ def draw(graph_path=None, output_path=None, show=False):
         ends = [parking[n]['geometry'] for n in (start, end) if n in parking]
         for segment in outside_segments(coordinates, ends):
             ax.plot(*zip(*segment), color=color, linewidth=4, alpha=.5, zorder=3)
+    # Report walking distances in the terminal without crowding the map.
+    print('Route walking distances (meters):')
+    for connection in display_routes:
+        start, end, route = connection['start'], connection['end'], connection['path']
+        distance = nx.path_weight(graph, route, weight='length')
+        print(f'  {start} -> {end}: {distance:,.0f} m')
     label_offsets = {
         'ML2': (-25, 4), 'ML1': (4, -12), 'NB': (8, -3), 'NL': (4, 9),
         'CB': (6, -12), 'PHA': (-25, -11), 'PHY': (-28, 1),
         'JO': (4, 9), 'TH': (4, -13), 'FN': (-24, -9),
         'BE': (-20, -12), 'FA': (4, 4), 'FO': (4, -11),
     }
+    building_labels = []
     for node, data in graph.nodes(data=True):
         if data.get('category') == 'parking':
             if node not in parking:
                 ax.annotate(str(node) + '†', (data['x'], data['y']), color='#ffe1b1',
                             fontsize=7, fontstyle='italic', ha='center', zorder=6)
             continue
-        if data.get('category') == 'academic':
+        if data.get('category') == 'academic' or node in seating:
             color = 'deepskyblue'
             ax.scatter(data['x'], data['y'], c=color, s=40, zorder=5)
-            ax.annotate(str(node), (data['x'], data['y']), color='white', fontsize=8,
-                        xytext=label_offsets.get(node, (4, 4)), textcoords='offset points', zorder=6)
+            record = seating.get(node)
+            label = str(node)
+            if record is not None:
+                total = record['seating_total']
+                if total is not None:
+                    prefix = '~' if record.get('seating_approximate') else ''
+                    label += f' ({prefix}{total} seats)'
+                elif record.get('seating_status') == 'not_surveyed_no_access':
+                    label += ' (seats unknown: no access)'
+            annotation = ax.annotate(label, (data['x'], data['y']), color='white', fontsize=6,
+                        xytext=label_offsets.get(node, (4, 4)), textcoords='offset points', zorder=6,
+                        arrowprops=dict(arrowstyle='-', color='#aaaaaa', linewidth=.4))
+            building_labels.append(annotation)
+    # Place long survey labels without overlapping other building labels.
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    occupied = []
+    for annotation in building_labels:
+        candidates = [annotation.get_position()] + [(x, y) for y in (4, 14, -14, 24, -24, 34, -34, 44, -44, 54, -54)
+                                                    for x in (4, -45, 25, -85, 60)]
+        for offset in candidates:
+            annotation.set_position(offset)
+            annotation.update_positions(renderer)
+            bounds = matplotlib.text.Text.get_window_extent(annotation, renderer).expanded(1.04, 1.15)
+            if not any(bounds.overlaps(previous) for previous in occupied):
+                break
+        occupied.append(bounds)
     if boundary_review:
         ax.text(.01, .01, '† Boundary needs review: ' + ', '.join(r['code'] for r in boundary_review),
                 transform=ax.transAxes, fontsize=6.5, color='#ffe1b1', zorder=8,
                 bbox=dict(facecolor='#111111', edgecolor='none', alpha=.85))
     (output_path.parent / 'parking_boundary_review.json').write_text(
         json.dumps(boundary_review, indent=2) + '\n', encoding='utf-8')
+    ax.text(.01, .98, 'Reported seating | ~ approximate | surveyed areas only',
+            transform=ax.transAxes, fontsize=7, color='white', va='top',
+            bbox=dict(facecolor='#111111', edgecolor='none', alpha=.85))
     ax.set_axis_off()
     fig.savefig(output_path, dpi=200, bbox_inches='tight', facecolor=fig.get_facecolor())
     buffer = io.StringIO()

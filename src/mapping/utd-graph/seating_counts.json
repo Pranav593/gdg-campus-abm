@@ -1,0 +1,220 @@
+{
+  "source": "User-provided GDG seating survey in chat, received 2026-11-05",
+  "scope": "Observed seats available in surveyed areas; not classroom capacities or certified occupancy. Totals cover reported areas only; do not infer unreported floors. Counts are unscaled real-world observations.",
+  "records": {
+    "JO": {
+      "seating_total": 222,
+      "seating_by_floor": {
+        "1": 0,
+        "2": 16,
+        "3": 49,
+        "4": 95,
+        "5": 62
+      },
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Floor 1: restricted theater access only."
+    },
+    "GR": {
+      "seating_total": 106,
+      "seating_by_floor": {
+        "2": 28,
+        "3": 38,
+        "4": 40
+      },
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Floor 2 is ground floor; total covers reported floors only."
+    },
+    "JSOM": {
+      "seating_total": 344,
+      "seating_by_floor": {},
+      "seating_components": {
+        "JSOM 1": {
+          "1": 57,
+          "2": 100,
+          "3": 0,
+          "4": 0
+        },
+        "JSOM 2": {
+          "1": 84,
+          "2": 78,
+          "3": 15,
+          "4": 10
+        }
+      },
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Combined reported seating; wings retained separately, not added as duplicate destinations."
+    },
+    "HH": {
+      "seating_total": 47,
+      "seating_by_floor": {
+        "1": 47
+      },
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Only floor 1 reported."
+    },
+    "ML1": {
+      "seating_total": 11,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Reported seating; not whole-building occupancy."
+    },
+    "ML2": {
+      "seating_total": 18,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "9 x 2 = 18 reported seats."
+    },
+    "PD": {
+      "seating_total": 0,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Reported seating; not whole-building occupancy."
+    },
+    "PHA": {
+      "seating_total": 60,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Reported seating; not whole-building occupancy."
+    },
+    "ECSN": {
+      "seating_total": 70,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Reported seating; not whole-building occupancy."
+    },
+    "ECSS": {
+      "seating_total": 89,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Reported seating; not whole-building occupancy."
+    },
+    "ECSW": {
+      "seating_total": 185,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Reported seating; not whole-building occupancy."
+    },
+    "FO": {
+      "seating_total": 85,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Reported seating; not whole-building occupancy."
+    },
+    "FA": {
+      "seating_total": 20,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Reported seating; not whole-building occupancy."
+    },
+    "FN": {
+      "seating_total": 40,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": false,
+      "seating_notes": "Reported seating; not whole-building occupancy."
+    },
+    "NB": {
+      "seating_total": null,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "not_surveyed_no_access",
+      "seating_approximate": false,
+      "seating_notes": "No access for seating survey; seating count unknown. Does not change building routing."
+    },
+    "NL": {
+      "seating_total": null,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "not_surveyed_no_access",
+      "seating_approximate": false,
+      "seating_notes": "No access for seating survey; seating count unknown. Does not change building routing."
+    },
+    "ACB": {
+      "seating_total": 60,
+      "seating_by_floor": {
+        "1": 60
+      },
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": true,
+      "seating_notes": "Approximately 60 seats on level 1. The separate 40-seat recreation observation belongs to AC, as clarified by user."
+    },
+    "AD": {
+      "seating_total": 100,
+      "seating_by_floor": {
+        "1": 20,
+        "2": 50,
+        "3": 30
+      },
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": true,
+      "seating_notes": "Levels 2 and 3 approximate."
+    },
+    "APC": {
+      "seating_total": 100,
+      "seating_by_floor": {
+        "1": 100
+      },
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": true,
+      "seating_notes": "Level 2 museum: no seating count provided; total covers level 1 only."
+    },
+    "APC2": {
+      "seating_total": null,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "under_construction",
+      "seating_approximate": false,
+      "seating_notes": "Under construction; count unknown."
+    },
+    "ATC": {
+      "seating_total": 215,
+      "seating_by_floor": {
+        "1": 120,
+        "2": 45,
+        "3": 50
+      },
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": true,
+      "seating_notes": "Approximate reported floors only."
+    },
+    "AC": {
+      "seating_total": 40,
+      "seating_by_floor": {},
+      "seating_components": {},
+      "seating_status": "observed",
+      "seating_approximate": true,
+      "seating_notes": "Approximately 40 seats in the Activity Center recreation building; user clarified AC. Not a whole-building occupancy limit."
+    }
+  },
+  "unresolved_observations": []
+}

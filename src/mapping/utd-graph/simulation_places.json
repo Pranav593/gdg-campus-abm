@@ -8,7 +8,13 @@
       ],
       "category": "non_academic",
       "status": "active",
-      "source_url": "https://map.utdallas.edu/"
+      "source_url": "https://map.utdallas.edu/",
+      "destination_kind": "student_union",
+      "services": [
+        "student_organizations",
+        "events",
+        "gathering"
+      ]
     },
     {
       "code": "DHW",
@@ -18,7 +24,12 @@
       ],
       "category": "non_academic",
       "status": "active",
-      "source_url": "https://map.utdallas.edu/"
+      "source_url": "https://map.utdallas.edu/",
+      "destination_kind": "dining",
+      "services": [
+        "food",
+        "dining"
+      ]
     },
     {
       "code": "AC",
@@ -28,7 +39,8 @@
       ],
       "category": "non_academic",
       "status": "active",
-      "source_url": "https://map.utdallas.edu/"
+      "source_url": "https://map.utdallas.edu/",
+      "destination_kind": "recreation"
     },
     {
       "code": "SSB",
@@ -47,56 +59,6 @@
         "Student Services Building Addition"
       ],
       "category": "non_academic",
-      "status": "active",
-      "source_url": "https://map.utdallas.edu/"
-    },
-    {
-      "code": "RHW",
-      "full_name": "Andromeda Hall",
-      "aliases": [
-        "Andromeda Hall"
-      ],
-      "category": "residential",
-      "status": "active",
-      "source_url": "https://map.utdallas.edu/"
-    },
-    {
-      "code": "RHS",
-      "full_name": "Sirius Hall",
-      "aliases": [
-        "Sirius Hall"
-      ],
-      "category": "residential",
-      "status": "active",
-      "source_url": "https://map.utdallas.edu/"
-    },
-    {
-      "code": "RHN",
-      "full_name": "Capella Hall",
-      "aliases": [
-        "Capella Hall"
-      ],
-      "category": "residential",
-      "status": "active",
-      "source_url": "https://map.utdallas.edu/"
-    },
-    {
-      "code": "RHNW",
-      "full_name": "Vega Hall",
-      "aliases": [
-        "Vega Hall"
-      ],
-      "category": "residential",
-      "status": "active",
-      "source_url": "https://map.utdallas.edu/"
-    },
-    {
-      "code": "RHSW",
-      "full_name": "Helix Hall",
-      "aliases": [
-        "Helix Hall"
-      ],
-      "category": "residential",
       "status": "active",
       "source_url": "https://map.utdallas.edu/"
     },
@@ -216,8 +178,9 @@
     },
     {
       "code": "Lot N",
-      "full_name": "Lot T N",
+      "full_name": "Lot N",
       "aliases": [
+        "Lot N",
         "Lot T N"
       ],
       "lat": 32.99269100000001,
@@ -477,6 +440,250 @@
       "category": "parking",
       "status": "active",
       "source_url": "https://map.concept3d.com/?id=1772#!ce/43523?ct/88641,88642,88643,43523?m/942889?s/?mc/32.98084299999998,-96.74633799999998?z/16?lvl/0?share?p/0?b/-57.71534750797855"
+    },
+    {
+      "code": "LAN",
+      "full_name": "Comets LANding Gaming and Esports Center",
+      "aliases": [
+        "Comets LANding"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://esports.utdallas.edu/gaming-center/",
+      "destination_kind": "esports",
+      "services": [
+        "gaming",
+        "esports",
+        "food"
+      ]
+    },
+    {
+      "code": "RCW",
+      "full_name": "Recreation Center West",
+      "aliases": [
+        "Recreation Center West"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://urec.utdallas.edu/urec-facilities/",
+      "destination_kind": "recreation"
+    },
+    {
+      "code": "SUFC",
+      "full_name": "Student Union Food Court",
+      "aliases": [
+        "Student Union Food Court"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "destination_kind": "dining",
+      "services": [
+        "food",
+        "dining"
+      ]
+    },
+    {
+      "code": "ACB",
+      "full_name": "Activity Center Bookstore / Visitor Center and University Bookstore",
+      "aliases": [
+        "Activity Center Bookstore"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "destination_kind": "student_services",
+      "services": [
+        "bookstore",
+        "visitor_information",
+        "food"
+      ],
+      "location_notes": "Official campus PDF label ACB; visitor/bookstore functions share this destination, not a second building."
+    },
+    {
+      "code": "DGA",
+      "full_name": "Davidson-Gundy Alumni Center",
+      "aliases": [
+        "Davidson-Gundy Alumni Center"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "destination_kind": "events"
+    },
+    {
+      "code": "PD",
+      "full_name": "Police Building",
+      "aliases": [
+        "Police Building"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "destination_kind": "student_services"
+    },
+    {
+      "code": "Housing",
+      "full_name": "Housing",
+      "aliases": [
+        "Housing"
+      ],
+      "category": "housing",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "lat": 32.9881,
+      "lon": -96.754,
+      "destination_kind": "housing",
+      "location_notes": "Generic housing destination at a representative western campus access point; not a dorm centroid. No individual dorm nodes or per-dorm capacity. Travel is an approximation for dispersed housing.",
+      "members": [
+        "University Commons",
+        "University Village",
+        "Canyon Creek Heights"
+      ]
+    },
+    {
+      "code": "SPORTS",
+      "full_name": "Outdoor Recreation and Athletic Fields",
+      "aliases": [
+        "Outdoor Recreation and Athletic Fields"
+      ],
+      "category": "outdoor",
+      "status": "active",
+      "source_url": "https://services.utdallas.edu/download/Parking_Map.pdf",
+      "lat": 32.9828,
+      "lon": -96.7491,
+      "destination_kind": "recreation",
+      "services": [
+        "soccer",
+        "basketball",
+        "volleyball",
+        "tennis",
+        "softball",
+        "baseball",
+        "track",
+        "cricket"
+      ],
+      "location_notes": "Representative athletic district access point from official map, not individual field entrances."
+    },
+    {
+      "code": "TC",
+      "full_name": "Transit Center",
+      "aliases": [
+        "Transit Center"
+      ],
+      "category": "transit",
+      "status": "active",
+      "source_url": "https://services.utdallas.edu/download/Parking_Map.pdf",
+      "lat": 32.9839,
+      "lon": -96.7486,
+      "destination_kind": "transit",
+      "location_notes": "Approximate main-campus map position; nearest-walkway connector, not a surveyed bus boarding point."
+    },
+    {
+      "code": "DART",
+      "full_name": "UT Dallas DART Station",
+      "aliases": [
+        "UT Dallas DART Station"
+      ],
+      "category": "transit",
+      "status": "active",
+      "source_url": "https://services.utdallas.edu/download/Parking_Map.pdf",
+      "lat": 32.9964,
+      "lon": -96.75,
+      "destination_kind": "transit",
+      "location_notes": "Approximate station position north of Northside from official parking map; verify construction-sensitive pedestrian access."
+    },
+    {
+      "code": "PLINTH",
+      "full_name": "The Plinth",
+      "aliases": [
+        "The Plinth"
+      ],
+      "category": "outdoor",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "destination_kind": "gathering"
+    },
+    {
+      "code": "Lot Y",
+      "full_name": "Lot Y",
+      "aliases": [
+        "Lot Y"
+      ],
+      "category": "parking",
+      "status": "active",
+      "source_url": "https://services.utdallas.edu/download/Parking_Map.pdf",
+      "lat": 32.9903,
+      "lon": -96.7578,
+      "destination_kind": "parking",
+      "location_notes": "Gray lot west of Waterview Parkway near WAAC in current official parking map; approximate map position. Permit designations and capacity unresolved."
+    },
+    {
+      "code": "SU_SSC",
+      "full_name": "Student Union / Student Success Center",
+      "aliases": [
+        "Student Union / Student Success Center"
+      ],
+      "category": "non_academic",
+      "status": "construction",
+      "source_url": "https://union.utdallas.edu/about/into-the-future/",
+      "destination_kind": "student_services",
+      "location_notes": "Still marked construction in the October 2 campus map. Expected late 2026 completion is not evidence of opening; isolated until verified active."
+    },
+    {
+      "code": "FM",
+      "full_name": "Facilities Management",
+      "aliases": [
+        "Facilities Management"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "destination_kind": "campus_operations"
+    },
+    {
+      "code": "SB",
+      "full_name": "Service Building",
+      "aliases": [
+        "Service Building"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "destination_kind": "campus_operations"
+    },
+    {
+      "code": "SG",
+      "full_name": "Safety and Grounds",
+      "aliases": [
+        "Safety and Grounds"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "destination_kind": "campus_operations"
+    },
+    {
+      "code": "EP",
+      "full_name": "Energy Plant",
+      "aliases": [
+        "Energy Plant"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "destination_kind": "campus_operations"
+    },
+    {
+      "code": "SUP",
+      "full_name": "Satellite Utility Plant",
+      "aliases": [
+        "Satellite Utility Plant"
+      ],
+      "category": "non_academic",
+      "status": "active",
+      "source_url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+      "destination_kind": "campus_operations"
     }
   ],
   "metadata": {
@@ -524,14 +731,6 @@
       "capacity_status": "published_historical",
       "capacity_notes": "Published dining design capacity, not a certified building occupancy limit."
     },
-    "RHW": {
-      "capacity": 600,
-      "capacity_unit": "beds",
-      "capacity_source": "https://news.utdallas.edu/campus-community/new-residence-hall-west-changes-landscape-for-livi/",
-      "capacity_source_date": "2014",
-      "capacity_status": "published_historical",
-      "capacity_notes": "Residence Hall West, renamed Andromeda Hall. Residential beds, not total occupancy."
-    },
     "Lot M North": {
       "capacity": 32,
       "capacity_unit": "vehicles",
@@ -539,12 +738,70 @@
       "capacity_source_date": "2026-10-01",
       "capacity_status": "osm_snapshot",
       "capacity_notes": "Cached OSM ref M North; includes accessible spaces. Not live availability."
+    },
+    "APC": {
+      "floors": 2,
+      "floors_status": "documented",
+      "floors_source": "https://bass.utdallas.edu/news/utd-celebrates-grand-opening-of-new-arts-cornerstone-on-campus/"
+    },
+    "APC2": {
+      "floors": 2,
+      "floors_status": "documented_design",
+      "floors_source": "https://www.tdlr.texas.gov/TABS/Search/Project/TABS2025004912",
+      "floors_notes": "Two-story design; construction destination remains non-routable."
+    },
+    "MC": {
+      "floors": 4,
+      "floors_status": "documented",
+      "floors_source": "https://provost.utdallas.edu/2023/12/01/mcdermott-library-activity-exceeded-only-by-resources/",
+      "floors_notes": "University describes four library floors; overrides cached OSM value of three."
+    },
+    "LAN": {
+      "floors": 2,
+      "floors_status": "documented",
+      "floors_source": "https://esports.utdallas.edu/gaming-center/",
+      "capacity": 100,
+      "capacity_unit": "seats",
+      "capacity_scope": "PC_gaming_stations_only",
+      "capacity_status": "estimated_conservative",
+      "capacity_source": "https://esports.utdallas.edu/gaming-center/",
+      "capacity_source_date": "2026-10-22",
+      "capacity_confidence": "low",
+      "capacity_method": "Conservative model limit of 100 PC users from university statement of more than 100 PCs.",
+      "capacity_notes": "Excludes console areas, arena spectators, staff and food seating. Not whole-building occupancy."
+    },
+    "DGA": {
+      "capacity": 700,
+      "capacity_unit": "seats",
+      "capacity_scope": "ballroom_theater_seating_only",
+      "capacity_status": "documented",
+      "capacity_source": "https://davidson-gundy.utdallas.edu/faq/",
+      "capacity_source_date": "2026-10-22",
+      "capacity_notes": "Ballroom theater setup only; banquet setup is 400. Not a whole-building occupancy limit."
+    },
+    "Housing": {
+      "floors": null,
+      "capacity": null,
+      "capacity_unit": "beds",
+      "capacity_notes": "Aggregate on-campus housing; no verified combined current bed total. Individual dorm capacities are not a total."
     }
   },
   "notes": [
     "Null is unknown, never unlimited or zero. Capacity units are vehicles, people, seats or beds.",
     "Historical publication values require review before using them as current operational limits.",
     "Floors from cached OSM are unverified above-ground building:levels, not surveyed counts.",
-    "Parking lot totals are unknown unless a source gives an individual lot total; do not split combined lot totals."
-  ]
+    "Parking lot totals are unknown unless a source gives an individual lot total; do not split combined lot totals.",
+    "Housing replaces individual residence hall destinations; a single representative access point is a simulation abstraction.",
+    "Surface parking estimates use unique cached footprints / 30 square meters per vehicle including circulation; low confidence. Shared/unmatched footprints remain unknown.",
+    "Capacity_scope must be respected: station/ballroom limits do not cap a whole building.",
+    "Current campus PDF and parking PDF disagree on legacy lot labels E, Q and M West. Do not create duplicate lots without verified locations and designations."
+  ],
+  "source": {
+    "url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+    "map_updated_on": "2026-10-02",
+    "reviewed_on": "2026-10-22",
+    "parking_url": "https://services.utdallas.edu/download/Parking_Map.pdf",
+    "parking_effective_on": "2026-07-30",
+    "scope": "Richardson main campus; downtown Dallas sites are outside the supplied walking network."
+  }
 }

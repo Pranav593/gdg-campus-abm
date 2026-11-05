@@ -56,6 +56,7 @@ def enrich_permits(graph, catalog=None):
 def csv_place(row):
     """Keep the graph's list structured while making CSV types interoperable."""
     result = dict(row)
-    if 'permit_types' in result and result['permit_types'] is not None:
-        result['permit_types'] = json.dumps(result['permit_types'], separators=(',', ':'))
+    for field in ('permit_types', 'services', 'members'):
+        if field in result and result[field] is not None:
+            result[field] = json.dumps(result[field], separators=(',', ':'))
     return result

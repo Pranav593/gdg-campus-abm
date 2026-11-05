@@ -1,0 +1,37 @@
+{
+  "description": "Fictional one-day schedules for demonstrating campus movement; not actual course offerings or enrollment.",
+  "students": [
+    {
+      "student_id": "demo-housing", "initial_location": "Housing",
+      "classes": [
+        {"destination": "ECSW", "start": "08:30", "end": "09:20", "course": "DEMO-CS-1"},
+        {"destination": "JSOM", "start": "10:00", "end": "10:50", "course": "DEMO-BUS-1"},
+        {"destination": "MC", "start": "12:00", "end": "12:50", "course": "DEMO-STUDY-1"}
+      ]
+    },
+    {
+      "student_id": "demo-ps1", "initial_location": "PS1",
+      "classes": [
+        {"destination": "JSOM", "start": "08:15", "end": "09:05", "course": "DEMO-BUS-2"},
+        {"destination": "ATC", "start": "09:30", "end": "10:20", "course": "DEMO-ART-2"},
+        {"destination": "SCI", "start": "11:00", "end": "11:50", "course": "DEMO-SCI-2"}
+      ]
+    },
+    {
+      "student_id": "demo-ps3", "initial_location": "PS3",
+      "classes": [
+        {"destination": "SCI", "start": "08:15", "end": "09:05", "course": "DEMO-SCI-3"},
+        {"destination": "ECSN", "start": "09:30", "end": "10:20", "course": "DEMO-CS-3"},
+        {"destination": "MC", "start": "11:00", "end": "11:50", "course": "DEMO-STUDY-3"}
+      ]
+    },
+    {
+      "student_id": "demo-ps4", "initial_location": "PS4", "walking_speed_m_s": 1.3,
+      "classes": [
+        {"destination": "ECSW", "start": "08:15", "end": "09:05", "course": "DEMO-CS-4"},
+        {"destination": "JO", "start": "09:30", "end": "10:20", "course": "DEMO-GEN-4"},
+        {"destination": "JSOM", "start": "11:00", "end": "11:50", "course": "DEMO-BUS-4"}
+      ]
+    }
+  ]
+}

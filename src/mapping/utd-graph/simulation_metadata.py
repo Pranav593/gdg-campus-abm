@@ -82,12 +82,54 @@ def enrich_places(graph, features, overrides):
             data[field + '_status'] = status if value is not None else 'unknown'
         data['capacity_unit'] = 'vehicles' if parking else override.get('capacity_unit', data.get('capacity_unit', 'people'))
         data['parking_capacity'] = data['capacity'] if parking else None
-        for field in ('capacity_notes', 'capacity_source_date', 'floors_notes'):
+        for field in ('capacity_notes', 'capacity_source_date', 'floors_notes',
+                      'capacity_scope', 'capacity_method', 'capacity_confidence'):
             if field in override:
                 data[field] = override[field]
 
     from parking_permits import enrich_permits
     enrich_permits(graph)
+
+
+def estimate_parking_capacities(graph, features):
+    """Estimate only unique surface-lot footprints; shared polygons stay unknown.
+
+    30 m2 per vehicle includes stalls and circulation. This is an explicit
+    low-confidence simulation assumption, not a university stall count.
+    """
+    from collections import Counter
+    from shapely.ops import transform
+    from parking_areas import match_areas
+    areas, _ = match_areas(graph.nodes(data=True), features)
+    uses = Counter(feature['osm_id'] for feature in areas.values())
+    for code, node in graph.nodes(data=True):
+        if node.get('category') != 'parking':
+            continue
+        if str(code).startswith('PS'):
+            continue
+        node.update(floors=None, floors_source=None, floors_status='not_applicable')
+        if node.get('capacity') is not None and node.get('capacity_status') != 'estimated_footprint':
+            continue
+        feature = areas.get(code)
+        # Clear stale estimates if the boundary becomes shared or unresolved.
+        if node.get('capacity_status') == 'estimated_footprint':
+            node.update(capacity=None, parking_capacity=None, capacity_status='unknown',
+                        capacity_source=None, capacity_method=None, capacity_confidence=None)
+        if feature is None or uses[feature['osm_id']] != 1:
+            node['capacity_notes'] = 'No unique individual lot footprint; capacity needs a stall survey.'
+            continue
+        lat, lon = node['y'], node['x']
+        scale = math.pi * 6371009 / 180
+        def project(x, y, z=None):
+            return ((x - lon) * scale * math.cos(math.radians(lat)), (y - lat) * scale)
+        area = transform(project, feature['geometry']).area
+        count = max(1, int(area / 30))
+        node.update(capacity=count, parking_capacity=count, capacity_unit='vehicles',
+                    capacity_status='estimated_footprint', capacity_confidence='low',
+                    capacity_scope='whole_lot', capacity_source_date='2026-10-01',
+                    capacity_source='https://www.openstreetmap.org/' + feature['osm_id'],
+                    capacity_method='floor(projected footprint area in m2 / 30 m2 per vehicle), including circulation',
+                    capacity_notes='Model estimate; not an official stall count or current availability. Landscaping and restrictions may reduce usable spaces.')
 
 
 def simulation_routes(graph):
@@ -114,25 +156,49 @@ def simulation_routes(graph):
 def export_simulation(graph, output):
     """Write portable metadata and edges alongside the NetworkX graph."""
     import pickle
+    import json
+    from collections import Counter
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     with (output / 'utd_simulation_graph.pkl').open('wb') as file:
         pickle.dump(graph, file)
     from parking_permits import PERMIT_FIELDS, csv_place
     places = [csv_place(dict(code=n, **d)) for n, d in graph.nodes(data=True) if d.get('type') != 'path']
+    for place in places:
+        for field in ('seating_by_floor', 'seating_components'):
+            if field in place:
+                place[field] = json.dumps(place[field], separators=(',', ':'))
+    summary = dict(
+        nodes=graph.number_of_nodes(), edges=graph.number_of_edges(),
+        destinations=len(places), active_destinations=sum(bool(p.get('routable')) for p in places),
+        categories=dict(Counter(p.get('category') for p in places)),
+        parking_capacity_status=dict(Counter(p.get('capacity_status') for p in places if p.get('category') == 'parking')),
+        unknown_parking_capacity=[p['code'] for p in places if p.get('category') == 'parking' and p.get('capacity') is None],
+        unknown_parking_permits=[p['code'] for p in places if p.get('category') == 'parking' and p.get('permit_types') is None],
+        unknown_building_floors=[p['code'] for p in places if p.get('floors') is None and p.get('floors_status') != 'not_applicable'],
+        unknown_nonacademic_capacity=[p['code'] for p in places if p.get('category') == 'non_academic' and p.get('capacity') is None],
+        inventory_source=graph.graph.get('campus_inventory_source'),
+        distance_unit='meters', reference_walk_speed_m_s=1.4)
+    (output / 'simulation_summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
     exports = [
         ('simulation_nodes.csv', places,
          ['code', 'full_name', 'type', 'category', 'status', 'routable', 'y', 'x',
           'floors', 'floors_source', 'floors_status', 'capacity', 'capacity_unit',
-          'parking_capacity', 'capacity_source', 'capacity_status', 'capacity_source_date', 'capacity_notes', *PERMIT_FIELDS]),
+          'parking_capacity', 'capacity_source', 'capacity_status', 'capacity_source_date', 'capacity_notes',
+          'capacity_scope', 'capacity_method', 'capacity_confidence', 'floors_notes',
+          'destination_kind', 'services', 'location_notes', 'members', 'coordinate_source', 'source_url',
+          'seating_total', 'seating_by_floor', 'seating_components', 'seating_status',
+          'seating_approximate', 'seating_notes', 'seating_source', *PERMIT_FIELDS]),
         ('parking_permit_estimates.csv', [p for p in places if p.get('category') == 'parking'],
          ['code', 'full_name', *PERMIT_FIELDS]),
         ('simulation_edges.csv', [dict(start=a, end=b, key=k, **d) for a, b, k, d in graph.edges(keys=True, data=True)],
          ['start', 'end', 'key', 'distance_m', 'length', 'walk_time_min', 'distance_source']),
         ('simulation_routes.csv', simulation_routes(graph),
          ['start', 'end', 'distance_m', 'length_m', 'walk_time_min', 'path_nodes']),
-        ('metadata_review.csv', [p for p in places if p.get('floors') is None or
-                                (p.get('category') != 'academic' and p.get('capacity') is None)],
+        ('metadata_review.csv', [p for p in places if
+                                (p.get('floors') is None and p.get('floors_status') != 'not_applicable') or
+                                (p.get('category') != 'academic' and p.get('capacity') is None) or
+                                str(p.get('capacity_status', '')).startswith('estimated')],
          ['code', 'full_name', 'category', 'floors', 'floors_status', 'capacity', 'capacity_status'])]
     for filename, rows, fields in exports:
         with (output / filename).open('w', newline='', encoding='utf-8-sig') as file:

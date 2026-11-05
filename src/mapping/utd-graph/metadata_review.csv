@@ -1,41 +1,51 @@
 ﻿code,full_name,category,floors,floors_status,capacity,capacity_status
-APC,Edith and Peter O'Donnell Jr. Athenaeum,academic,,unknown,,unknown
 GC,Cecil and Ida Green Center,academic,,unknown,,unknown
-APC2,Athenaeum Performance Hall and Music Building,academic,,unknown,,unknown
-SPN Lot,SPN Lot,parking,,unknown,,unknown
-Lot W,Lot W,parking,,unknown,,unknown
-Lot T 1,Lot T 1,parking,,unknown,,unknown
-Lot T 2,Lot T 2,parking,,unknown,,unknown
-Lot T 3,Lot T 3,parking,,unknown,,unknown
-Res Lot North West,Residential Lot North West,parking,,unknown,,unknown
-Res Lot North,Residential Lot North,parking,,unknown,,unknown
-Lot N,Lot T N,parking,,unknown,,unknown
-Lot S,Lot S,parking,,unknown,,unknown
-Lot P,Lot P,parking,,unknown,,unknown
-Lot R,Lot R,parking,,unknown,,unknown
-Lot A1,Lot A1,parking,,unknown,,unknown
-Lot A2,Lot A2,parking,,unknown,,unknown
-Lot B1,Lot B1,parking,,unknown,,unknown
-Lot B2,Lot B2,parking,,unknown,,unknown
-Lot C1,Lot C1,parking,,unknown,,unknown
-Lot C2,Lot C2,parking,,unknown,,unknown
-Lot D,Lot D,parking,,unknown,,unknown
-Lot H,Lot H,parking,,unknown,,unknown
-Lot I,Lot I,parking,,unknown,,unknown
-Lot V,Lot V,parking,,unknown,,unknown
-Lot M North,Lot M North,parking,,unknown,32,osm_snapshot
-Lot M East,Lot M East,parking,,unknown,,unknown
-Lot F,Lot F,parking,,unknown,,unknown
-Lot J,Lot J,parking,,unknown,,unknown
-Lot U,Lot U,parking,,unknown,,unknown
-Lot M South,Lot M South,parking,,unknown,,unknown
-Lot M Southeast 1,Lot M Southeast 1,parking,,unknown,,unknown
-Lot M Southeast 2,Lot M Southeast 2,parking,,unknown,,unknown
+SPN Lot,SPN Lot,parking,,not_applicable,,unknown
+Lot W,Lot W,parking,,not_applicable,,unknown
+Lot T 1,Lot T 1,parking,,not_applicable,,unknown
+Lot T 2,Lot T 2,parking,,not_applicable,,unknown
+Lot T 3,Lot T 3,parking,,not_applicable,294,estimated_footprint
+Res Lot North West,Residential Lot North West,parking,,not_applicable,164,estimated_footprint
+Res Lot North,Residential Lot North,parking,,not_applicable,,unknown
+Lot N,Lot N,parking,,not_applicable,105,estimated_footprint
+Lot S,Lot S,parking,,not_applicable,120,estimated_footprint
+Lot P,Lot P,parking,,not_applicable,128,estimated_footprint
+Lot R,Lot R,parking,,not_applicable,42,estimated_footprint
+Lot A1,Lot A1,parking,,not_applicable,233,estimated_footprint
+Lot A2,Lot A2,parking,,not_applicable,999,estimated_footprint
+Lot B1,Lot B1,parking,,not_applicable,227,estimated_footprint
+Lot B2,Lot B2,parking,,not_applicable,558,estimated_footprint
+Lot C1,Lot C1,parking,,not_applicable,225,estimated_footprint
+Lot C2,Lot C2,parking,,not_applicable,198,estimated_footprint
+Lot D,Lot D,parking,,not_applicable,236,estimated_footprint
+Lot H,Lot H,parking,,not_applicable,685,estimated_footprint
+Lot I,Lot I,parking,,not_applicable,124,estimated_footprint
+Lot V,Lot V,parking,,not_applicable,335,estimated_footprint
+Lot M East,Lot M East,parking,,not_applicable,269,estimated_footprint
+Lot F,Lot F,parking,,not_applicable,46,estimated_footprint
+Lot J,Lot J,parking,,not_applicable,667,estimated_footprint
+Lot U,Lot U,parking,,not_applicable,859,estimated_footprint
+Lot M South,Lot M South,parking,,not_applicable,249,estimated_footprint
+Lot M Southeast 1,Lot M Southeast 1,parking,,not_applicable,,unknown
+Lot M Southeast 2,Lot M Southeast 2,parking,,not_applicable,,unknown
 SU,Student Union,non_academic,2,osm_snapshot,,unknown
 AC,Activity Center,non_academic,1,osm_snapshot,,unknown
 SSB,Student Services Building,non_academic,4,osm_snapshot,,unknown
 SSBA,Student Services Building Addition,non_academic,3,osm_snapshot,,unknown
-RHS,Sirius Hall,residential,4,osm_snapshot,,unknown
-RHN,Capella Hall,residential,4,osm_snapshot,,unknown
-RHNW,Vega Hall,residential,4,osm_snapshot,,unknown
-RHSW,Helix Hall,residential,4,osm_snapshot,,unknown
+LAN,Comets LANding Gaming and Esports Center,non_academic,2,documented,100,estimated_conservative
+RCW,Recreation Center West,non_academic,2,osm_snapshot,,unknown
+SUFC,Student Union Food Court,non_academic,1,osm_snapshot,,unknown
+ACB,Activity Center Bookstore / Visitor Center and University Bookstore,non_academic,1,osm_snapshot,,unknown
+PD,Police Building,non_academic,1,osm_snapshot,,unknown
+Housing,Housing,housing,,not_applicable,,unknown
+SPORTS,Outdoor Recreation and Athletic Fields,outdoor,,not_applicable,,unknown
+TC,Transit Center,transit,,not_applicable,,unknown
+DART,UT Dallas DART Station,transit,,not_applicable,,unknown
+PLINTH,The Plinth,outdoor,,not_applicable,,unknown
+Lot Y,Lot Y,parking,,not_applicable,,unknown
+SU_SSC,Student Union / Student Success Center,non_academic,,unknown,,unknown
+FM,Facilities Management,non_academic,1,osm_snapshot,,unknown
+SB,Service Building,non_academic,1,osm_snapshot,,unknown
+SG,Safety and Grounds,non_academic,1,osm_snapshot,,unknown
+EP,Energy Plant,non_academic,3,osm_snapshot,,unknown
+SUP,Satellite Utility Plant,non_academic,2,osm_snapshot,,unknown

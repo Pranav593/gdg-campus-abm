@@ -1,5 +1,5 @@
 # Agent-Based Modeling
-mesa
+mesa>=3,<4
 
 # Graphs / Campus Mapping
 networkx

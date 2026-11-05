@@ -1,0 +1,27 @@
+{
+  "reviewed_on": "2026-10-22",
+  "campus_map": "reference_maps/campus-map.pdf",
+  "parking_map": "reference_maps/parking-map.pdf",
+  "unresolved": [
+    {
+      "code": "Lot E",
+      "reason": "Campus PDF lists this legacy label; current parking map shows named H/I areas nearby. Distinct footprint not established."
+    },
+    {
+      "code": "Lot Q",
+      "reason": "Campus PDF index entry without a distinct labeled location on current parking PDF."
+    },
+    {
+      "code": "Lot M West",
+      "reason": "Campus PDF index entry without a distinct labeled location on current parking PDF."
+    },
+    {
+      "code": "GC",
+      "reason": "Closed site, floors not verified."
+    },
+    {
+      "code": "SU_SSC",
+      "reason": "Construction; floor count and opening not verified."
+    }
+  ]
+}

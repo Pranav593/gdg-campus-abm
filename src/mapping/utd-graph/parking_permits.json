@@ -2,12 +2,12 @@
   "source": {
     "url": "https://services.utdallas.edu/download/Parking_Map.pdf",
     "effective_date": "2026-07-30",
-    "reviewed_on": "2026-10-15",
+    "reviewed_on": "2026-10-22",
     "sha256": "17adc8be748d7063d12c6e0fb947647b5fa709d0a8ddb0e69a5e7b62b22ad9e0",
     "method": "Manual visual estimate from colored map regions, using coarse percentages; not a stall count or GIS area measurement.",
     "denominator": "All parking designations in the named area; exclude drive aisles and buildings. Other includes residential, metered, accessible, reserved, EV and non-four-color spaces.",
     "confidence": "low",
-    "notes": "Physical space designations, not which permit holders are eligible to park in lower-tier colors. Small mapped sections retain nonzero estimates. Other is a coarse allowance, not a measured specialty-space count."
+    "notes": "Physical space designations, not which permit holders are eligible to park in lower-tier colors. Small mapped sections retain nonzero estimates. Other is a coarse allowance, not a measured specialty-space count. Downloaded again 2026-10-22: identical SHA-256 to the reviewed July 30 map."
   },
   "lots": {
     "SPN Lot": {
@@ -515,6 +515,13 @@
       "source_page": 5,
       "designation_confidence": "medium",
       "notes": "All five floor diagrams reviewed: Gold levels 4/5, Orange levels 2/3, small Purple sections levels 1/2; metered/reserved/accessible/EV elsewhere."
+    },
+    "Lot Y": {
+      "verified_types": null,
+      "split_pct": null,
+      "source_page": 1,
+      "designation_confidence": "unknown",
+      "notes": "Gray Lot Y beside WAAC has no color designation in current official map. Do not infer permit colors from adjacent lots."
     }
   }
 }

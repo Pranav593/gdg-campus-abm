@@ -1,0 +1,64 @@
+{
+  "nodes": 3787,
+  "edges": 10248,
+  "destinations": 93,
+  "active_destinations": 90,
+  "categories": {
+    "academic": 38,
+    "parking": 33,
+    "non_academic": 17,
+    "housing": 1,
+    "outdoor": 2,
+    "transit": 2
+  },
+  "parking_capacity_status": {
+    "unknown": 8,
+    "estimated_footprint": 21,
+    "osm_snapshot": 1,
+    "published_historical": 3
+  },
+  "unknown_parking_capacity": [
+    "SPN Lot",
+    "Lot W",
+    "Lot T 1",
+    "Lot T 2",
+    "Res Lot North",
+    "Lot M Southeast 1",
+    "Lot M Southeast 2",
+    "Lot Y"
+  ],
+  "unknown_parking_permits": [
+    "Lot R",
+    "Lot Y"
+  ],
+  "unknown_building_floors": [
+    "GC",
+    "SU_SSC"
+  ],
+  "unknown_nonacademic_capacity": [
+    "SU",
+    "AC",
+    "SSB",
+    "SSBA",
+    "RCW",
+    "SUFC",
+    "ACB",
+    "PD",
+    "SU_SSC",
+    "FM",
+    "SB",
+    "SG",
+    "EP",
+    "SUP"
+  ],
+  "inventory_source": {
+    "url": "https://utdallas.app.box.com/s/44hz09qqmzw36jj4mfil8zmxghz7zl6n",
+    "map_updated_on": "2026-10-02",
+    "reviewed_on": "2026-10-22",
+    "parking_url": "https://services.utdallas.edu/download/Parking_Map.pdf",
+    "parking_effective_on": "2026-07-30",
+    "scope": "Richardson main campus; downtown Dallas sites are outside the supplied walking network."
+  },
+  "distance_unit": "meters",
+  "reference_walk_speed_m_s": 1.4
+}
