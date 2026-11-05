@@ -1,0 +1,189 @@
+import os
+import mesa
+import networkx as nx
+import pickle
+import json
+import random
+
+class UTDStudentRunnerAgent(mesa.Agent):
+    """
+    Represents a single UTD student agent whose navigation, movement speed, and daily 
+    decisions are driven by detailed behavioral traits and schedule data.
+    """
+    def __init__(self, unique_id, model, path, agent_data):
+        super().__init__(unique_id, model)
+        self.path = path
+        self.path_index = 0
+        
+        # Load commuter info and schedule
+        self.commuter_tag = agent_data.get("commuter_tag", {})
+        self.schedule = agent_data.get("schedule", [])
+        
+        # Load all traits from the configuration schema
+        traits = agent_data.get("traits", {})
+        self.attendance = traits.get("attendance", 0.90)
+        self.punctuality = traits.get("punctuality", 0.75)
+        self.studiousness = traits.get("studiousness", 0.80)
+        self.sociability = traits.get("sociability", 0.40)
+        self.walking_speed_mps = traits.get("walking_speed_mps", 1.35)  # meters per second
+        self.leave_campus_tendency = traits.get("leave_campus_tendency", 0.35)
+        self.route_consistency = traits.get("route_consistency", 0.80)
+        self.meal_regularness = traits.get("meal_regularness", 0.70)
+        self.class_skip_tendency = traits.get("class_skip_tendency", 0.10)
+        self.campus_stay_tendency = traits.get("campus_stay_tendency", 0.55)
+        self.event_interest = traits.get("event_interest", 0.40)
+        self.study_spike_response = traits.get("study_spike_response", 0.80)
+        self.commute_friction = traits.get("commute_friction", 0.60)
+        self.dorm_return_tendency = traits.get("dorm_return_tendency", 0.05)
+        self.parking_loyalty = traits.get("parking_loyalty", 0.75)
+        
+        # Load initial state
+        state = agent_data.get("state", {})
+        self.current_activity = state.get("current_activity", "off_campus")
+        self.hunger = state.get("hunger", 0.20)
+        self.energy = state.get("energy", 0.85)
+        self.mood = state.get("mood", 0.70)
+        self.time_pressure = state.get("time_pressure", 0.10)
+        
+        # Derived Daily Behavior: Attendance & Class Skip Tendency
+        net_attendance_prob = max(0.0, self.attendance - self.class_skip_tendency)
+        self.is_attending_today = random.random() <= net_attendance_prob
+        self.has_arrived = False
+        
+        self.step_time_delta = 60.0  # Each step represents 60 seconds
+        
+        if self.path:
+            self.current_node = self.path[0]
+            node_data = self.model.G.nodes[self.current_node]
+            self.pos = (node_data.get('x', 0.0), node_data.get('y', 0.0))
+
+    def step(self):
+        """
+        Executes agent movement based on walking speed (distance / time), 
+        route consistency, punctuality, and attendance traits.
+        """
+        if not self.is_attending_today:
+            print(f"Agent {self.unique_id}: Skipping class today based on attendance/skip traits.")
+            return
+
+        if self.has_arrived:
+            print(f"Agent {self.unique_id}: Already arrived at destination. Current activity: {self.current_activity}")
+            return
+
+        # Distance covered in this 60-second step based on walking_speed_mps
+        max_distance_per_step = self.walking_speed_mps * self.step_time_delta
+        distance_covered_so_far = 0.0
+
+        while distance_covered_so_far < max_distance_per_step:
+            if self.path_index < len(self.path) - 1:
+                next_node = self.path[self.path_index + 1]
+                
+                # Fetch edge length from NetworkX graph
+                edge_data = self.model.G.get_edge_data(self.current_node, next_node)
+                if edge_data:
+                    if isinstance(edge_data, dict):
+                        edge_len = list(edge_data.values())[0].get('length', 10.0)
+                    else:
+                        edge_len = 10.0
+                else:
+                    edge_len = 10.0
+
+                # Route Consistency check
+                if random.random() > self.route_consistency:
+                    neighbors = list(self.model.G.neighbors(self.current_node))
+                    if neighbors:
+                        detour_node = random.choice(neighbors)
+                        print(f"Agent {self.unique_id}: Route consistency check failed ({self.route_consistency}); taking detour to node {detour_node}")
+                        self.current_node = detour_node
+                        distance_covered_so_far += edge_len
+                        continue
+
+                # Normal path progression
+                self.path_index += 1
+                self.current_node = next_node
+                distance_covered_so_far += edge_len
+
+                # Update spatial coordinates
+                node_data = self.model.G.nodes[self.current_node]
+                self.pos = (node_data.get('x', 0.0), node_data.get('y', 0.0))
+                print(f"Agent {self.unique_id} advanced to node: {self.current_node} | Pos: {self.pos} | Speed: {self.walking_speed_mps} m/s")
+            else:
+                self.has_arrived = True
+                self.current_activity = "in_class"
+                print(f"Agent {self.unique_id} has arrived at their class destination building!")
+                break
+
+
+class UTDCampingSimulationModel(mesa.Model):
+    """
+    Mesa Model environment incorporating UTD graph data, courses, and trait-driven agents.
+    """
+    def __init__(self, graph_path, courses_path, num_agents=1):
+        super().__init__()
+        
+        # 1. Load UTD Campus Graph
+        print(f"Loading graph from: {graph_path}")
+        with open(graph_path, "rb") as f:
+            self.G = pickle.load(f)
+            
+        # 2. Load Course Dataset
+        print(f"Loading courses from: {courses_path}")
+        with open(courses_path, "r") as f:
+            self.courses = json.load(f)
+            
+        # 3. Agent configuration matching your schema exactly
+        self.agent_template = {
+            "agent_id": 1,
+            "commuter_tag": {
+                "type": "commuter",
+                "parking_permit": "gold"
+            },
+            "schedule": [
+                {
+                    "section_id": "cs2336.001.26s",
+                    "day": "Monday",
+                    "start_time": "10:00",
+                    "end_time": "11:15",
+                    "building": "ECSW",
+                    "floor": 2,
+                    "room": "225"
+                },
+                {
+                    "section_id": "math2418.001.26s",
+                    "day": "Monday",
+                    "start_time": "13:00",
+                    "end_time": "14:15",
+                    "building": "SCI",
+                    "floor": 2,
+                    "room": "225"
+                }
+            ],
+            "traits": {
+                "attendance": 0.90,
+                "punctuality": 0.75,
+                "studiousness": 0.80,
+                "sociability": 0.40,
+                "walking_speed_mps": 1.35,
+                "leave_campus_tendency": 0.35,
+                "route_consistency": 0.80,
+                "meal_regularness": 0.70,
+                "class_skip_tendency": 0.10,
+                "campus_stay_tendency": 0.55,
+                "event_interest": 0.40,
+                "study_spike_response": 0.80,
+                "commute_friction": 0.60,
+                "dorm_return_tendency": 0.05,
+                "parking_loyalty": 0.75
+            },
+            "state": {
+                "current_location": None,
+                "destination": None,
+                "current_activity": "off_campus",
+                "hunger": 0.20,
+                "energy": 0.85,
+                "mood": 0.70,
+                "time_pressure": 0.10
+            }
+        }
+            
+        self.schedule_scheduler = mesa.time.RandomActivation
