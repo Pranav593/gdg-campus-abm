@@ -1,0 +1,37 @@
+{
+  "_notes": "Days are 0-based school days (Mon-Fri only). day % 5 = weekday (0 = Monday). Capacities are FULL scale; the sim divides by the scale ratio.",
+  "events": [
+    {
+      "type": "exam_period",
+      "name": "Midterms",
+      "start_day": 32,
+      "end_day": 36,
+      "study_multiplier": 1.5
+    },
+    {
+      "type": "exam_period",
+      "name": "Finals",
+      "start_day": 70,
+      "end_day": 74,
+      "study_multiplier": 1.8
+    },
+    {
+      "type": "campus_event",
+      "name": "Career Fair",
+      "day": 17,
+      "start_time": "10:00",
+      "end_time": "16:00",
+      "building": "ECSW",
+      "attendance_capacity": 1500
+    },
+    {
+      "type": "campus_event",
+      "name": "HackUTD",
+      "day": 24,
+      "start_time": "16:00",
+      "end_time": "21:00",
+      "building": "ECSW",
+      "attendance_capacity": 800
+    }
+  ]
+}
