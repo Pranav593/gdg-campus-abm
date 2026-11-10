@@ -518,6 +518,34 @@
       "status": "construction",
       "source_url": "https://map.concept3d.com/?id=1772#!m/730125",
       "note": "Phase II scheduled to open spring 2027. Use cached OSM footprint for its distinct location."
+    },
+    {
+      "code": "OFF_CAMPUS",
+      "full_name": "Off-campus area (synthetic placeholder)",
+      "aliases": [
+        "Off-campus area"
+      ],
+      "lat": 0,
+      "lon": 0,
+      "category": "off_campus",
+      "status": "placeholder",
+      "map_marker": null,
+      "source_url": null,
+      "note": "Logical destination marker only; no verified coordinates or walking route."
+    },
+    {
+      "code": "DORM",
+      "full_name": "On-campus dorms (synthetic placeholder)",
+      "aliases": [
+        "On-campus dorms"
+      ],
+      "lat": 0,
+      "lon": 0,
+      "category": "dorm",
+      "status": "placeholder",
+      "map_marker": null,
+      "source_url": null,
+      "note": "Logical destination marker only; no verified coordinates or walking route."
     }
   ],
   "unresolved": [
@@ -554,6 +582,7 @@
   ],
   "notes": [
     "Scope: Richardson main-campus academic, research, and academic administration buildings. Only academic destination nodes are retained; dorms, parking, and Student Union are excluded.",
+    "OFF_CAMPUS and DORM are logical destination markers with placeholder coordinates (0, 0); graph builders keep them non-routable and omit them from map bounds.",
     "DAV is a local graph label for the Charles and Nancy Davidson Building; the official map does not publish an abbreviation.",
     "Closed and under-construction buildings are mapped as isolated nodes, excluded from walk destinations.",
     "Walkway network is the supplied snapshot; connector distances are straight lines to nearest walkway nodes, not verified entrances."

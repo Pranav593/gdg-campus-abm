@@ -1,0 +1,684 @@
+{
+  "archetypes": [
+    {
+      "archetype_name": "Focused Commuter",
+      "archetype_description": "Reliable commuter who prioritizes coursework and leaves after classes.",
+      "population_weight": 0.1,
+      "agent_id": 1,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.94,
+        "punctuality": 0.82,
+        "studiousness": 0.91,
+        "sociability": 0.25,
+        "walking_speed_mps": 1.32,
+        "leave_campus_tendency": 0.72,
+        "route_consistency": 0.88,
+        "meal_regularness": 0.78,
+        "class_skip_tendency": 0.06,
+        "campus_stay_tendency": 0.3,
+        "event_interest": 0.22,
+        "study_spike_response": 0.9,
+        "commute_friction": 0.58,
+        "parking_loyalty": 0.76
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Social Dormer",
+      "archetype_description": "Outgoing resident who makes time for friends and campus events.",
+      "population_weight": 0.09,
+      "agent_id": 2,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.82,
+        "punctuality": 0.55,
+        "studiousness": 0.48,
+        "sociability": 0.94,
+        "walking_speed_mps": 1.4,
+        "leave_campus_tendency": 0.18,
+        "route_consistency": 0.42,
+        "meal_regularness": 0.63,
+        "class_skip_tendency": 0.15,
+        "campus_stay_tendency": 0.91,
+        "event_interest": 0.92,
+        "study_spike_response": 0.55,
+        "commute_friction": 0.18,
+        "parking_loyalty": 0.4
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Early Bird Commuter",
+      "archetype_description": "Plans ahead, arrives early and keeps a steady routine.",
+      "population_weight": 0.08,
+      "agent_id": 3,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.91,
+        "punctuality": 0.96,
+        "studiousness": 0.68,
+        "sociability": 0.46,
+        "walking_speed_mps": 1.48,
+        "leave_campus_tendency": 0.74,
+        "route_consistency": 0.91,
+        "meal_regularness": 0.9,
+        "class_skip_tendency": 0.07,
+        "campus_stay_tendency": 0.38,
+        "event_interest": 0.34,
+        "study_spike_response": 0.68,
+        "commute_friction": 0.63,
+        "parking_loyalty": 0.83
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Working Commuter",
+      "archetype_description": "Balances a job and classes, preferring compact campus days.",
+      "population_weight": 0.08,
+      "agent_id": 4,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.78,
+        "punctuality": 0.68,
+        "studiousness": 0.71,
+        "sociability": 0.38,
+        "walking_speed_mps": 1.36,
+        "leave_campus_tendency": 0.91,
+        "route_consistency": 0.86,
+        "meal_regularness": 0.52,
+        "class_skip_tendency": 0.2,
+        "campus_stay_tendency": 0.22,
+        "event_interest": 0.2,
+        "study_spike_response": 0.74,
+        "commute_friction": 0.84,
+        "parking_loyalty": 0.9
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Quiet Scholar",
+      "archetype_description": "Introverted student who studies independently between classes.",
+      "population_weight": 0.06,
+      "agent_id": 5,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.9,
+        "punctuality": 0.77,
+        "studiousness": 0.96,
+        "sociability": 0.14,
+        "walking_speed_mps": 1.18,
+        "leave_campus_tendency": 0.3,
+        "route_consistency": 0.95,
+        "meal_regularness": 0.72,
+        "class_skip_tendency": 0.08,
+        "campus_stay_tendency": 0.72,
+        "event_interest": 0.12,
+        "study_spike_response": 0.98,
+        "commute_friction": 0.16,
+        "parking_loyalty": 0.66
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Campus Connector",
+      "archetype_description": "Builds a broad social circle and joins activities across campus.",
+      "population_weight": 0.06,
+      "agent_id": 6,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.8,
+        "punctuality": 0.58,
+        "studiousness": 0.55,
+        "sociability": 0.88,
+        "walking_speed_mps": 1.55,
+        "leave_campus_tendency": 0.35,
+        "route_consistency": 0.38,
+        "meal_regularness": 0.58,
+        "class_skip_tendency": 0.17,
+        "campus_stay_tendency": 0.82,
+        "event_interest": 0.84,
+        "study_spike_response": 0.52,
+        "commute_friction": 0.4,
+        "parking_loyalty": 0.48
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Steady Dormer",
+      "archetype_description": "Consistent resident with balanced study and social time.",
+      "population_weight": 0.06,
+      "agent_id": 7,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.88,
+        "punctuality": 0.73,
+        "studiousness": 0.72,
+        "sociability": 0.62,
+        "walking_speed_mps": 1.31,
+        "leave_campus_tendency": 0.21,
+        "route_consistency": 0.72,
+        "meal_regularness": 0.76,
+        "class_skip_tendency": 0.1,
+        "campus_stay_tendency": 0.86,
+        "event_interest": 0.58,
+        "study_spike_response": 0.77,
+        "commute_friction": 0.12,
+        "parking_loyalty": 0.52
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Creative Explorer",
+      "archetype_description": "Curious student who explores activities and varied places.",
+      "population_weight": 0.05,
+      "agent_id": 8,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.77,
+        "punctuality": 0.52,
+        "studiousness": 0.58,
+        "sociability": 0.76,
+        "walking_speed_mps": 1.42,
+        "leave_campus_tendency": 0.42,
+        "route_consistency": 0.25,
+        "meal_regularness": 0.44,
+        "class_skip_tendency": 0.22,
+        "campus_stay_tendency": 0.68,
+        "event_interest": 0.89,
+        "study_spike_response": 0.59,
+        "commute_friction": 0.52,
+        "parking_loyalty": 0.3
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "STEM Planner",
+      "archetype_description": "Organized student who plans study around a demanding schedule.",
+      "population_weight": 0.05,
+      "agent_id": 9,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.93,
+        "punctuality": 0.87,
+        "studiousness": 0.89,
+        "sociability": 0.42,
+        "walking_speed_mps": 1.39,
+        "leave_campus_tendency": 0.6,
+        "route_consistency": 0.89,
+        "meal_regularness": 0.81,
+        "class_skip_tendency": 0.05,
+        "campus_stay_tendency": 0.48,
+        "event_interest": 0.38,
+        "study_spike_response": 0.92,
+        "commute_friction": 0.55,
+        "parking_loyalty": 0.8
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Flexible Commuter",
+      "archetype_description": "Adapts plans easily and spends moderate time on campus.",
+      "population_weight": 0.05,
+      "agent_id": 10,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.83,
+        "punctuality": 0.62,
+        "studiousness": 0.59,
+        "sociability": 0.57,
+        "walking_speed_mps": 1.34,
+        "leave_campus_tendency": 0.66,
+        "route_consistency": 0.57,
+        "meal_regularness": 0.55,
+        "class_skip_tendency": 0.15,
+        "campus_stay_tendency": 0.45,
+        "event_interest": 0.5,
+        "study_spike_response": 0.65,
+        "commute_friction": 0.65,
+        "parking_loyalty": 0.61
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Club Leader",
+      "archetype_description": "Socially engaged organizer with strong campus-event interest.",
+      "population_weight": 0.04,
+      "agent_id": 11,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.79,
+        "punctuality": 0.69,
+        "studiousness": 0.62,
+        "sociability": 0.97,
+        "walking_speed_mps": 1.45,
+        "leave_campus_tendency": 0.12,
+        "route_consistency": 0.54,
+        "meal_regularness": 0.68,
+        "class_skip_tendency": 0.18,
+        "campus_stay_tendency": 0.94,
+        "event_interest": 0.98,
+        "study_spike_response": 0.66,
+        "commute_friction": 0.12,
+        "parking_loyalty": 0.58
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Focused Dormer",
+      "archetype_description": "Resident who uses campus time for concentrated work.",
+      "population_weight": 0.04,
+      "agent_id": 12,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.92,
+        "punctuality": 0.8,
+        "studiousness": 0.92,
+        "sociability": 0.32,
+        "walking_speed_mps": 1.24,
+        "leave_campus_tendency": 0.19,
+        "route_consistency": 0.91,
+        "meal_regularness": 0.83,
+        "class_skip_tendency": 0.06,
+        "campus_stay_tendency": 0.89,
+        "event_interest": 0.26,
+        "study_spike_response": 0.95,
+        "commute_friction": 0.1,
+        "parking_loyalty": 0.55
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Late Riser",
+      "archetype_description": "Prefers later starts and is less strict about punctuality.",
+      "population_weight": 0.04,
+      "agent_id": 13,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.74,
+        "punctuality": 0.36,
+        "studiousness": 0.55,
+        "sociability": 0.6,
+        "walking_speed_mps": 1.4,
+        "leave_campus_tendency": 0.56,
+        "route_consistency": 0.52,
+        "meal_regularness": 0.38,
+        "class_skip_tendency": 0.27,
+        "campus_stay_tendency": 0.5,
+        "event_interest": 0.56,
+        "study_spike_response": 0.64,
+        "commute_friction": 0.74,
+        "parking_loyalty": 0.6
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Wellness Balancer",
+      "archetype_description": "Maintains regular meals, rest, classes and moderate social contact.",
+      "population_weight": 0.04,
+      "agent_id": 14,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.87,
+        "punctuality": 0.72,
+        "studiousness": 0.66,
+        "sociability": 0.58,
+        "walking_speed_mps": 1.33,
+        "leave_campus_tendency": 0.27,
+        "route_consistency": 0.7,
+        "meal_regularness": 0.96,
+        "class_skip_tendency": 0.11,
+        "campus_stay_tendency": 0.76,
+        "event_interest": 0.43,
+        "study_spike_response": 0.69,
+        "commute_friction": 0.14,
+        "parking_loyalty": 0.49
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Event Seeker",
+      "archetype_description": "Looks for fairs, performances and campus gatherings.",
+      "population_weight": 0.03,
+      "agent_id": 15,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.76,
+        "punctuality": 0.57,
+        "studiousness": 0.5,
+        "sociability": 0.85,
+        "walking_speed_mps": 1.47,
+        "leave_campus_tendency": 0.32,
+        "route_consistency": 0.34,
+        "meal_regularness": 0.48,
+        "class_skip_tendency": 0.21,
+        "campus_stay_tendency": 0.71,
+        "event_interest": 0.99,
+        "study_spike_response": 0.57,
+        "commute_friction": 0.47,
+        "parking_loyalty": 0.39
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Research Assistant",
+      "archetype_description": "Attends reliably and spends long stretches studying or working.",
+      "population_weight": 0.03,
+      "agent_id": 16,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.95,
+        "punctuality": 0.85,
+        "studiousness": 0.95,
+        "sociability": 0.35,
+        "walking_speed_mps": 1.27,
+        "leave_campus_tendency": 0.14,
+        "route_consistency": 0.92,
+        "meal_regularness": 0.75,
+        "class_skip_tendency": 0.04,
+        "campus_stay_tendency": 0.94,
+        "event_interest": 0.31,
+        "study_spike_response": 0.99,
+        "commute_friction": 0.12,
+        "parking_loyalty": 0.57
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Budget Conscious",
+      "archetype_description": "Keeps a practical routine and avoids unnecessary campus trips.",
+      "population_weight": 0.03,
+      "agent_id": 17,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.84,
+        "punctuality": 0.75,
+        "studiousness": 0.7,
+        "sociability": 0.43,
+        "walking_speed_mps": 1.35,
+        "leave_campus_tendency": 0.82,
+        "route_consistency": 0.88,
+        "meal_regularness": 0.64,
+        "class_skip_tendency": 0.13,
+        "campus_stay_tendency": 0.25,
+        "event_interest": 0.29,
+        "study_spike_response": 0.76,
+        "commute_friction": 0.72,
+        "parking_loyalty": 0.93
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Peer Tutor",
+      "archetype_description": "Enjoys helping classmates and combines study with social activity.",
+      "population_weight": 0.02,
+      "agent_id": 18,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.89,
+        "punctuality": 0.78,
+        "studiousness": 0.8,
+        "sociability": 0.78,
+        "walking_speed_mps": 1.38,
+        "leave_campus_tendency": 0.2,
+        "route_consistency": 0.75,
+        "meal_regularness": 0.69,
+        "class_skip_tendency": 0.09,
+        "campus_stay_tendency": 0.87,
+        "event_interest": 0.63,
+        "study_spike_response": 0.84,
+        "commute_friction": 0.11,
+        "parking_loyalty": 0.51
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Independent Commuter",
+      "archetype_description": "Prefers self-directed work and a predictable route.",
+      "population_weight": 0.02,
+      "agent_id": 19,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.86,
+        "punctuality": 0.81,
+        "studiousness": 0.82,
+        "sociability": 0.2,
+        "walking_speed_mps": 1.3,
+        "leave_campus_tendency": 0.77,
+        "route_consistency": 0.97,
+        "meal_regularness": 0.71,
+        "class_skip_tendency": 0.11,
+        "campus_stay_tendency": 0.33,
+        "event_interest": 0.18,
+        "study_spike_response": 0.85,
+        "commute_friction": 0.59,
+        "parking_loyalty": 0.88
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Balanced Commuter",
+      "archetype_description": "Mixes attendance, friendships and focused time with a moderate commute.",
+      "population_weight": 0.03,
+      "agent_id": 20,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [],
+      "traits": {
+        "attendance": 0.85,
+        "punctuality": 0.7,
+        "studiousness": 0.68,
+        "sociability": 0.68,
+        "walking_speed_mps": 1.41,
+        "leave_campus_tendency": 0.61,
+        "route_consistency": 0.65,
+        "meal_regularness": 0.67,
+        "class_skip_tendency": 0.14,
+        "campus_stay_tendency": 0.52,
+        "event_interest": 0.55,
+        "study_spike_response": 0.71,
+        "commute_friction": 0.6,
+        "parking_loyalty": 0.63
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    }
+  ]
+}

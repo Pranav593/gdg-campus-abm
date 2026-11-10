@@ -1,5 +1,6 @@
 """Check the real campus graph's destination coverage and walk connections."""
 import math
+import json
 import pickle
 import sys
 import unittest
@@ -8,6 +9,7 @@ from pathlib import Path
 import networkx as nx
 
 GRAPH_PATH = Path(sys.argv.pop(1)) if len(sys.argv) > 1 else Path(__file__).with_name('utd_graph.pkl')
+CATALOG_PATH = Path(__file__).with_name('academic_buildings.json')
 EXPECTED = set('AD ATC BE BSB CB CR CRA ECSN ECSS ECSW FA FN FO GR HH JO JSOM MC ML1 ML2 NB NL PHA PHY SCI SLC TH WSTC RL ROC ROW SPN SP2 WAAC APC DAV'.split())
 
 
@@ -43,11 +45,34 @@ class AcademicGraphTest(unittest.TestCase):
             route = nx.shortest_path(self.graph, start, end, weight='length')
             self.assertGreater(nx.path_weight(self.graph, route, 'length'), 0)
 
-    def test_no_nonacademic_destinations(self):
+    def test_special_destinations_are_zero_coordinate_placeholders(self):
+        catalog = json.loads(CATALOG_PATH.read_text(encoding='utf-8'))
+        special = {
+            entry['code']: entry
+            for entry in catalog['buildings']
+            if entry['category'] in {'off_campus', 'dorm'}
+        }
+        self.assertEqual(set(special), {'OFF_CAMPUS', 'DORM'})
+        for code, entry in special.items():
+            with self.subTest(destination=code):
+                self.assertEqual((entry['lat'], entry['lon']), (0, 0))
+                if code in self.graph:
+                    self.assertFalse(self.graph.nodes[code]['routable'])
+                    self.assertEqual(self.graph.degree(code), 0)
+
+    def test_only_academic_destinations_are_routable(self):
+        special_codes = {'OFF_CAMPUS', 'DORM'}
         destinations = {n for n, d in self.graph.nodes(data=True) if d.get('type') != 'path'}
-        self.assertEqual(destinations, EXPECTED | {'GC', 'APC2'})
+        self.assertEqual(
+            destinations,
+            EXPECTED | {'GC', 'APC2'} | (special_codes & set(self.graph)),
+        )
         for n in destinations:
-            self.assertEqual(self.graph.nodes[n].get('category'), 'academic')
+            if n in special_codes:
+                self.assertIn(self.graph.nodes[n].get('category'), {'off_campus', 'dorm'})
+                self.assertFalse(self.graph.nodes[n].get('routable'))
+            else:
+                self.assertEqual(self.graph.nodes[n].get('category'), 'academic')
 
     def test_displayed_routes_join_all_academic_destinations(self):
         routes = self.graph.graph['academic_display_routes']

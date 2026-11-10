@@ -137,7 +137,10 @@ def extend_graph(graph, catalog, features):
 def map_data(graph, features):
     places = []
     for code, data in graph.nodes(data=True):
-        if data.get('type') in ['building', 'parking']:
+        if (
+            data.get('type') in ['building', 'parking']
+            and data.get('category') not in {'off_campus', 'dorm'}
+        ):
             row = {k: v for k, v in data.items() if k not in ['geometry']}
             row.update(code=code, full_name=data.get('official_name', data.get('full_name', str(code))))
             places.append(row)

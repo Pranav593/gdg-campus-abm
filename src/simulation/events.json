@@ -1,0 +1,9 @@
+{
+  "events": [
+    {"type":"exam_period","name":"Midterms","start_day":35,"end_day":40,"study_multiplier":1.55},
+    {"type":"exam_period","name":"Finals","start_day":105,"end_day":112,"study_multiplier":1.85},
+    {"type":"campus_event","name":"Fall Career Fair","day":24,"start_time":"11:00","end_time":"16:00","building":"JSOM","attendance_capacity":800},
+    {"type":"campus_event","name":"HackUTD","day":68,"start_time":"09:00","end_time":"21:00","building":"ECSW","attendance_capacity":1200},
+    {"type":"campus_event","name":"Spring Activities Fair","day":8,"start_time":"12:00","end_time":"15:00","building":"SU","attendance_capacity":500}
+  ]
+}
