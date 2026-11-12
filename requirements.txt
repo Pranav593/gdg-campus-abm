@@ -19,6 +19,11 @@ lxml
 # Machine Learning
 scikit-learn
 xgboost
+lightgbm
+
+# Prediction API
+fastapi
+uvicorn
 
 # Visualization
 matplotlib
