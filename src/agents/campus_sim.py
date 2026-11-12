@@ -146,7 +146,7 @@ class StudentAgent(mesa.Agent):
             end = arrival + max(10 * 60, d.gauss(45 * 60, 20 * 60))
             end = min(end, ev["end_s"] + 15 * 60)
             if self._event_fits(ev["building"], arrival, end):
-                self.agenda.append({"kind": "event", "name": ev["name"], "id": ev["id"],
+                self.agenda.append({"kind": "event", "name": ev.get("name", "campus_event"), "id": ev["id"],
                                     "building": ev["building"], "floor": 1, "start": ev["start_s"],
                                     "end": ev["end_s"], "arrive_target": arrival, "exit_target": end})
         self.agenda.sort(key=lambda x: x["arrive_target"])
@@ -775,7 +775,7 @@ def main():
     if model.event_attended:
         for key, n_att in sorted(model.event_attended.items()):
             ev = model.event_by_id[key[1]]
-            print(f"event '{ev['name']}' day {key[0]}: cumulative {n_att}, peak "
+            print(f"event '{ev.get('name', 'campus_event')}' day {key[0]}: cumulative {n_att}, peak "
                   f"{model.event_peak[key]}/cap {ev['cap']}, turned away {model.event_turned_away[key]}")
     peak = defaultdict(int)
     for row in model.snapshots:

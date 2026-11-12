@@ -82,6 +82,21 @@ class CapacityValidationTests(unittest.TestCase):
         model.seats["HH"] = {1: 0}
         self.assertTrue(any(model.free_total[n] > 0 for n in model.seat_nodes if n != "HH"))
 
+    def test_consolidated_map_routes_su_and_verified_lots(self):
+        self.assertIn("SU", self.graph)
+        self.assertIn("Lot A1", self.graph)
+        self.assertIsNotNone(self.model().dist("SU", "ECSW"))
+        self.assertIsNotNone(self.model().dist("Lot M North", "JSOM"))
+
+    def test_exact_unnamed_event_schema_loads(self):
+        with open(ROOT / "tests" / "events_exact.json") as f:
+            events = json.load(f)["events"]
+        model = CampusModel(self.graph, events, scale_ratio=2, seed=7)
+        self.assertEqual(len(model.exam_periods), 1)
+        self.assertEqual(len(model.campus_events), 1)
+        self.assertEqual(model.campus_events[0]["building"], "SU")
+        self.assertEqual(model.campus_events[0]["cap"], 200)
+
 
 if __name__ == "__main__":
     unittest.main()

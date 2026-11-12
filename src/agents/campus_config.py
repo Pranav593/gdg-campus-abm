@@ -6,7 +6,9 @@ try:
 except IndexError:
     REPO_ROOT = Path(__file__).resolve().parent
 
-GRAPH_PATH = REPO_ROOT / "utd-graph" / "utd_graph.pkl"
+# Consolidated verified graph: academic additions + named parking from src/mapping,
+# plus the Student Union connector retained from the earlier verified graph.
+GRAPH_PATH = REPO_ROOT / "src" / "mapping" / "utd-graph" / "utd_graph_simulation.pkl"
 _known = REPO_ROOT / "data" / "coursebook" / "processed" / "spring_2026_courses.json"
 COURSES_PATH = _known
 HERE = Path(__file__).resolve().parent
@@ -77,21 +79,17 @@ PERMIT_ACCESS = {
     "orange": ["orange"],
 }
 
-# >>> CHECK: parking lots. Your graph has NO lot nodes, so each lot is a POSITION that gets snapped to the
-# nearest walkable path node. Give a real location with "lat"/"lon" (right-click in Google Maps -> copy coordinates),
-# or an existing node name as the key, or "frac": (fx, fy) = position inside the campus bounding box
-# (0,0 = SW corner of the buildings, 1,1 = NE corner; values outside 0..1 are beyond the edge).
-# The lots below are PLACEHOLDERS spread around the campus edge - replace with real lots.
-# delay_min = typical time spent circling/finding a spot
+# Existing, verified graph destinations. Permit zones and delay values remain
+# behavioral assumptions; the location/connector data comes from the map.
 PARKING_LOTS = {
-    "LOT_N":  {"zone": "gold",   "delay_min": 6, "frac": (0.50, 1.10)},
-    "LOT_NE": {"zone": "green",  "delay_min": 4, "frac": (1.10, 1.10)},
-    "LOT_E":  {"zone": "green",  "delay_min": 4, "frac": (1.10, 0.50)},
-    "LOT_SE": {"zone": "orange", "delay_min": 2, "frac": (1.10, -0.10)},
-    "LOT_S":  {"zone": "gold",   "delay_min": 6, "frac": (0.50, -0.10)},
-    "LOT_SW": {"zone": "green",  "delay_min": 4, "frac": (-0.10, -0.10)},
-    "LOT_W":  {"zone": "orange", "delay_min": 2, "frac": (-0.10, 0.50)},
-    "LOT_NW": {"zone": "purple", "delay_min": 2, "frac": (-0.10, 1.10)},
+    "Lot A1":       {"zone": "gold",   "delay_min": 6},
+    "Lot B1":       {"zone": "green",  "delay_min": 4},
+    "Lot C1":       {"zone": "green",  "delay_min": 4},
+    "Lot D":        {"zone": "orange", "delay_min": 2},
+    "Lot M North":  {"zone": "gold",   "delay_min": 6},
+    "Lot M South":  {"zone": "green",  "delay_min": 4},
+    "Lot R":        {"zone": "orange", "delay_min": 2},
+    "Lot V":        {"zone": "purple", "delay_min": 2},
 }
 
 # ---------------------------------------------------------------- seating (physical discretionary seats; classrooms excluded)

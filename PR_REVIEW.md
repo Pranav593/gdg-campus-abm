@@ -36,7 +36,7 @@ PR #7 has 20 archetypes with weights summing to 1.0. They are **manually authore
 
 ## Events
 
-The requested JSON structure parses. The supplied graph has no `SU` node, so the exact input warns and safely skips the event rather than teleporting or fabricating a map connection. The same schema with graph node `ECSW` was run at day 37 with 800 agents: 3.1 s simulation time, 225 cumulative attendees, **peak concurrent 172/200**, zero teleports. A 10-seat ECSW event admitted 10, peaked at 10/10 and turned away 4, confirming enforcement. The exam period applies the configured study multiplier.
+The requested JSON structure parses. The integration now uses a consolidated verified graph with the SU node/connector retained from the existing parking graph, so the exact day-37 SU event routes physically and enforces its 200-person peak. The detailed evidence is in `SIMULATION_AUDIT.md`. The exam period applies the configured study multiplier.
 
 ## Seating/map changes and limitations
 
@@ -44,7 +44,7 @@ The requested JSON structure parses. The supplied graph has no `SU` node, so the
 
 Physical seats are no longer scaled. At `--scale 2`, one agent claims two physical seats; capacity stays unchanged at every scale. JSOM1/JSOM2 remain separate floor inventories and aggregate only at the sole existing `JSOM` map node. `PHYA` resolves to `PHA`; FO/FA/FN/JO/GR/HH/ML1/ML2/AD/APC/ATC/ECS resolve directly. JO floor 1, JSOM1 floors 3/4 and APC floor 2 stay zero. NB, NL, POLICE and APC2 are excluded.
 
-100-seat defaults are applied to accessible academic buildings missing from the supplied table: **BE, BSB, CB, CR, MC, PHY, SCI, SLC, TH, WSTC, CRA, RL, ROC, ROW, SPN, SP2, WAAC, DAV**. AB and ACB remain in the source inventory but have no graph nodes; they are reported instead of receiving invented coordinates/links. SU, residential nodes and named parking lots are also absent. Parking positions are snapped to existing walking paths; SU events are skipped until verified map data is added.
+100-seat defaults are applied to accessible academic buildings missing from the supplied table: **BE, BSB, CB, CR, MC, PHY, SCI, SLC, TH, WSTC, CRA, RL, ROC, ROW, SPN, SP2, WAAC, DAV**. AB and ACB remain in the source inventory but have no graph nodes; they are reported instead of receiving invented coordinates/links. The consolidated map has SU and named parking lots, but no verified residence-hall destinations.
 
 ## Validation and commands
 
