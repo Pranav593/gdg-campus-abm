@@ -26,6 +26,8 @@ DAY_END = 23 * 3600
 DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 TOTAL_SEMESTER_DAYS = 75         # 15 weeks x 5 school days. events.json days are 0-based school days.
 SNAPSHOT_S = 5 * 60              # occupancy snapshot interval
+OUTPUT_SCHEMA_VERSION = "2.0"
+CONFIG_VERSION = "enrollment-aware-2026-11"
 
 # ---------------------------------------------------------------- movement
 DEFAULT_EDGE_LENGTH_M = 50.0
@@ -51,6 +53,12 @@ MEALS = {
 BASE_MEAL_STD_H = 1.0            # std = BASE * (1 - 0.7 * meal_regularness)
 HUNGER_PER_H = 0.09
 ENERGY_DROP_PER_H = 0.05
+WALK_ENERGY_DROP_PER_H = 0.03
+STUDY_ENERGY_DROP_PER_H = 0.02
+IDLE_ENERGY_RECOVERY_PER_H = 0.02
+MEAL_ENERGY_RECOVERY_PER_H = 0.04
+OFF_CAMPUS_ENERGY_RECOVERY_PER_H = 0.08
+HUNGRY_MEAL_THRESHOLD = 0.72
 
 # ---------------------------------------------------------------- free time
 MIN_ACTIVITY_S = 10 * 60
