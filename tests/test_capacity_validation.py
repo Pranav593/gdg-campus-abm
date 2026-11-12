@@ -97,6 +97,17 @@ class CapacityValidationTests(unittest.TestCase):
         self.assertEqual(model.campus_events[0]["building"], "SU")
         self.assertEqual(model.campus_events[0]["cap"], 200)
 
+    def test_75_day_timeline_is_15_instructional_weeks(self):
+        expected = {0: "Monday", 4: "Friday", 5: "Monday", 9: "Friday",
+                    70: "Monday", 74: "Friday"}
+        self.assertEqual(cfg.TOTAL_SEMESTER_DAYS, 75)
+        self.assertEqual([cfg.DAYS[d % 5] for d in range(75)].count("Monday"), 15)
+        for day, weekday in expected.items():
+            self.assertEqual(cfg.DAYS[day % 5], weekday)
+        model = self.model()
+        model.day_index = 74
+        self.assertEqual(model.day_name, "Friday")
+
 
 if __name__ == "__main__":
     unittest.main()
