@@ -57,8 +57,8 @@ class StudentAgent(mesa.Agent):
         self.route, self.route_index, self.progress_m, self.delay_s = [], 0, 0.0, 0.0
         self.walk = None
         self.until = 0
-        self.held_seat = None                     # (building, floor)
-        self.held_event = None
+        self.held_seat = None                     # (building, floor, represented students)
+        self.held_event = None                    # ((day, event_id), represented students)
         self.agenda, self.agenda_i = [], 0
         self.depart_at = None
         self.next_decision_at = 0
@@ -104,7 +104,8 @@ class StudentAgent(mesa.Agent):
 
     def _release_event(self):
         if self.held_event:
-            self.model.event_present[self.held_event] -= 1
+            key, count = self.held_event
+            self.model.event_present[key] -= count
             self.held_event = None
 
     # ---------------------------------------------------------------- daily plan
@@ -351,10 +352,10 @@ class StudentAgent(mesa.Agent):
         if not cands:
             return False
         (b, avail), = self.dice.choices(cands, weights)
-        floor = m.claim(b, self.dice)
+        floor = m.claim(b, self.dice, m.represented_students)
         if floor is None:
             return False
-        self.held_seat = (b, floor)
+        self.held_seat = (b, floor, m.represented_students)
         if kind == "eat" and meal:
             self.meals[meal]["done"] = True
         dur = min(dur, avail)
@@ -427,13 +428,15 @@ class StudentAgent(mesa.Agent):
             else:
                 ev = self.model.event_by_id[item["id"]]
                 key = (self.model.day_index, ev["id"])
-                if self.model.event_present[key] >= ev["cap"]:
+                count = self.model.represented_students
+                if self.model.event_present[key] + count > ev["cap"]:
                     self.model.event_turned_away[key] += 1
                     self._finish_item(now)          # full: gives up, acts like free time
                     return
-                self.model.event_present[key] += 1
-                self.model.event_attended[key] += 1
-                self.held_event = key
+                self.model.event_present[key] += count
+                self.model.event_attended[key] += count
+                self.model.event_peak[key] = max(self.model.event_peak[key], self.model.event_present[key])
+                self.held_event = (key, count)
                 self.until = now + max(10 * 60, item["exit_target"] - item["arrive_target"])
                 self._set_state(EVENT, f"AT EVENT {item['name']}")
             self.wake_at = self.until
@@ -469,7 +472,8 @@ class CampusModel(mesa.Model):
         self._day_started = False
         self._dist, self._paths = {}, {}
 
-        # seats per (building, floor), scaled
+        # Physical seats never scale with simulated population.  An agent claims the
+        # number of people it represents, so occupancy remains physically meaningful.
         self.seats, self.seat_cap, self.free_total, self.est_floor_s = {}, {}, {}, {}
         self.missing_seat_nodes = []
         for key, floors in cfg.SEATING_FULL.items():
@@ -479,7 +483,17 @@ class CampusModel(mesa.Model):
                 continue
             d = self.seats.setdefault(node, {})
             for fl, n in floors.items():
-                d[fl] = d.get(fl, 0) + cfg.scaled(n, scale_ratio)
+                d[fl] = d.get(fl, 0) + n
+        # Accessible academic map nodes omitted from the measured inventory retain
+        # the agreed temporary 100-seat fallback.  Inaccessible/closed/construction
+        # nodes are excluded explicitly.
+        self.default_seat_nodes = []
+        for node, attrs in graph.nodes(data=True):
+            if (attrs.get("type") == "building" and attrs.get("category") == "academic"
+                    and attrs.get("status") == "active" and attrs.get("routable")
+                    and node not in cfg.INACCESSIBLE_BUILDINGS and node not in self.seats):
+                self.seats[node] = {1: cfg.DEFAULT_SEATS_PER_BUILDING}
+                self.default_seat_nodes.append(node)
         for node, d in list(self.seats.items()):
             total = sum(d.values())
             if total <= 0:
@@ -490,6 +504,7 @@ class CampusModel(mesa.Model):
             g = cfg.GROUND_FLOOR.get(node, 1)
             self.est_floor_s[node] = cfg.FLOOR_SECONDS * sum(abs(f - g) * n for f, n in d.items()) / total
         self.seat_nodes = list(self.seats)
+        self.represented_students = cfg.represented_students(scale_ratio)
 
         self.lots = self._resolve_lots()
         self.missing_lots = []
@@ -499,13 +514,18 @@ class CampusModel(mesa.Model):
         # events
         self.exam_periods = [e for e in events if e["type"] == "exam_period"]
         self.campus_events = []
+        self.invalid_events = []
         for i, e in enumerate(e for e in events if e["type"] == "campus_event"):
+            if e["building"] not in graph:
+                self.invalid_events.append(e)
+                continue
             ev = dict(e, id=i, start_s=to_seconds(e["start_time"]), end_s=to_seconds(e["end_time"]),
-                      cap=cfg.scaled(e["attendance_capacity"], scale_ratio))
+                      cap=e["attendance_capacity"])
             self.campus_events.append(ev)
         self.event_by_id = {e["id"]: e for e in self.campus_events}
         self.event_present = defaultdict(int)
         self.event_attended = defaultdict(int)
+        self.event_peak = defaultdict(int)
         self.event_turned_away = defaultdict(int)
         self.events_today, self.exam_study_terms = [], []
         self.exam_boost = self.semester_decline = 0.0
@@ -610,18 +630,18 @@ class CampusModel(mesa.Model):
         return out or list(self.lots)
 
     # ---------------------------------------------------------------- seats
-    def claim(self, b, dice):
-        floors = [(f, n) for f, n in self.seats[b].items() if n > 0]
+    def claim(self, b, dice, count=1):
+        floors = [(f, n) for f, n in self.seats[b].items() if n >= count]
         if not floors:
             return None
         f = dice.choices([x[0] for x in floors], [x[1] for x in floors])[0]
-        self.seats[b][f] -= 1
-        self.free_total[b] -= 1
+        self.seats[b][f] -= count
+        self.free_total[b] -= count
         return f
 
-    def release(self, b, f):
-        self.seats[b][f] += 1
-        self.free_total[b] += 1
+    def release(self, b, f, count=1):
+        self.seats[b][f] += count
+        self.free_total[b] += count
 
     # ---------------------------------------------------------------- day / step
     def start_day(self):
@@ -666,10 +686,10 @@ class CampusModel(mesa.Model):
             if s == OFF_CAMPUS:
                 continue
             if s == WALKING:
-                walking += 1
+                walking += self.represented_students
                 continue
             row = cnt[a.loc]
-            row[0 if s == IN_CLASS else 1 if s in SEATED else 2 if s == EVENT else 3] += 1
+            row[0 if s == IN_CLASS else 1 if s in SEATED else 2 if s == EVENT else 3] += self.represented_students
         day = self.day_index
         for b, r in cnt.items():
             self.snapshots.append((day, self.day_name, self.time_s, b, *r))
@@ -679,7 +699,7 @@ class CampusModel(mesa.Model):
         for b, fl in self.seats.items():
             for f, n in fl.items():
                 assert n >= 0, f"seat underflow {b} floor {f}"
-        total_held = sum(1 for a in self.students if a.held_seat)
+        total_held = sum(a.held_seat[2] for a in self.students if a.held_seat)
         total_free = sum(self.free_total.values())
         assert total_free + total_held == sum(self.seat_cap.values()), "seat accounting mismatch"
 
@@ -720,9 +740,8 @@ def main():
         print("WARNING seat keys not in graph (edit SEATING_FULL / NODE_ALIAS):", model.missing_seat_nodes)
     if model.missing_lots:
         print("WARNING parking lots not in graph (edit PARKING_LOTS):", model.missing_lots)
-    for ev in model.campus_events:
-        if ev["building"] not in G:
-            print(f"WARNING event '{ev['name']}' building {ev['building']} not in graph")
+    for ev in model.invalid_events:
+        print(f"WARNING event '{ev.get('name', ev['type'])}' building {ev['building']} is not in graph; skipped")
 
     pool = load_section_pool(args.courses, set(G.nodes))
     specs = make_population(archetypes, n, pool, rng)
@@ -756,8 +775,8 @@ def main():
     if model.event_attended:
         for key, n_att in sorted(model.event_attended.items()):
             ev = model.event_by_id[key[1]]
-            print(f"event '{ev['name']}' day {key[0]}: attended {n_att}/cap {ev['cap']}, "
-                  f"turned away {model.event_turned_away[key]}")
+            print(f"event '{ev['name']}' day {key[0]}: cumulative {n_att}, peak "
+                  f"{model.event_peak[key]}/cap {ev['cap']}, turned away {model.event_turned_away[key]}")
     peak = defaultdict(int)
     for row in model.snapshots:
         if row[3] != "_WALKING":

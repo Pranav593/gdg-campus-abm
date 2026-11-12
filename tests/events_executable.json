@@ -1,0 +1,6 @@
+{
+  "events": [
+    {"type": "exam_period", "start_day": 35, "end_day": 40, "study_multiplier": 1.5},
+    {"type": "campus_event", "name": "Capacity test", "day": 37, "start_time": "14:00", "end_time": "17:00", "building": "ECSW", "attendance_capacity": 200}
+  ]
+}

@@ -94,7 +94,7 @@ PARKING_LOTS = {
     "LOT_NW": {"zone": "purple", "delay_min": 2, "frac": (-0.10, 1.10)},
 }
 
-# ---------------------------------------------------------------- seating (full scale, discretionary seats only; classrooms excluded)
+# ---------------------------------------------------------------- seating (physical discretionary seats; classrooms excluded)
 # {graph_node: {floor: seats}}.  Floor 1 is ground unless GROUND_FLOOR says otherwise.
 # >>> CHECK: keys must be graph node names. Use NODE_ALIAS to map a key to a different node. <<<
 SEATING_FULL = {
@@ -120,17 +120,20 @@ SEATING_FULL = {
 }
 # Buildings with no access / zero seats (kept for documentation): North office, North lab, Police, APC2 (construction)
 GROUND_FLOOR = {"GR": 2}
-NODE_ALIAS = {"JSOM1": "JSOM", "JSOM2": "JSOM",   # your graph has a single JSOM node; seats are summed
-              "PHYA": "PHA"}                      # Physics annex = PHA in your graph (check!)
-# AB / ACB (Activity Center, bookstore) are NOT nodes in your graph: set e.g. "AB": "<node>" once you know them
-DEFAULT_SEATS_PER_BUILDING = 100  # unused unless a building appears in no table (spec fallback)
+# The graph has one JSOM destination.  The two physical seating inventories remain
+# distinct in this table and are deliberately aggregated only at the shared map node.
+NODE_ALIAS = {"JSOM1": "JSOM", "JSOM2": "JSOM", "PHYA": "PHA"}
+
+# Never give the academic fallback to these locations.  AB and ACB are retained in
+# SEATING_FULL, but are not present in the supplied graph, so they are reported rather
+# than being assigned invented coordinates or walk links.
+INACCESSIBLE_BUILDINGS = {"NB", "NL", "POLICE", "APC2"}
+DEFAULT_SEATS_PER_BUILDING = 100
 
 
-def scaled(n, ratio):
-    """Divide a full-scale capacity by the scale ratio (non-zero capacities never round to 0)."""
-    if n <= 0:
-        return 0
-    return max(1, int(n / ratio + 0.5))
+def represented_students(scale_ratio):
+    """Number of real students represented by one simulation agent."""
+    return max(1, int(scale_ratio))
 
 
 def to_seconds(t):
