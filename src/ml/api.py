@@ -3,9 +3,11 @@ from __future__ import annotations
 
 import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from .predict import OccupancyPredictor
 
@@ -51,3 +53,10 @@ def predict_all(request: Request, weekday: str, time: str,
         return predictor(request).predict_campus(weekday, time, week)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+# Production/demo mode serves only compiled frontend assets. API routes are
+# registered first so the static fallback cannot shadow them.
+DIST_DIR = Path(__file__).resolve().parents[2] / "dist"
+if DIST_DIR.is_dir():
+    app.mount("/", StaticFiles(directory=DIST_DIR, html=True), name="frontend")
