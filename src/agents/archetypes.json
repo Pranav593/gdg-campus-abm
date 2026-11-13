@@ -1,0 +1,1084 @@
+{
+  "archetypes": [
+    {
+      "archetype_name": "Grind Commuter",
+      "archetype_tag": "COM-GRIND",
+      "archetype_description": "Never misses class, studies hard between lectures, sticks around campus.",
+      "population_weight": 0.07,
+      "agent_id": 1,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.96,
+        "punctuality": 0.85,
+        "studiousness": 0.92,
+        "sociability": 0.25,
+        "walking_speed_mps": 1.35,
+        "leave_campus_tendency": 0.3,
+        "route_consistency": 0.85,
+        "meal_regularness": 0.65,
+        "class_skip_tendency": 0.04,
+        "campus_stay_tendency": 0.6,
+        "event_interest": 0.3,
+        "study_spike_response": 0.9,
+        "commute_friction": 0.55,
+        "parking_loyalty": 0.85
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Class-and-Out Commuter",
+      "archetype_tag": "COM-DASH",
+      "archetype_description": "Arrives for class and leaves the minute it ends.",
+      "population_weight": 0.08,
+      "agent_id": 2,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.88,
+        "punctuality": 0.7,
+        "studiousness": 0.45,
+        "sociability": 0.2,
+        "walking_speed_mps": 1.5,
+        "leave_campus_tendency": 0.85,
+        "route_consistency": 0.8,
+        "meal_regularness": 0.6,
+        "class_skip_tendency": 0.1,
+        "campus_stay_tendency": 0.1,
+        "event_interest": 0.15,
+        "study_spike_response": 0.5,
+        "commute_friction": 0.75,
+        "parking_loyalty": 0.8
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Late Rusher Commuter",
+      "archetype_tag": "COM-LATE",
+      "archetype_description": "Chronically late, fast walker, sprints between buildings.",
+      "population_weight": 0.06,
+      "agent_id": 3,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.8,
+        "punctuality": 0.2,
+        "studiousness": 0.5,
+        "sociability": 0.35,
+        "walking_speed_mps": 1.55,
+        "leave_campus_tendency": 0.55,
+        "route_consistency": 0.55,
+        "meal_regularness": 0.5,
+        "class_skip_tendency": 0.22,
+        "campus_stay_tendency": 0.3,
+        "event_interest": 0.25,
+        "study_spike_response": 0.55,
+        "commute_friction": 0.7,
+        "parking_loyalty": 0.55
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Social Commuter",
+      "archetype_tag": "COM-SOCIAL",
+      "archetype_description": "Drives in to see friends; lingers in common areas.",
+      "population_weight": 0.05,
+      "agent_id": 4,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.82,
+        "punctuality": 0.6,
+        "studiousness": 0.4,
+        "sociability": 0.9,
+        "walking_speed_mps": 1.4,
+        "leave_campus_tendency": 0.35,
+        "route_consistency": 0.45,
+        "meal_regularness": 0.7,
+        "class_skip_tendency": 0.18,
+        "campus_stay_tendency": 0.8,
+        "event_interest": 0.65,
+        "study_spike_response": 0.45,
+        "commute_friction": 0.55,
+        "parking_loyalty": 0.6
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Working Commuter",
+      "archetype_tag": "COM-WORK",
+      "archetype_description": "Holds a job; tight on time, leaves campus quickly.",
+      "population_weight": 0.06,
+      "agent_id": 5,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.78,
+        "punctuality": 0.65,
+        "studiousness": 0.45,
+        "sociability": 0.25,
+        "walking_speed_mps": 1.45,
+        "leave_campus_tendency": 0.9,
+        "route_consistency": 0.85,
+        "meal_regularness": 0.4,
+        "class_skip_tendency": 0.15,
+        "campus_stay_tendency": 0.1,
+        "event_interest": 0.1,
+        "study_spike_response": 0.4,
+        "commute_friction": 0.9,
+        "parking_loyalty": 0.9
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Library Commuter",
+      "archetype_tag": "COM-LIB",
+      "archetype_description": "Treats campus seating as an office; studies for hours.",
+      "population_weight": 0.05,
+      "agent_id": 6,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.92,
+        "punctuality": 0.75,
+        "studiousness": 0.95,
+        "sociability": 0.2,
+        "walking_speed_mps": 1.25,
+        "leave_campus_tendency": 0.25,
+        "route_consistency": 0.9,
+        "meal_regularness": 0.55,
+        "class_skip_tendency": 0.06,
+        "campus_stay_tendency": 0.85,
+        "event_interest": 0.2,
+        "study_spike_response": 0.95,
+        "commute_friction": 0.6,
+        "parking_loyalty": 0.85
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Night Owl Commuter",
+      "archetype_tag": "COM-NIGHT",
+      "archetype_description": "Late riser, irregular meals, stays late.",
+      "population_weight": 0.04,
+      "agent_id": 7,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.65,
+        "punctuality": 0.3,
+        "studiousness": 0.6,
+        "sociability": 0.4,
+        "walking_speed_mps": 1.3,
+        "leave_campus_tendency": 0.4,
+        "route_consistency": 0.4,
+        "meal_regularness": 0.35,
+        "class_skip_tendency": 0.35,
+        "campus_stay_tendency": 0.65,
+        "event_interest": 0.3,
+        "study_spike_response": 0.7,
+        "commute_friction": 0.6,
+        "parking_loyalty": 0.5
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Quiet Transfer Commuter",
+      "archetype_tag": "COM-QUIET",
+      "archetype_description": "Routine-driven, keeps to themselves, same route daily.",
+      "population_weight": 0.05,
+      "agent_id": 8,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.9,
+        "punctuality": 0.8,
+        "studiousness": 0.7,
+        "sociability": 0.15,
+        "walking_speed_mps": 1.3,
+        "leave_campus_tendency": 0.6,
+        "route_consistency": 0.9,
+        "meal_regularness": 0.6,
+        "class_skip_tendency": 0.08,
+        "campus_stay_tendency": 0.35,
+        "event_interest": 0.1,
+        "study_spike_response": 0.65,
+        "commute_friction": 0.65,
+        "parking_loyalty": 0.9
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Active Event Commuter",
+      "archetype_tag": "COM-EVENT",
+      "archetype_description": "Goes to every campus event and fair.",
+      "population_weight": 0.04,
+      "agent_id": 9,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.8,
+        "punctuality": 0.55,
+        "studiousness": 0.45,
+        "sociability": 0.75,
+        "walking_speed_mps": 1.55,
+        "leave_campus_tendency": 0.4,
+        "route_consistency": 0.4,
+        "meal_regularness": 0.55,
+        "class_skip_tendency": 0.2,
+        "campus_stay_tendency": 0.65,
+        "event_interest": 0.9,
+        "study_spike_response": 0.45,
+        "commute_friction": 0.55,
+        "parking_loyalty": 0.55
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Capstone Senior Commuter",
+      "archetype_tag": "COM-SENIOR",
+      "archetype_description": "Upper-level student with a focused, moderate routine.",
+      "population_weight": 0.05,
+      "agent_id": 10,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.85,
+        "punctuality": 0.7,
+        "studiousness": 0.8,
+        "sociability": 0.45,
+        "walking_speed_mps": 1.4,
+        "leave_campus_tendency": 0.5,
+        "route_consistency": 0.8,
+        "meal_regularness": 0.55,
+        "class_skip_tendency": 0.12,
+        "campus_stay_tendency": 0.55,
+        "event_interest": 0.45,
+        "study_spike_response": 0.75,
+        "commute_friction": 0.55,
+        "parking_loyalty": 0.8
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Skip-Prone Commuter",
+      "archetype_tag": "COM-SKIP",
+      "archetype_description": "Frequently skips class; unpredictable schedule.",
+      "population_weight": 0.04,
+      "agent_id": 11,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.45,
+        "punctuality": 0.35,
+        "studiousness": 0.3,
+        "sociability": 0.5,
+        "walking_speed_mps": 1.4,
+        "leave_campus_tendency": 0.7,
+        "route_consistency": 0.5,
+        "meal_regularness": 0.35,
+        "class_skip_tendency": 0.55,
+        "campus_stay_tendency": 0.3,
+        "event_interest": 0.35,
+        "study_spike_response": 0.4,
+        "commute_friction": 0.7,
+        "parking_loyalty": 0.5
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Club Officer Commuter",
+      "archetype_tag": "COM-CLUB",
+      "archetype_description": "Punctual, social, runs organizations and attends events.",
+      "population_weight": 0.05,
+      "agent_id": 12,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.86,
+        "punctuality": 0.8,
+        "studiousness": 0.6,
+        "sociability": 0.8,
+        "walking_speed_mps": 1.45,
+        "leave_campus_tendency": 0.3,
+        "route_consistency": 0.55,
+        "meal_regularness": 0.75,
+        "class_skip_tendency": 0.1,
+        "campus_stay_tendency": 0.8,
+        "event_interest": 0.8,
+        "study_spike_response": 0.6,
+        "commute_friction": 0.5,
+        "parking_loyalty": 0.65
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Cramming Commuter",
+      "archetype_tag": "COM-CRAM",
+      "archetype_description": "Coasts, then studies intensely around exams.",
+      "population_weight": 0.06,
+      "agent_id": 13,
+      "commuter_tag": {
+        "type": "commuter",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.7,
+        "punctuality": 0.45,
+        "studiousness": 0.55,
+        "sociability": 0.4,
+        "walking_speed_mps": 1.35,
+        "leave_campus_tendency": 0.55,
+        "route_consistency": 0.55,
+        "meal_regularness": 0.45,
+        "class_skip_tendency": 0.28,
+        "campus_stay_tendency": 0.5,
+        "event_interest": 0.3,
+        "study_spike_response": 0.98,
+        "commute_friction": 0.6,
+        "parking_loyalty": 0.65
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Studious Dormer",
+      "archetype_tag": "DORM-STUDY",
+      "archetype_description": "Lives nearby, camps in study spots, rarely leaves.",
+      "population_weight": 0.05,
+      "agent_id": 14,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.94,
+        "punctuality": 0.8,
+        "studiousness": 0.9,
+        "sociability": 0.35,
+        "walking_speed_mps": 1.35,
+        "leave_campus_tendency": 0.15,
+        "route_consistency": 0.8,
+        "meal_regularness": 0.75,
+        "class_skip_tendency": 0.05,
+        "campus_stay_tendency": 0.85,
+        "event_interest": 0.35,
+        "study_spike_response": 0.9,
+        "commute_friction": 0.2,
+        "parking_loyalty": 0.7
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Social Dormer",
+      "archetype_tag": "DORM-SOCIAL",
+      "archetype_description": "Campus is their social life; always hanging out.",
+      "population_weight": 0.06,
+      "agent_id": 15,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.78,
+        "punctuality": 0.55,
+        "studiousness": 0.35,
+        "sociability": 0.95,
+        "walking_speed_mps": 1.4,
+        "leave_campus_tendency": 0.1,
+        "route_consistency": 0.4,
+        "meal_regularness": 0.8,
+        "class_skip_tendency": 0.2,
+        "campus_stay_tendency": 0.95,
+        "event_interest": 0.75,
+        "study_spike_response": 0.4,
+        "commute_friction": 0.15,
+        "parking_loyalty": 0.5
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Freshman Explorer Dormer",
+      "archetype_tag": "DORM-FRESH",
+      "archetype_description": "New to campus, curious, goes to everything.",
+      "population_weight": 0.05,
+      "agent_id": 16,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.88,
+        "punctuality": 0.7,
+        "studiousness": 0.55,
+        "sociability": 0.7,
+        "walking_speed_mps": 1.35,
+        "leave_campus_tendency": 0.15,
+        "route_consistency": 0.3,
+        "meal_regularness": 0.7,
+        "class_skip_tendency": 0.12,
+        "campus_stay_tendency": 0.8,
+        "event_interest": 0.85,
+        "study_spike_response": 0.55,
+        "commute_friction": 0.15,
+        "parking_loyalty": 0.45
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Homebody Dormer",
+      "archetype_tag": "DORM-HOME",
+      "archetype_description": "Goes back to the room between classes.",
+      "population_weight": 0.03,
+      "agent_id": 17,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.75,
+        "punctuality": 0.6,
+        "studiousness": 0.5,
+        "sociability": 0.2,
+        "walking_speed_mps": 1.25,
+        "leave_campus_tendency": 0.75,
+        "route_consistency": 0.85,
+        "meal_regularness": 0.65,
+        "class_skip_tendency": 0.22,
+        "campus_stay_tendency": 0.2,
+        "event_interest": 0.15,
+        "study_spike_response": 0.55,
+        "commute_friction": 0.2,
+        "parking_loyalty": 0.85
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Night Gamer Dormer",
+      "archetype_tag": "DORM-NIGHT",
+      "archetype_description": "Up late, skips mornings, irregular meals.",
+      "population_weight": 0.04,
+      "agent_id": 18,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.58,
+        "punctuality": 0.25,
+        "studiousness": 0.35,
+        "sociability": 0.55,
+        "walking_speed_mps": 1.2,
+        "leave_campus_tendency": 0.35,
+        "route_consistency": 0.45,
+        "meal_regularness": 0.3,
+        "class_skip_tendency": 0.4,
+        "campus_stay_tendency": 0.7,
+        "event_interest": 0.3,
+        "study_spike_response": 0.55,
+        "commute_friction": 0.15,
+        "parking_loyalty": 0.4
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Active Athlete Dormer",
+      "archetype_tag": "DORM-ACTIVE",
+      "archetype_description": "Fast walker, regular meals, social and active.",
+      "population_weight": 0.04,
+      "agent_id": 19,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.84,
+        "punctuality": 0.75,
+        "studiousness": 0.45,
+        "sociability": 0.8,
+        "walking_speed_mps": 1.6,
+        "leave_campus_tendency": 0.2,
+        "route_consistency": 0.55,
+        "meal_regularness": 0.8,
+        "class_skip_tendency": 0.12,
+        "campus_stay_tendency": 0.75,
+        "event_interest": 0.7,
+        "study_spike_response": 0.5,
+        "commute_friction": 0.2,
+        "parking_loyalty": 0.6
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    },
+    {
+      "archetype_name": "Event Hopper Dormer",
+      "archetype_tag": "DORM-EVENT",
+      "archetype_description": "Lives for campus events and club nights.",
+      "population_weight": 0.03,
+      "agent_id": 20,
+      "commuter_tag": {
+        "type": "dormer",
+        "parking_permit": "gold"
+      },
+      "schedule": [
+        {
+          "section_id": "cs2336.001.26s",
+          "day": "Monday",
+          "start_time": "10:00",
+          "end_time": "11:15",
+          "building": "ECSW",
+          "floor": 2,
+          "room": "225"
+        },
+        {
+          "section_id": "math2418.001.26s",
+          "day": "Monday",
+          "start_time": "13:00",
+          "end_time": "14:15",
+          "building": "SCI",
+          "floor": 2,
+          "room": "225"
+        }
+      ],
+      "traits": {
+        "attendance": 0.76,
+        "punctuality": 0.5,
+        "studiousness": 0.4,
+        "sociability": 0.85,
+        "walking_speed_mps": 1.45,
+        "leave_campus_tendency": 0.15,
+        "route_consistency": 0.35,
+        "meal_regularness": 0.6,
+        "class_skip_tendency": 0.2,
+        "campus_stay_tendency": 0.9,
+        "event_interest": 0.95,
+        "study_spike_response": 0.45,
+        "commute_friction": 0.15,
+        "parking_loyalty": 0.45
+      },
+      "state": {
+        "current_location": null,
+        "destination": null,
+        "current_activity": "off_campus",
+        "hunger": 0.2,
+        "energy": 0.85
+      }
+    }
+  ]
+}
