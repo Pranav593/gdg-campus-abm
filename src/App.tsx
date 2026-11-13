@@ -146,10 +146,10 @@ function Heatmap({
 }
 
 function App() {
-  const [weekday, setWeekday] = useState<Weekday>('Monday')
-  const [week, setWeek] = useState(1)
-  const [minutes, setMinutes] = useState(480)
-  const [requestedMinutes, setRequestedMinutes] = useState(480)
+  const [weekday, setWeekday] = useState<Weekday>('Tuesday')
+  const [week, setWeek] = useState(8)
+  const [minutes, setMinutes] = useState(870)
+  const [requestedMinutes, setRequestedMinutes] = useState(870)
   const [isPlaying, setIsPlaying] = useState(false)
   const [playbackStep, setPlaybackStep] = useState<5 | 30>(5)
   const [predictionMap, setPredictionMap] = useState<Map<string, number> | null>(null)
