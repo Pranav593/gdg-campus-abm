@@ -36,6 +36,19 @@ BUILDING_ALIASES = {
 }
 
 
+def infer_credits(course_number: Any) -> tuple[int, str]:
+    """Infer UTD credit hours from the second course-number character.
+
+    CourseBook exports do not include a credit field. UTD's ordinary numbering
+    convention places credit hours in the second character. Variable/special
+    course numbers use a documented three-credit fallback for this MVP.
+    """
+    value = clean_string(course_number) or ""
+    if len(value) >= 2 and value[1].isdigit():
+        return int(value[1]), "course_number"
+    return 3, "estimated_fallback"
+
+
 def clean_string(value: Any, *, uppercase: bool = False) -> str | None:
     """Return a trimmed string while retaining missing values as ``None``."""
     if value is None:
@@ -123,6 +136,7 @@ def parse_schedule_blocks(schedule: Any) -> list[dict[str, Any]]:
 
 def clean_section(section: dict[str, Any]) -> dict[str, Any]:
     """Normalize one raw CourseBook section to the output schema."""
+    credits, credit_source = infer_credits(section.get("course_number"))
     return {
         "section_id": clean_string(section.get("section_address")),
         "prefix": clean_string(section.get("course_prefix"), uppercase=True),
@@ -132,6 +146,8 @@ def clean_section(section: dict[str, Any]) -> dict[str, Any]:
         "title": clean_string(section.get("title")),
         "enrollment": integer_when_possible(section.get("enrolled_current")),
         "capacity": integer_when_possible(section.get("enrolled_max")),
+        "credits": credits,
+        "credit_source": credit_source,
         "activity_type": clean_string(section.get("activity_type")),
         "school": clean_string(section.get("school")),
         "department": clean_string(section.get("dept")),
