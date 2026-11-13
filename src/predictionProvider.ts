@@ -50,7 +50,7 @@ export async function fetchCampusPredictions(
   week: number,
   signal: AbortSignal,
 ): Promise<CampusPredictionResponse> {
-  const url = new URL(`${API_BASE_URL}/api/predict/campus`)
+  const url = new URL(`${API_BASE_URL}/api/predict/campus`, window.location.origin)
   url.searchParams.set('weekday', weekday)
   url.searchParams.set('time', time)
   url.searchParams.set('week', String(week))
